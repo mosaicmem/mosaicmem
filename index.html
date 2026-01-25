@@ -84,6 +84,7 @@
   <!-- Critical CSS - Load synchronously -->
   <link rel="stylesheet" href="static/css/bulma.min.css">
   <link rel="stylesheet" href="static/css/index.css">
+  <link rel="stylesheet" href="static/css/customize.css">
 
   <!-- Non-critical CSS - Load asynchronously -->
   <link rel="preload" href="static/css/bulma-carousel.min.css" as="style"
@@ -192,7 +193,7 @@
   </button>
 
   <!-- More Works Dropdown -->
-  <div class="more-works-container">
+  <div class="more-works-container hidden">
     <button class="more-works-btn" onclick="toggleMoreWorks()" title="View More Works from Our Lab">
       <i class="fas fa-flask"></i>
       More Works
@@ -251,20 +252,19 @@
               <div class="is-size-5 publication-authors">
                 <!-- TODO: Replace with your paper authors and their personal links -->
                 <span class="author-block">
-                  <a href="FIRST AUTHOR PERSONAL LINK" target="_blank">Anonymous Authors</a><sup>*</sup>,
+                  <span>Anonymous Authors</span><sup></sup>
+                  <!-- <a href="FIRST AUTHOR PERSONAL LINK" target="_blank">Anonymous Authors</a><sup>*</sup>, -->
                 </span>
-                <span class="author-block">
+                <!-- <span class="author-block">
                   <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Second Author</a><sup>*</sup>,</span>
                 <span class="author-block">
                   <a href="THIRD AUTHOR PERSONAL LINK" target="_blank">Third Author</a>
-                </span>
+                </span> -->
               </div>
 
               <div class="is-size-5 publication-authors">
                 <!-- TODO: Replace with your institution and conference/journal info -->
-                <span class="author-block">Institution Name<br>Conference name and year</span>
-                <!-- TODO: Remove this line if no equal contribution -->
-                <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span>
+                <span class="author-block"><!--Institution Name<br>-->ICML 2026</span>
               </div>
 
               <div class="column has-text-centered">
@@ -349,11 +349,20 @@
             <div class="content has-text-justified">
               <!-- TODO: Replace with your paper abstract -->
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ullamcorper tellus sed ante aliquam
-                tempus. Etiam porttitor urna feugiat nibh elementum, et tempor dolor mattis. Donec accumsan enim augue,
-                a vulputate nisi sodales sit amet. Proin bibendum ex eget mauris cursus euismod nec et nibh. Maecenas ac
-                gravida ante, nec cursus dui. Vivamus purus nibh, placerat ac purus eget, sagittis vestibulum metus. Sed
-                vestibulum bibendum lectus gravida commodo. Pellentesque auctor leo vitae sagittis suscipit.
+                Video diffusion models are moving beyond short, plausible clips toward world simulators that must remain
+                consistent under camera motion, revisits, and intervention. Yet spatial memory is still a key
+                bottleneck: explicit 3D structures can improve reprojection-based consistency but struggle with
+                depicting multiple independently moving objects, while implicit memory is redundant, sensitive to pose
+                noise, and ultimately constrained by finite context. We propose MosaicMem, a hybrid spatial memory
+                mechanism that couples reliable localization with flexible generation. MosaicMem retrieves spatially
+                aligned memory patches and composes them directly in the queried view via a simple patch-and-compose
+                interface—stitching in persistent evidence while leaving the model free to inpaint what should evolve.
+                Beyond MosaicMem, we incorporate PRoPE as a principled camera-conditioning interface, substantially
+                improving viewpoint controllability and revisit stability. We also contribute a new benchmark dataset
+                explicitly designed to evaluate memory retrieval under revisits in the presence of dynamic objects and
+                scene changes. Experiments show that MosaicMem delivers stronger long-horizon persistence than implicit
+                baselines with substantially shorter context, while outperforming explicit baselines in dynamic
+                settings—marking a practical step toward persistent, explorable video world simulators.
               </p>
             </div>
           </div>
