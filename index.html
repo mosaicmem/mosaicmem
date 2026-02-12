@@ -3,8 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="description"
-        content="MosaicMem">
+    <meta name="description" content="MosaicMem">
     <meta property="og:title" content="MosaicMem" />
     <meta property="og:description" content="Spatio-Temporal Memory for Consistent Scene Generation on Minecraft" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -1081,162 +1080,164 @@
                 <source src="static/videos/token_manip_5.mp4" type="video/mp4">
             </video>
 
-            <!-- Long-term Spatial Memory Comparison Subsection -->
-            <div style="margin-top: 4rem;">
-                <h3
-                    style="font-family: 'Orbitron', sans-serif; font-size: 1.8rem; font-weight: 600; color: #ffffff; margin-bottom: 2rem; text-align: center;">
-                    Long-term Spatial Memory Comparison
-                </h3>
-                <p class="video-note">(Video resolution has been compressed for optimized web loading)</p>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-bottom: 2rem;">
-                    <!-- Left Side: w/o long-term spatial memory -->
-                    <div
-                        style="background: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 2rem; border: 1px solid rgba(255, 255, 255, 0.1);">
-                        <h4
-                            style="font-size: 1.3rem; font-weight: 600; color: #ff6b6b; margin-bottom: 1.5rem; text-align: center;">
-                            w/o Long-term Spatial Memory
-                        </h4>
+            <template id="disabled-section">
+                <!-- Long-term Spatial Memory Comparison Subsection -->
+                <div style="margin-top: 4rem;">
+                    <h3
+                        style="font-family: 'Orbitron', sans-serif; font-size: 1.8rem; font-weight: 600; color: #ffffff; margin-bottom: 2rem; text-align: center;">
+                        Long-term Spatial Memory Comparison
+                    </h3>
+                    <p class="video-note">(Video resolution has been compressed for optimized web loading)</p>
 
-                        <!-- Video 1 -->
-                        <video style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);"
-                            muted loop preload="metadata" controls>
-                            <source src="static/highlight_compare/video1.mp4" type="video/mp4">
-                        </video>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-bottom: 2rem;">
+                        <!-- Left Side: w/o long-term spatial memory -->
+                        <div
+                            style="background: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 2rem; border: 1px solid rgba(255, 255, 255, 0.1);">
+                            <h4
+                                style="font-size: 1.3rem; font-weight: 600; color: #ff6b6b; margin-bottom: 1.5rem; text-align: center;">
+                                w/o Long-term Spatial Memory
+                            </h4>
 
-                        <!-- Two images below video -->
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                            <div>
-                                <p
-                                    style="font-size: 0.9rem; color: #cccccc; margin-bottom: 0.5rem; text-align: center;">
-                                    Initial View</p>
-                                <img src="static/highlight_compare/image1.png" alt="Initial View 1"
-                                    style="width: 100%; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);">
-                            </div>
-                            <div>
-                                <p
-                                    style="font-size: 0.9rem; color: #cccccc; margin-bottom: 0.5rem; text-align: center;">
-                                    Revisit View</p>
-                                <img src="static/highlight_compare/image2.png" alt="Revisit View 1"
-                                    style="width: 100%; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);">
-                            </div>
-                        </div>
-                    </div>
+                            <!-- Video 1 -->
+                            <video style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);"
+                                muted loop preload="metadata" controls>
+                                <source src="static/highlight_compare/video1.mp4" type="video/mp4">
+                            </video>
 
-                    <!-- Right Side: w/ long-term spatial memory -->
-                    <div
-                        style="background: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 2rem; border: 1px solid rgba(255, 255, 255, 0.1);">
-                        <h4
-                            style="font-size: 1.3rem; font-weight: 600; color: #4ecdc4; margin-bottom: 1.5rem; text-align: center;">
-                            w/ Long-term Spatial Memory
-                        </h4>
-
-                        <!-- Video 2 -->
-                        <video style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);"
-                            muted loop preload="metadata" controls>
-                            <source src="static/highlight_compare/video2.mp4" type="video/mp4">
-                        </video>
-
-                        <!-- Two images below video -->
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                            <div>
-                                <p
-                                    style="font-size: 0.9rem; color: #cccccc; margin-bottom: 0.5rem; text-align: center;">
-                                    Initial View</p>
-                                <img src="static/highlight_compare/image3.png" alt="Initial View 2"
-                                    style="width: 100%; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);">
-                            </div>
-                            <div>
-                                <p
-                                    style="font-size: 0.9rem; color: #cccccc; margin-bottom: 0.5rem; text-align: center;">
-                                    Revisit View</p>
-                                <img src="static/highlight_compare/image4.png" alt="Revisit View 2"
-                                    style="width: 100%; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                            <!-- Two images below video -->
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                <div>
+                                    <p
+                                        style="font-size: 0.9rem; color: #cccccc; margin-bottom: 0.5rem; text-align: center;">
+                                        Initial View</p>
+                                    <img src="static/highlight_compare/image1.png" alt="Initial View 1"
+                                        style="width: 100%; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                                </div>
+                                <div>
+                                    <p
+                                        style="font-size: 0.9rem; color: #cccccc; margin-bottom: 0.5rem; text-align: center;">
+                                        Revisit View</p>
+                                    <img src="static/highlight_compare/image2.png" alt="Revisit View 1"
+                                        style="width: 100%; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
 
+                        <!-- Right Side: w/ long-term spatial memory -->
+                        <div
+                            style="background: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 2rem; border: 1px solid rgba(255, 255, 255, 0.1);">
+                            <h4
+                                style="font-size: 1.3rem; font-weight: 600; color: #4ecdc4; margin-bottom: 1.5rem; text-align: center;">
+                                w/ Long-term Spatial Memory
+                            </h4>
 
-            <!-- Spatio-Temporal Memory Balance Comparison Subsection -->
-            <div style="margin-top: 4rem;">
-                <h3
-                    style="font-family: 'Orbitron', sans-serif; font-size: 1.8rem; font-weight: 600; color: #ffffff; margin-bottom: 2rem; text-align: center;">
-                    Spatio-Temporal Memory Balance Comparison
-                </h3>
-                <p class="video-note">(Video resolution has been compressed for optimized web loading)</p>
+                            <!-- Video 2 -->
+                            <video style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);"
+                                muted loop preload="metadata" controls>
+                                <source src="static/highlight_compare/video2.mp4" type="video/mp4">
+                            </video>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-bottom: 2rem;">
-                    <!-- Left Side: Over-reliance on Spatial Memory -->
-                    <div
-                        style="background: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 2rem; border: 1px solid rgba(255, 255, 255, 0.1);">
-                        <h4
-                            style="font-size: 1.3rem; font-weight: 600; color: #ff6b6b; margin-bottom: 1.5rem; text-align: center;">
-                            Over-reliance on Spatial Memory
-                        </h4>
-
-                        <!-- Video 1 -->
-                        <video
-                            style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
-                            muted loop preload="metadata" controls>
-                            <source src="static/highlight_compare/video3.mp4" type="video/mp4">
-                        </video>
-
-                        <!-- Two images below video -->
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                            <div>
-                                <p
-                                    style="font-size: 0.9rem; color: #cccccc; margin-bottom: 0.5rem; text-align: center;">
-                                    Initial View</p>
-                                <img src="static/highlight_compare/image5.png" alt="Initial View 1"
-                                    style="width: 100%; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);">
-                            </div>
-                            <div>
-                                <p
-                                    style="font-size: 0.9rem; color: #cccccc; margin-bottom: 0.5rem; text-align: center;">
-                                    Forward Exploration</p>
-                                <img src="static/highlight_compare/image6.png" alt="Forward Exploration 1"
-                                    style="width: 100%; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Right Side: Balanced Spatio-Temporal Memory -->
-                    <div
-                        style="background: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 2rem; border: 1px solid rgba(255, 255, 255, 0.1);">
-                        <h4
-                            style="font-size: 1.3rem; font-weight: 600; color: #4ecdc4; margin-bottom: 1.5rem; text-align: center;">
-                            Balanced Spatio-Temporal Memory
-                        </h4>
-
-                        <!-- Video 2 -->
-                        <video
-                            style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
-                            muted loop preload="metadata" controls>
-                            <source src="static/highlight_compare/video4.mp4" type="video/mp4">
-                        </video>
-
-                        <!-- Two images below video -->
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                            <div>
-                                <p
-                                    style="font-size: 0.9rem; color: #cccccc; margin-bottom: 0.5rem; text-align: center;">
-                                    Initial View</p>
-                                <img src="static/highlight_compare/image7.png" alt="Initial View 2"
-                                    style="width: 100%; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);">
-                            </div>
-                            <div>
-                                <p
-                                    style="font-size: 0.9rem; color: #cccccc; margin-bottom: 0.5rem; text-align: center;">
-                                    Forward Exploration</p>
-                                <img src="static/highlight_compare/image8.png" alt="Forward Exploration 2"
-                                    style="width: 100%; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                            <!-- Two images below video -->
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                <div>
+                                    <p
+                                        style="font-size: 0.9rem; color: #cccccc; margin-bottom: 0.5rem; text-align: center;">
+                                        Initial View</p>
+                                    <img src="static/highlight_compare/image3.png" alt="Initial View 2"
+                                        style="width: 100%; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                                </div>
+                                <div>
+                                    <p
+                                        style="font-size: 0.9rem; color: #cccccc; margin-bottom: 0.5rem; text-align: center;">
+                                        Revisit View</p>
+                                    <img src="static/highlight_compare/image4.png" alt="Revisit View 2"
+                                        style="width: 100%; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+
+
+                <!-- Spatio-Temporal Memory Balance Comparison Subsection -->
+                <div style="margin-top: 4rem;">
+                    <h3
+                        style="font-family: 'Orbitron', sans-serif; font-size: 1.8rem; font-weight: 600; color: #ffffff; margin-bottom: 2rem; text-align: center;">
+                        Spatio-Temporal Memory Balance Comparison
+                    </h3>
+                    <p class="video-note">(Video resolution has been compressed for optimized web loading)</p>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-bottom: 2rem;">
+                        <!-- Left Side: Over-reliance on Spatial Memory -->
+                        <div
+                            style="background: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 2rem; border: 1px solid rgba(255, 255, 255, 0.1);">
+                            <h4
+                                style="font-size: 1.3rem; font-weight: 600; color: #ff6b6b; margin-bottom: 1.5rem; text-align: center;">
+                                Over-reliance on Spatial Memory
+                            </h4>
+
+                            <!-- Video 1 -->
+                            <video
+                                style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
+                                muted loop preload="metadata" controls>
+                                <source src="static/highlight_compare/video3.mp4" type="video/mp4">
+                            </video>
+
+                            <!-- Two images below video -->
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                <div>
+                                    <p
+                                        style="font-size: 0.9rem; color: #cccccc; margin-bottom: 0.5rem; text-align: center;">
+                                        Initial View</p>
+                                    <img src="static/highlight_compare/image5.png" alt="Initial View 1"
+                                        style="width: 100%; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                                </div>
+                                <div>
+                                    <p
+                                        style="font-size: 0.9rem; color: #cccccc; margin-bottom: 0.5rem; text-align: center;">
+                                        Forward Exploration</p>
+                                    <img src="static/highlight_compare/image6.png" alt="Forward Exploration 1"
+                                        style="width: 100%; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Side: Balanced Spatio-Temporal Memory -->
+                        <div
+                            style="background: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 2rem; border: 1px solid rgba(255, 255, 255, 0.1);">
+                            <h4
+                                style="font-size: 1.3rem; font-weight: 600; color: #4ecdc4; margin-bottom: 1.5rem; text-align: center;">
+                                Balanced Spatio-Temporal Memory
+                            </h4>
+
+                            <!-- Video 2 -->
+                            <video
+                                style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
+                                muted loop preload="metadata" controls>
+                                <source src="static/highlight_compare/video4.mp4" type="video/mp4">
+                            </video>
+
+                            <!-- Two images below video -->
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                <div>
+                                    <p
+                                        style="font-size: 0.9rem; color: #cccccc; margin-bottom: 0.5rem; text-align: center;">
+                                        Initial View</p>
+                                    <img src="static/highlight_compare/image7.png" alt="Initial View 2"
+                                        style="width: 100%; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                                </div>
+                                <div>
+                                    <p
+                                        style="font-size: 0.9rem; color: #cccccc; margin-bottom: 0.5rem; text-align: center;">
+                                        Forward Exploration</p>
+                                    <img src="static/highlight_compare/image8.png" alt="Forward Exploration 2"
+                                        style="width: 100%; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
         </div>
     </section>
@@ -1375,6 +1376,8 @@
                 }</div>
         </div>
     </section>
+
+    </template>
 
     <!-- Footer -->
     <!-- <footer class="footer">
