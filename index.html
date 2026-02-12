@@ -50,29 +50,48 @@
         }
 
         /* Hero Section with Video Grid */
+        /* Hero Section with Single Video Background */
         .hero-section {
             position: relative;
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             overflow: hidden;
+            display: block;
         }
-
-        .video-grid {
+        .hero-video {
             position: absolute;
-            top: 0;
-            left: 0;
+            inset: 0;
             width: 100%;
             height: 100%;
-            display: grid;
-            grid-template-columns: repeat(8, 1fr);
-            grid-template-rows: repeat(8, 1fr);
+            object-fit: cover;
             z-index: 1;
-            transform: scale(2);
-            transform-origin: center center;
-            animation: zoomOut 10s ease-in-out forwards;
         }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg,
+                    rgba(0, 0, 0, 0.75) 0%,
+                    rgba(0, 0, 0, 0.6) 50%,
+                    rgba(0, 0, 0, 0.75) 100%);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            max-width: 1200px;
+            padding: 0 2rem;
+            margin: 0 auto;
+            min-height: 100vh;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            animation: fadeInUp 1s ease-out;
+        }
+
 
         @keyframes zoomOut {
 
@@ -765,218 +784,9 @@
     <!-- Hero Section with Video Grid Background -->
     <section class="hero-section">
         <!-- Video Grid Background -->
-        <div class="video-grid">
-            <!-- Generate 64 video cells (8x8) -->
-            <!-- Row 1 -->
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo17.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo18.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo19.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo20.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo21.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo22.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo23.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo24.mp4" type="video/mp4">
-                </video></div>
-
-            <!-- Row 2 -->
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo25.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo26.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo27.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo28.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo29.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo30.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo31.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo32.mp4" type="video/mp4">
-                </video></div>
-
-            <!-- Row 3 -->
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo33.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo34.mp4" type="video/mp4">
-                </video></div>
-            <!-- Center 4x4 starts here (demo1-16) - HIGH PRIORITY -->
-            <div class="video-cell center-video"><video muted loop preload="metadata">
-                    <source src="static/videos/demo1.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell center-video"><video muted loop preload="metadata">
-                    <source src="static/videos/demo2.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell center-video"><video muted loop preload="metadata">
-                    <source src="static/videos/demo3.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell center-video"><video muted loop preload="metadata">
-                    <source src="static/videos/demo4.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo35.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo36.mp4" type="video/mp4">
-                </video></div>
-
-            <!-- Row 4 -->
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo37.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo38.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell center-video"><video muted loop preload="metadata">
-                    <source src="static/videos/demo5.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell center-video"><video muted loop preload="metadata">
-                    <source src="static/videos/demo6.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell center-video"><video muted loop preload="metadata">
-                    <source src="static/videos/demo7.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell center-video"><video muted loop preload="metadata">
-                    <source src="static/videos/demo8.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo39.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo40.mp4" type="video/mp4">
-                </video></div>
-
-            <!-- Row 5 -->
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo41.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo42.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell center-video"><video muted loop preload="metadata">
-                    <source src="static/videos/demo9.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell center-video"><video muted loop preload="metadata">
-                    <source src="static/videos/demo10.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell center-video"><video muted loop preload="metadata">
-                    <source src="static/videos/demo11.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell center-video"><video muted loop preload="metadata">
-                    <source src="static/videos/demo12.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo43.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo44.mp4" type="video/mp4">
-                </video></div>
-
-            <!-- Row 6 -->
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo45.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo46.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell center-video"><video muted loop preload="metadata">
-                    <source src="static/videos/demo13.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell center-video"><video muted loop preload="metadata">
-                    <source src="static/videos/demo14.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell center-video"><video muted loop preload="metadata">
-                    <source src="static/videos/demo15.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell center-video"><video muted loop preload="metadata">
-                    <source src="static/videos/demo16.mp4" type="video/mp4">
-                </video></div>
-            <!-- Center 4x4 ends here -->
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo47.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo48.mp4" type="video/mp4">
-                </video></div>
-
-            <!-- Row 7 -->
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo49.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo50.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo51.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo52.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo53.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo54.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo55.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo56.mp4" type="video/mp4">
-                </video></div>
-
-            <!-- Row 8 -->
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo57.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo58.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo59.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo60.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo61.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo62.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo63.mp4" type="video/mp4">
-                </video></div>
-            <div class="video-cell"><video muted loop preload="none">
-                    <source src="static/videos/demo64.mp4" type="video/mp4">
-                </video></div>
-        </div>
+        <video class="hero-video" autoplay muted loop playsinline preload="metadata">
+        <source src="static/videos/title.mp4" type="video/mp4">
+        </video>
 
         <!-- Overlay -->
         <div class="hero-overlay"></div>
@@ -1048,7 +858,7 @@
             <h2 class="section-title">Long Video</h2>
         </div>
         <p style="font-size: 0.9rem; color: #aaa; margin-top: 0;">
-            The video is playing at 10× speed
+            3 minutes video generated by MosaicMem, The video is playing at 10× speed
         </p>
         <video
             style="width: 40%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
