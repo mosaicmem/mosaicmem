@@ -1,547 +1,1919 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="description"
+        content="Memory Forcing: Spatio-Temporal Memory for Consistent Scene Generation on Minecraft">
+    <meta property="og:title" content="Memory Forcing" />
+    <meta property="og:description" content="Spatio-Temporal Memory for Consistent Scene Generation on Minecraft" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Primary Meta Tags -->
-  <!-- TODO: Replace with your paper title and author names -->
-  <meta name="title" content="PAPER_TITLE - AUTHOR_NAMES">
-  <!-- TODO: Write a compelling 150-160 character description of your research -->
-  <meta name="description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
-  <!-- TODO: Add 5-10 relevant keywords for your research area -->
-  <meta name="keywords" content="KEYWORD1, KEYWORD2, KEYWORD3, machine learning, computer vision, AI">
-  <!-- TODO: List all authors -->
-  <meta name="author" content="FIRST_AUTHOR_NAME, SECOND_AUTHOR_NAME">
-  <meta name="robots" content="index, follow">
-  <meta name="language" content="English">
+    <title>Memory Forcing: Spatio-Temporal Memory for Consistent Scene Generation on Minecraft</title>
+    <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
 
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="article">
-  <!-- TODO: Replace with your institution or lab name -->
-  <meta property="og:site_name" content="INSTITUTION_OR_LAB_NAME">
-  <!-- TODO: Same as paper title above -->
-  <meta property="og:title" content="PAPER_TITLE">
-  <!-- TODO: Same as description above -->
-  <meta property="og:description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
-  <!-- TODO: Replace with your actual website URL -->
-  <meta property="og:url" content="https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE">
-  <!-- TODO: Create a 1200x630px preview image and update path -->
-  <meta property="og:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="PAPER_TITLE - Research Preview">
-  <meta property="article:published_time" content="2024-01-01T00:00:00.000Z">
-  <meta property="article:author" content="FIRST_AUTHOR_NAME">
-  <meta property="article:section" content="Research">
-  <meta property="article:tag" content="KEYWORD1">
-  <meta property="article:tag" content="KEYWORD2">
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <!-- TODO: Replace with your lab/institution Twitter handle -->
-  <meta name="twitter:site" content="@YOUR_TWITTER_HANDLE">
-  <!-- TODO: Replace with first author's Twitter handle -->
-  <meta name="twitter:creator" content="@AUTHOR_TWITTER_HANDLE">
-  <!-- TODO: Same as paper title above -->
-  <meta name="twitter:title" content="PAPER_TITLE">
-  <!-- TODO: Same as description above -->
-  <meta name="twitter:description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
-  <!-- TODO: Same as social preview image above -->
-  <meta name="twitter:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png">
-  <meta name="twitter:image:alt" content="PAPER_TITLE - Research Preview">
-
-  <!-- Academic/Research Specific -->
-  <meta name="citation_title" content="PAPER_TITLE">
-  <meta name="citation_author" content="FIRST_AUTHOR_LAST, FIRST_AUTHOR_FIRST">
-  <meta name="citation_author" content="SECOND_AUTHOR_LAST, SECOND_AUTHOR_FIRST">
-  <meta name="citation_publication_date" content="2024">
-  <meta name="citation_conference_title" content="CONFERENCE_NAME">
-  <meta name="citation_pdf_url" content="https://YOUR_DOMAIN.com/static/pdfs/paper.pdf">
-
-  <!-- Additional SEO -->
-  <meta name="theme-color" content="#2563eb">
-  <meta name="msapplication-TileColor" content="#2563eb">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-
-  <!-- Preconnect for performance -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://ajax.googleapis.com">
-  <link rel="preconnect" href="https://documentcloud.adobe.com">
-  <link rel="preconnect" href="https://cdn.jsdelivr.net">
-
-
-  <!-- TODO: Replace with your paper title and authors -->
-  <title>PAPER_TITLE - AUTHOR_NAMES | Academic Research</title>
-
-  <!-- Favicon and App Icons -->
-  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
-  <link rel="apple-touch-icon" href="static/images/favicon.ico">
-
-  <!-- Critical CSS - Load synchronously -->
-  <link rel="stylesheet" href="static/css/bulma.min.css">
-  <link rel="stylesheet" href="static/css/index.css">
-  <link rel="stylesheet" href="static/css/customize.css">
-
-  <!-- Non-critical CSS - Load asynchronously -->
-  <link rel="preload" href="static/css/bulma-carousel.min.css" as="style"
-    onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style"
-    onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style"
-    onload="this.onload=null;this.rel='stylesheet'">
-
-  <!-- Fallback for browsers that don't support preload -->
-  <noscript>
-    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
-    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
-    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  </noscript>
 
-  <!-- Fonts - Optimized loading -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <!-- Defer non-critical JavaScript -->
-  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
-  <script defer src="static/js/fontawesome.all.min.js"></script>
-  <script defer src="static/js/bulma-carousel.min.js"></script>
-  <script defer src="static/js/bulma-slider.min.js"></script>
-  <script defer src="static/js/index.js"></script>
-
-  <!-- Structured Data for Academic Papers -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ScholarlyArticle",
-    "headline": "PAPER_TITLE",
-    "description": "BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS",
-    "author": [
-      {
-        "@type": "Person",
-        "name": "FIRST_AUTHOR_NAME",
-        "affiliation": {
-          "@type": "Organization",
-          "name": "INSTITUTION_NAME"
+    <style>
+        .ai {
+            font-family: 'Academicons';
+            font-weight: 400;
+            display: inline-block;
+            font-style: normal;
+            font-variant: normal;
+            text-rendering: auto;
+            line-height: 1;
         }
-      },
-      {
-        "@type": "Person",
-        "name": "SECOND_AUTHOR_NAME",
-        "affiliation": {
-          "@type": "Organization",
-          "name": "INSTITUTION_NAME"
-        }
-      }
-    ],
-    "datePublished": "2024-01-01",
-    "publisher": {
-      "@type": "Organization",
-      "name": "CONFERENCE_OR_JOURNAL_NAME"
-    },
-    "url": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE",
-    "image": "https://YOUR_DOMAIN.com/static/images/social_preview.png",
-    "keywords": ["KEYWORD1", "KEYWORD2", "KEYWORD3", "machine learning", "computer vision"],
-    "abstract": "FULL_ABSTRACT_TEXT_HERE",
-    "citation": "BIBTEX_CITATION_HERE",
-    "isAccessibleForFree": true,
-    "license": "https://creativecommons.org/licenses/by/4.0/",
-    "mainEntity": {
-      "@type": "WebPage",
-      "@id": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE"
-    },
-    "about": [
-      {
-        "@type": "Thing",
-        "name": "RESEARCH_AREA_1"
-      },
-      {
-        "@type": "Thing", 
-        "name": "RESEARCH_AREA_2"
-      }
-    ]
-  }
-  </script>
 
-  <!-- Website/Organization Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "INSTITUTION_OR_LAB_NAME",
-    "url": "https://YOUR_INSTITUTION_WEBSITE.com",
-    "logo": "https://YOUR_DOMAIN.com/static/images/favicon.ico",
-    "sameAs": [
-      "https://twitter.com/YOUR_TWITTER_HANDLE",
-      "https://github.com/YOUR_GITHUB_USERNAME"
-    ]
-  }
-  </script>
+        .ai-arxiv:before {
+            content: "\e974";
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #ffffff;
+            background-color: #000000;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section with Video Grid */
+        .hero-section {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .video-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            grid-template-rows: repeat(8, 1fr);
+            z-index: 1;
+            transform: scale(2);
+            transform-origin: center center;
+            animation: zoomOut 10s ease-in-out forwards;
+        }
+
+        @keyframes zoomOut {
+
+            0%,
+            60% {
+                transform: scale(2);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .video-cell {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-cell video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 1;
+            transition: opacity 0.1s ease;
+        }
+
+        .video-cell:hover video {
+            opacity: 0.8;
+        }
+
+        /* Center 4x4 videos (demo1-16) - positions 19-22, 27-30, 35-38, 43-46 in 8x8 grid */
+        .video-cell:nth-child(n+19):nth-child(-n+22),
+        .video-cell:nth-child(n+27):nth-child(-n+30),
+        .video-cell:nth-child(n+35):nth-child(-n+38),
+        .video-cell:nth-child(n+43):nth-child(-n+46) {
+            z-index: 10;
+        }
+
+        /* Overlay for better text readability */
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg,
+                    rgba(0, 0, 0, 0.75) 0%,
+                    rgba(0, 0, 0, 0.6) 50%,
+                    rgba(0, 0, 0, 0.75) 100%);
+            z-index: 2;
+        }
+
+        /* Hero Content */
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            max-width: 1200px;
+            padding: 0 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-title {
+            margin-bottom: 2rem;
+        }
+
+        .main-title {
+            font-family: 'Press Start 2P', monospace;
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: normal;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg,
+                    #ff6b6b, #4ecdc4, #45b7d1, #96ceb4,
+                    #feca57, #ff9ff3, #54a0ff, #5f27cd);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+            letter-spacing: 0.05em;
+            animation: gradientShift 3s ease-in-out infinite;
+            text-shadow: 0 0 20px rgba(255, 107, 107, 0.3);
+        }
+
+        @keyframes gradientShift {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .subtitle {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1rem, 2.5vw, 1.6rem);
+            font-weight: 600;
+            color: #e8e8e8;
+            line-height: 1.3;
+            letter-spacing: 0.02em;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: #cccccc;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .authors {
+            margin-bottom: 1.5rem;
+        }
+
+        .author-row {
+            margin-bottom: 0.5rem;
+        }
+
+        .author-link {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 0.5rem;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .author-link:hover {
+            color: #4fc3f7;
+        }
+
+        .affiliations {
+            font-size: 0.9rem;
+            color: #ffffff;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .link-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            color: #000000 !important;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .link-button:hover {
+            background: rgba(255, 255, 255, 1);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+            color: #000000 !important;
+        }
+
+        .link-button i {
+            margin-right: 0.5rem;
+            font-size: 1.1rem;
+            color: #000000 !important;
+        }
+
+        /* Content Sections */
+        .content-section {
+            padding: 4rem 0;
+            background: #000000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            font-family: 'Source Sans Pro', 'Orbitron', sans-serif;
+            font-size: 3rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #ffffff;
+            letter-spacing: 0.02em;
+        }
+
+        .content-text {
+            font-family: 'Source Sans Pro', 'Inter', sans-serif;
+            font-size: 1.2rem;
+            line-height: 1.75;
+            color: #e8e8e8;
+            margin-bottom: 2rem;
+            font-weight: 400;
+            letter-spacing: 0.01em;
+        }
+
+        .method-image {
+            width: 100%;
+            border-radius: 12px;
+            margin: 2rem 0;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .result-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .result-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .result-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Video Carousel */
+        .comparison-section {
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .comparison-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 2rem;
+            letter-spacing: 0.02em;
+        }
+
+        .video-note {
+            text-align: center;
+            color: #888888;
+            font-size: 1rem;
+            margin-top: 0.5rem;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .video-carousel-wrapper {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 80px;
+            /* Space for navigation arrows */
+        }
+
+        .video-carousel {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%;
+            /* 16:9 aspect ratio */
+            overflow: hidden;
+        }
+
+        .video-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .video-slide.active {
+            opacity: 1;
+        }
+
+        .video-slide video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            /* Changed from cover to contain to show full video */
+            background: #000000;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 50%;
+            z-index: 10;
+        }
+
+        .carousel-nav:hover {
+            background: rgba(0, 0, 0, 0.9);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-nav.prev {
+            left: -60px;
+        }
+
+        .carousel-nav.next {
+            right: -60px;
+        }
+
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            /* Moved outside the video container */
+        }
+
+        .indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator.active {
+            background: white;
+            transform: scale(1.2);
+        }
+
+        /* Long-term Memory Section Styles */
+        .memory-section {
+            background: #000000;
+            padding: 4rem 0;
+        }
+
+        .memory-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .memory-section-title {
+            font-family: 'Source Sans Pro', 'Orbitron', sans-serif;
+            font-size: 3rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            letter-spacing: 0.02em;
+        }
+
+        .memory-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #cccccc;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+        }
+
+        .memory-video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .memory-video-pair {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .memory-video-pair:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .memory-video-container {
+            margin-bottom: 1rem;
+        }
+
+        .memory-video-container:last-child {
+            margin-bottom: 0;
+        }
+
+        .memory-video-label {
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .memory-gt-label {
+            background-color: rgba(76, 175, 80, 0.2);
+            color: #81c784;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+        }
+
+        .memory-output-label {
+            background-color: rgba(33, 150, 243, 0.2);
+            color: #64b5f6;
+            border: 1px solid rgba(33, 150, 243, 0.3);
+        }
+
+        .memory-video {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            background: #111111;
+            pointer-events: none;
+            /* 禁用视频的默认点击事件 */
+        }
+
+        .memory-video:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Additional videos section */
+        .memory-additional-videos {
+            display: none;
+        }
+
+        .memory-additional-videos.show {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* Show more button */
+        .memory-show-more-wrapper {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .memory-show-more-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.75rem 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .memory-show-more-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
+        }
+
+        .memory-show-more-btn i {
+            margin-left: 0.5rem;
+            font-size: 0.9rem;
+            transition: transform 0.3s ease;
+        }
+
+        .memory-show-more-btn.expanded i {
+            transform: rotate(180deg);
+        }
+
+        .memory-controls-hint {
+            text-align: center;
+            color: #888888;
+            font-size: 1rem;
+            margin-top: 0.5rem;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        /* Citation Section */
+        .citation-section {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 3rem 0;
+        }
+
+        .citation-code {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 1.5rem;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9rem;
+            color: #e0e0e0;
+            overflow-x: auto;
+            white-space: pre;
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer p {
+            color: #888888;
+            font-size: 0.9rem;
+        }
+
+        .footer a {
+            color: #4fc3f7;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Loading indicator styles */
+        .loading-indicator {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 12px;
+            z-index: 1000;
+            display: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .video-grid {
+                grid-template-columns: repeat(4, 1fr);
+                grid-template-rows: repeat(4, 1fr);
+                animation: zoomOutMobile 10s ease-in-out forwards;
+            }
+
+            @keyframes zoomOutMobile {
+
+                0%,
+                60% {
+                    transform: scale(1.5);
+                }
+
+                100% {
+                    transform: scale(1);
+                }
+            }
+
+            .hero-content {
+                padding: 0 1rem;
+            }
+
+            .main-title {
+                font-size: clamp(1.5rem, 6vw, 2.5rem);
+                margin-bottom: 1.2rem;
+            }
+
+            .subtitle {
+                font-size: clamp(0.8rem, 3.5vw, 1.2rem);
+            }
+
+            .links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .link-button {
+                width: 200px;
+                justify-content: center;
+            }
+
+            .video-carousel-wrapper {
+                padding: 0 60px;
+            }
+
+            .carousel-nav {
+                font-size: 1.2rem;
+                padding: 0.5rem 0.75rem;
+            }
+
+            .carousel-nav.prev {
+                left: -45px;
+            }
+
+            .carousel-nav.next {
+                right: -45px;
+            }
+
+            .memory-video-grid,
+            .memory-additional-videos.show {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .video-carousel-wrapper {
+                padding: 0 40px;
+            }
+
+            .carousel-nav.prev {
+                left: -35px;
+            }
+
+            .carousel-nav.next {
+                right: -35px;
+            }
+
+            .memory-video-grid,
+            .memory-additional-videos.show {
+                grid-template-columns: 1fr;
+            }
+
+            .memory-container {
+                padding: 0 1rem;
+            }
+
+            .memory-section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
+    <!-- Loading indicator -->
+    <div class="loading-indicator" id="loadingIndicator">Loading videos...</div>
 
+    <!-- Hero Section with Video Grid Background -->
+    <section class="hero-section">
+        <!-- Video Grid Background -->
+        <div class="video-grid">
+            <!-- Generate 64 video cells (8x8) -->
+            <!-- Row 1 -->
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo17.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo18.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo19.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo20.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo21.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo22.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo23.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo24.mp4" type="video/mp4">
+                </video></div>
 
-  <!-- Scroll to Top Button -->
-  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
-    <i class="fas fa-chevron-up"></i>
-  </button>
+            <!-- Row 2 -->
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo25.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo26.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo27.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo28.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo29.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo30.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo31.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo32.mp4" type="video/mp4">
+                </video></div>
 
-  <!-- More Works Dropdown -->
-  <div class="more-works-container hidden">
-    <button class="more-works-btn" onclick="toggleMoreWorks()" title="View More Works from Our Lab">
-      <i class="fas fa-flask"></i>
-      More Works
-      <i class="fas fa-chevron-down dropdown-arrow"></i>
-    </button>
-    <div class="more-works-dropdown" id="moreWorksDropdown">
-      <div class="dropdown-header">
-        <h4>More Works from Our Lab</h4>
-        <button class="close-btn" onclick="toggleMoreWorks()">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-      <div class="works-list">
-        <!-- TODO: Replace with your lab's related works -->
-        <a href="https://arxiv.org/abs/PAPER_ID_1" class="work-item" target="_blank">
-          <div class="work-info">
-            <!-- TODO: Replace with actual paper title -->
-            <h5>Paper Title 1</h5>
-            <!-- TODO: Replace with brief description -->
-            <p>Brief description of the work and its main contribution.</p>
-            <!-- TODO: Replace with venue and year -->
-            <span class="work-venue">Conference/Journal 2024</span>
-          </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
-        <!-- TODO: Add more related works or remove extra items -->
-        <a href="https://arxiv.org/abs/PAPER_ID_2" class="work-item" target="_blank">
-          <div class="work-info">
-            <h5>Paper Title 2</h5>
-            <p>Brief description of the work and its main contribution.</p>
-            <span class="work-venue">Conference/Journal 2023</span>
-          </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
-        <a href="https://arxiv.org/abs/PAPER_ID_3" class="work-item" target="_blank">
-          <div class="work-info">
-            <h5>Paper Title 3</h5>
-            <p>Brief description of the work and its main contribution.</p>
-            <span class="work-venue">Conference/Journal 2023</span>
-          </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
-      </div>
-    </div>
-  </div>
+            <!-- Row 3 -->
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo33.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo34.mp4" type="video/mp4">
+                </video></div>
+            <!-- Center 4x4 starts here (demo1-16) - HIGH PRIORITY -->
+            <div class="video-cell center-video"><video muted loop preload="metadata">
+                    <source src="static/videos/demo1.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell center-video"><video muted loop preload="metadata">
+                    <source src="static/videos/demo2.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell center-video"><video muted loop preload="metadata">
+                    <source src="static/videos/demo3.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell center-video"><video muted loop preload="metadata">
+                    <source src="static/videos/demo4.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo35.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo36.mp4" type="video/mp4">
+                </video></div>
 
-  <main id="main-content">
-    <section class="hero">
-      <div class="hero-body">
-        <div class="container is-max-desktop">
-          <div class="columns is-centered">
-            <div class="column has-text-centered">
-              <!-- TODO: Replace with your paper title -->
-              <h1 class="title is-1 publication-title">MosaicMem: Unified Memory for Long-horizon Video World Models
-              </h1>
-              <div class="is-size-5 publication-authors">
-                <!-- TODO: Replace with your paper authors and their personal links -->
-                <span class="author-block">
-                  <span>Anonymous Authors</span><sup></sup>
-                  <!-- <a href="FIRST AUTHOR PERSONAL LINK" target="_blank">Anonymous Authors</a><sup>*</sup>, -->
-                </span>
-                <!-- <span class="author-block">
-                  <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Second Author</a><sup>*</sup>,</span>
-                <span class="author-block">
-                  <a href="THIRD AUTHOR PERSONAL LINK" target="_blank">Third Author</a>
-                </span> -->
-              </div>
+            <!-- Row 4 -->
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo37.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo38.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell center-video"><video muted loop preload="metadata">
+                    <source src="static/videos/demo5.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell center-video"><video muted loop preload="metadata">
+                    <source src="static/videos/demo6.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell center-video"><video muted loop preload="metadata">
+                    <source src="static/videos/demo7.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell center-video"><video muted loop preload="metadata">
+                    <source src="static/videos/demo8.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo39.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo40.mp4" type="video/mp4">
+                </video></div>
 
-              <div class="is-size-5 publication-authors">
-                <!-- TODO: Replace with your institution and conference/journal info -->
-                <span class="author-block"><!--Institution Name<br>-->ICML 2026</span>
-              </div>
+            <!-- Row 5 -->
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo41.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo42.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell center-video"><video muted loop preload="metadata">
+                    <source src="static/videos/demo9.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell center-video"><video muted loop preload="metadata">
+                    <source src="static/videos/demo10.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell center-video"><video muted loop preload="metadata">
+                    <source src="static/videos/demo11.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell center-video"><video muted loop preload="metadata">
+                    <source src="static/videos/demo12.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo43.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo44.mp4" type="video/mp4">
+                </video></div>
 
-              <div class="column has-text-centered">
-                <div class="publication-links">
-                  <!-- TODO: Update with your arXiv paper ID -->
-                  <span class="link-block">
-                    <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
-                      class="external-link button is-normal is-rounded is-dark">
-                      <span class="icon">
-                        <i class="fas fa-file-pdf"></i>
-                      </span>
-                      <span>Paper</span>
-                    </a>
-                  </span>
+            <!-- Row 6 -->
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo45.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo46.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell center-video"><video muted loop preload="metadata">
+                    <source src="static/videos/demo13.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell center-video"><video muted loop preload="metadata">
+                    <source src="static/videos/demo14.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell center-video"><video muted loop preload="metadata">
+                    <source src="static/videos/demo15.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell center-video"><video muted loop preload="metadata">
+                    <source src="static/videos/demo16.mp4" type="video/mp4">
+                </video></div>
+            <!-- Center 4x4 ends here -->
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo47.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo48.mp4" type="video/mp4">
+                </video></div>
 
-                  <!-- TODO: Add your supplementary material PDF or remove this section -->
-                  <span class="link-block">
-                    <a href="static/pdfs/supplementary_material.pdf" target="_blank"
-                      class="external-link button is-normal is-rounded is-dark">
-                      <span class="icon">
-                        <i class="fas fa-file-pdf"></i>
-                      </span>
-                      <span>Supplementary</span>
-                    </a>
-                  </span>
+            <!-- Row 7 -->
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo49.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo50.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo51.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo52.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo53.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo54.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo55.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo56.mp4" type="video/mp4">
+                </video></div>
 
-                  <!-- TODO: Replace with your GitHub repository URL -->
-                  <span class="link-block">
-                    <a href="https://github.com/YOUR REPO HERE" target="_blank"
-                      class="external-link button is-normal is-rounded is-dark">
-                      <span class="icon">
-                        <i class="fab fa-github"></i>
-                      </span>
-                      <span>Code</span>
-                    </a>
-                  </span>
+            <!-- Row 8 -->
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo57.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo58.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo59.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo60.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo61.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo62.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo63.mp4" type="video/mp4">
+                </video></div>
+            <div class="video-cell"><video muted loop preload="none">
+                    <source src="static/videos/demo64.mp4" type="video/mp4">
+                </video></div>
+        </div>
 
-                  <!-- TODO: Update with your arXiv paper ID -->
-                  <span class="link-block">
-                    <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
-                      class="external-link button is-normal is-rounded is-dark">
-                      <span class="icon">
-                        <i class="ai ai-arxiv"></i>
-                      </span>
-                      <span>arXiv</span>
-                    </a>
-                  </span>
-                </div>
-              </div>
+        <!-- Overlay -->
+        <div class="hero-overlay"></div>
+
+        <!-- Hero Content -->
+        <div class="hero-content">
+            <div class="hero-title">
+                <h1 class="main-title">MosaicMem</h1>
+                <h2 class="subtitle">Unified Memory for Long-horizon Video World Models</h2>
             </div>
-          </div>
+
+            <!-- Authors -->
+            <div class="authors">
+                <div class="author-row">
+                    <a href="" class="author-link">Anonymous Authors<sup></sup></a>
+                </div>
+                <div class="author-row">
+                </div>
+            </div>
+
+            <!-- Affiliations -->
+            <div class="affiliations">
+            </div>
+
+            <!-- Links -->
+            <div class="links">
+                <a href="" class="link-button">
+                    <i class="fas fa-file-pdf"></i>
+                    Paper
+                </a>
+                <a href="" class="link-button">
+                    <i class="fab fa-github"></i>
+                    Code
+                </a>
+                <a href="" class="link-button">
+                    <i class="ai ai-arxiv"></i>
+                    arXiv
+                </a>
+            </div>
         </div>
-      </div>
     </section>
 
-
-    <!-- Teaser video-->
-    <section class="hero teaser">
-      <div class="container is-max-desktop">
-        <div class="hero-body">
-          <!-- TODO: Replace with your teaser video -->
-          <video poster="" id="tree" autoplay controls muted loop height="100%" preload="metadata">
-            <!-- TODO: Add your video file path here -->
-            <source src="static/videos/banner_video.mp4" type="video/mp4">
-          </video>
-          <!-- TODO: Replace with your video description -->
-          <h2 class="subtitle has-text-centered">
-            Aliquam vitae elit ullamcorper tellus egestas pellentesque. Ut lacus tellus, maximus vel lectus at, placerat
-            pretium mi. Maecenas dignissim tincidunt vestibulum. Sed consequat hendrerit nisl ut maximus.
-          </h2>
-        </div>
-      </div>
-    </section>
-    <!-- End teaser video -->
-
-    <!-- Paper abstract -->
-    <section class="section hero is-light">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered has-text-centered">
-          <div class="column is-four-fifths">
-            <h2 class="title is-3">Abstract</h2>
-            <div class="content has-text-justified">
-              <!-- TODO: Replace with your paper abstract -->
-              <p>
+    <!-- Abstract Section -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">Abstract</h2>
+            <p class="content-text">
                 Video diffusion models are moving beyond short, plausible clips toward world simulators that must remain
                 consistent under camera motion, revisits, and intervention. Yet spatial memory is still a key
                 bottleneck: explicit 3D structures can improve reprojection-based consistency but struggle with
                 depicting multiple independently moving objects, while implicit memory is redundant, sensitive to pose
-                noise, and ultimately constrained by finite context. We propose MosaicMem, a hybrid spatial memory
-                mechanism that couples reliable localization with flexible generation. MosaicMem retrieves spatially
-                aligned memory patches and composes them directly in the queried view via a simple patch-and-compose
-                interface—stitching in persistent evidence while leaving the model free to inpaint what should evolve.
-                Beyond MosaicMem, we incorporate PRoPE as a principled camera-conditioning interface, substantially
-                improving viewpoint controllability and revisit stability. We also contribute a new benchmark dataset
-                explicitly designed to evaluate memory retrieval under revisits in the presence of dynamic objects and
-                scene changes. Experiments show that MosaicMem delivers stronger long-horizon persistence than implicit
-                baselines with substantially shorter context, while outperforming explicit baselines in dynamic
-                settings—marking a practical step toward persistent, explorable video world simulators.
-              </p>
-            </div>
-          </div>
+                noise, and ultimately constrained by finite context.
+            </p>
+            <p class="content-text">
+                We propose Mosaic Memory (MosaicMem), a hybrid
+                spatial memory that lifts spacetime patches into 3D for reliable localization and targeted retrieval,
+                while conditioning generation through native attention to naturally handle non-rigid dynamics. MosaicMem
+                composes spatially aligned patches in the queried view via a patch-and-compose interface, preserving
+                what should persist while letting the model inpaint what should evolve. With PRoPE camera conditioning
+                and a new revisit-focused benchmark, experiments show improved pose adherence versus implicit memory and
+                stronger dynamic modeling than explicit baselines. MosaicMem further enables minute-level navigation,
+                multi-view reconstruction, controllable motion diversity, and intuitive memory-based scene editing.
+            </p>
         </div>
-      </div>
     </section>
-    <!-- End paper abstract -->
 
-
-    <!-- Image carousel -->
-    <section class="hero is-small">
-      <div class="hero-body">
+    <section class="content-section">
         <div class="container">
-          <div id="results-carousel" class="carousel results-carousel">
-            <div class="item">
-              <!-- TODO: Replace with your research result images -->
-              <img src="static/images/carousel1.jpg" alt="First research result visualization" loading="lazy" />
-              <!-- TODO: Replace with description of this result -->
-              <h2 class="subtitle has-text-centered">
-                First image description.
-              </h2>
-            </div>
-            <div class="item">
-              <!-- Your image here -->
-              <img src="static/images/carousel2.jpg" alt="Second research result visualization" loading="lazy" />
-              <h2 class="subtitle has-text-centered">
-                Second image description.
-              </h2>
-            </div>
-            <div class="item">
-              <!-- Your image here -->
-              <img src="static/images/carousel3.jpg" alt="Third research result visualization" loading="lazy" />
-              <h2 class="subtitle has-text-centered">
-                Third image description.
-              </h2>
-            </div>
-            <div class="item">
-              <!-- Your image here -->
-              <img src="static/images/carousel4.jpg" alt="Fourth research result visualization" loading="lazy" />
-              <h2 class="subtitle has-text-centered">
-                Fourth image description.
-              </h2>
-            </div>
-          </div>
+            <h2 class="section-title">Long Video</h2>
         </div>
-      </div>
+        <video
+            style="width: 40%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
+            muted loop preload="metadata" controls>
+            <source src="static/videos/long_video.mp4" type="video/mp4">
+        </video>
     </section>
-    <!-- End image carousel -->
 
-
-
-
-    <!-- Youtube video -->
-    <section class="hero is-small is-light">
-      <div class="hero-body">
+    <section class="content-section">
         <div class="container">
-          <!-- Paper video. -->
-          <h2 class="title is-3">Video Presentation</h2>
-          <div class="columns is-centered has-text-centered">
-            <div class="column is-four-fifths">
+            <h2 class="section-title">Token Manipulation</h2>
+            <video
+                style="width: 40%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
+                muted loop preload="metadata" controls>
+                <source src="static/videos/token_manip_1.mp4" type="video/mp4">
+            </video>
+            <video
+                style="width: 40%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
+                muted loop preload="metadata" controls>
+                <source src="static/videos/token_manip_2.mp4" type="video/mp4">
+            </video>
+            <video
+                style="width: 40%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
+                muted loop preload="metadata" controls>
+                <source src="static/videos/token_manip_3.mp4" type="video/mp4">
+            </video>
+            <video
+                style="width: 40%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
+                muted loop preload="metadata" controls>
+                <source src="static/videos/token_manip_4.mp4" type="video/mp4">
+            </video>
+            <video
+                style="width: 40%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
+                muted loop preload="metadata" controls>
+                <source src="static/videos/token_manip_5.mp4" type="video/mp4">
+            </video>
 
-              <div class="publication-video">
-                <!-- TODO: Replace with your YouTube video ID -->
-                <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0"
-                  allow="autoplay; encrypted-media" allowfullscreen></iframe>
-              </div>
+            <!-- Long-term Spatial Memory Comparison Subsection -->
+            <div style="margin-top: 4rem;">
+                <h3
+                    style="font-family: 'Orbitron', sans-serif; font-size: 1.8rem; font-weight: 600; color: #ffffff; margin-bottom: 2rem; text-align: center;">
+                    Long-term Spatial Memory Comparison
+                </h3>
+                <p class="video-note">(Video resolution has been compressed for optimized web loading)</p>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-bottom: 2rem;">
+                    <!-- Left Side: w/o long-term spatial memory -->
+                    <div
+                        style="background: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 2rem; border: 1px solid rgba(255, 255, 255, 0.1);">
+                        <h4
+                            style="font-size: 1.3rem; font-weight: 600; color: #ff6b6b; margin-bottom: 1.5rem; text-align: center;">
+                            w/o Long-term Spatial Memory
+                        </h4>
+
+                        <!-- Video 1 -->
+                        <video style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);"
+                            muted loop preload="metadata" controls>
+                            <source src="static/highlight_compare/video1.mp4" type="video/mp4">
+                        </video>
+
+                        <!-- Two images below video -->
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div>
+                                <p
+                                    style="font-size: 0.9rem; color: #cccccc; margin-bottom: 0.5rem; text-align: center;">
+                                    Initial View</p>
+                                <img src="static/highlight_compare/image1.png" alt="Initial View 1"
+                                    style="width: 100%; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                            </div>
+                            <div>
+                                <p
+                                    style="font-size: 0.9rem; color: #cccccc; margin-bottom: 0.5rem; text-align: center;">
+                                    Revisit View</p>
+                                <img src="static/highlight_compare/image2.png" alt="Revisit View 1"
+                                    style="width: 100%; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Side: w/ long-term spatial memory -->
+                    <div
+                        style="background: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 2rem; border: 1px solid rgba(255, 255, 255, 0.1);">
+                        <h4
+                            style="font-size: 1.3rem; font-weight: 600; color: #4ecdc4; margin-bottom: 1.5rem; text-align: center;">
+                            w/ Long-term Spatial Memory
+                        </h4>
+
+                        <!-- Video 2 -->
+                        <video style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);"
+                            muted loop preload="metadata" controls>
+                            <source src="static/highlight_compare/video2.mp4" type="video/mp4">
+                        </video>
+
+                        <!-- Two images below video -->
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div>
+                                <p
+                                    style="font-size: 0.9rem; color: #cccccc; margin-bottom: 0.5rem; text-align: center;">
+                                    Initial View</p>
+                                <img src="static/highlight_compare/image3.png" alt="Initial View 2"
+                                    style="width: 100%; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                            </div>
+                            <div>
+                                <p
+                                    style="font-size: 0.9rem; color: #cccccc; margin-bottom: 0.5rem; text-align: center;">
+                                    Revisit View</p>
+                                <img src="static/highlight_compare/image4.png" alt="Revisit View 2"
+                                    style="width: 100%; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
+
+
+            <!-- Spatio-Temporal Memory Balance Comparison Subsection -->
+            <div style="margin-top: 4rem;">
+                <h3
+                    style="font-family: 'Orbitron', sans-serif; font-size: 1.8rem; font-weight: 600; color: #ffffff; margin-bottom: 2rem; text-align: center;">
+                    Spatio-Temporal Memory Balance Comparison
+                </h3>
+                <p class="video-note">(Video resolution has been compressed for optimized web loading)</p>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-bottom: 2rem;">
+                    <!-- Left Side: Over-reliance on Spatial Memory -->
+                    <div
+                        style="background: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 2rem; border: 1px solid rgba(255, 255, 255, 0.1);">
+                        <h4
+                            style="font-size: 1.3rem; font-weight: 600; color: #ff6b6b; margin-bottom: 1.5rem; text-align: center;">
+                            Over-reliance on Spatial Memory
+                        </h4>
+
+                        <!-- Video 1 -->
+                        <video
+                            style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
+                            muted loop preload="metadata" controls>
+                            <source src="static/highlight_compare/video3.mp4" type="video/mp4">
+                        </video>
+
+                        <!-- Two images below video -->
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div>
+                                <p
+                                    style="font-size: 0.9rem; color: #cccccc; margin-bottom: 0.5rem; text-align: center;">
+                                    Initial View</p>
+                                <img src="static/highlight_compare/image5.png" alt="Initial View 1"
+                                    style="width: 100%; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                            </div>
+                            <div>
+                                <p
+                                    style="font-size: 0.9rem; color: #cccccc; margin-bottom: 0.5rem; text-align: center;">
+                                    Forward Exploration</p>
+                                <img src="static/highlight_compare/image6.png" alt="Forward Exploration 1"
+                                    style="width: 100%; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Side: Balanced Spatio-Temporal Memory -->
+                    <div
+                        style="background: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 2rem; border: 1px solid rgba(255, 255, 255, 0.1);">
+                        <h4
+                            style="font-size: 1.3rem; font-weight: 600; color: #4ecdc4; margin-bottom: 1.5rem; text-align: center;">
+                            Balanced Spatio-Temporal Memory
+                        </h4>
+
+                        <!-- Video 2 -->
+                        <video
+                            style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
+                            muted loop preload="metadata" controls>
+                            <source src="static/highlight_compare/video4.mp4" type="video/mp4">
+                        </video>
+
+                        <!-- Two images below video -->
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div>
+                                <p
+                                    style="font-size: 0.9rem; color: #cccccc; margin-bottom: 0.5rem; text-align: center;">
+                                    Initial View</p>
+                                <img src="static/highlight_compare/image7.png" alt="Initial View 2"
+                                    style="width: 100%; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                            </div>
+                            <div>
+                                <p
+                                    style="font-size: 0.9rem; color: #cccccc; margin-bottom: 0.5rem; text-align: center;">
+                                    Forward Exploration</p>
+                                <img src="static/highlight_compare/image8.png" alt="Forward Exploration 2"
+                                    style="width: 100%; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
-      </div>
     </section>
-    <!-- End youtube video -->
 
-
-    <!-- Video carousel -->
-    <section class="hero is-small">
-      <div class="hero-body">
+    <!-- Method Section -->
+    <section class="content-section">
         <div class="container">
-          <h2 class="title is-3">Another Carousel</h2>
-          <div id="results-carousel" class="carousel results-carousel">
-            <div class="item item-video1">
-              <!-- TODO: Add poster image for better preview -->
-              <video poster="" id="video1" controls muted loop height="100%" preload="metadata">
-                <!-- Your video file here -->
-                <source src="static/videos/carousel1.mp4" type="video/mp4">
-              </video>
-            </div>
-            <div class="item item-video2">
-              <!-- TODO: Add poster image for better preview -->
-              <video poster="" id="video2" controls muted loop height="100%" preload="metadata">
-                <!-- Your video file here -->
-                <source src="static/videos/carousel2.mp4" type="video/mp4">
-              </video>
-            </div>
-            <div class="item item-video3">
-              <!-- TODO: Add poster image for better preview -->
-              <video poster="" id="video3" controls muted loop height="100%" preload="metadata">
-                <!-- Your video file here -->
-                <source src="static/videos/carousel3.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
+            <h2 class="section-title">Method</h2>
+            <img src="static/images/pipeline.png" alt="MemoryForcing Pipeline Overview" class="method-image">
+            <p class="content-text">
+                <strong>Memory Forcing Pipeline.</strong> Our framework combines spatial and temporal memory for video
+                generation. 3D geometry is maintained through streaming reconstruction of key frames along the camera
+                trajectory. During generation, Point-to-Frame Retrieval maps spatial context to historical frames, which
+                are integrated with temporal memory and injected together via memory cross-attention in the DiT
+                backbone. Chained Forward Training creates larger pose variations, encouraging the model to effectively
+                utilize spatial memory for maintaining long-term geometric consistency.
+            </p>
         </div>
-      </div>
     </section>
-    <!-- End video carousel -->
 
-
-
-
-
-
-    <!-- Paper poster -->
-    <section class="hero is-small is-light">
-      <div class="hero-body">
+    <!-- Results Section -->
+    <section class="content-section">
         <div class="container">
-          <h2 class="title">Poster</h2>
+            <h2 class="section-title">Qualitative Comparison</h2>
+            <p class="video-note">(Video resolution has been compressed for optimized web loading)</p>
 
-          <!-- TODO: Replace with your poster PDF -->
-          <iframe src="static/pdfs/sample.pdf" width="100%" height="550">
-          </iframe>
+            <!-- Comparison Video Carousel -->
+            <div class="comparison-section">
+                <!-- <h3 class="comparison-title">Comparison</h3> -->
+                <div class="video-carousel-wrapper">
+                    <div class="video-carousel">
+                        <div class="video-container">
+                            <div class="video-slide active">
+                                <video muted preload="none">
+                                    <source src="static/compare_videos/video_demo_web1.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                            <div class="video-slide">
+                                <video muted preload="none">
+                                    <source src="static/compare_videos/video_demo_web2.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                            <div class="video-slide">
+                                <video muted preload="none">
+                                    <source src="static/compare_videos/video_demo_web3.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                            <div class="video-slide">
+                                <video muted preload="none">
+                                    <source src="static/compare_videos/video_demo_web4.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                            <div class="video-slide">
+                                <video muted preload="none">
+                                    <source src="static/compare_videos/video_demo_web5.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                            <div class="video-slide">
+                                <video muted preload="none">
+                                    <source src="static/compare_videos/video_demo_web6.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                            <div class="video-slide">
+                                <video muted preload="none">
+                                    <source src="static/compare_videos/video_demo_web7.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
 
-        </div>
-      </div>
-    </section>
-    <!--End paper poster -->
+                    <!-- Navigation Buttons - Now outside the video container -->
+                    <button class="carousel-nav prev" onclick="changeSlide(-1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-nav next" onclick="changeSlide(1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
 
-
-
-    <!--BibTex citation -->
-    <section class="section" id="BibTeX">
-      <div class="container is-max-desktop content">
-        <div class="bibtex-header">
-          <h2 class="title">BibTeX</h2>
-          <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
-            <i class="fas fa-copy"></i>
-            <span class="copy-text">Copy</span>
-          </button>
-        </div>
-        <pre id="bibtex-code"><code>@article{YourPaperKey2024,
-  title={Your Paper Title Here},
-  author={First Author and Second Author and Third Author},
-  journal={Conference/Journal Name},
-  year={2024},
-  url={https://your-domain.com/your-project-page}
-}</code></pre>
-      </div>
-    </section>
-    <!--End BibTex citation -->
-
-
-    <footer class="footer">
-      <div class="container">
-        <div class="columns is-centered">
-          <div class="column is-8">
-            <div class="content">
-
-              <p>
-                This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template"
-                  target="_blank">Academic Project Page Template</a> which was adopted from the <a
-                  href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
-                You are free to borrow the source code of this website, we just ask that you link back to this page in
-                the footer. <br> This website is licensed under a <a rel="license"
-                  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
-                  Commons Attribution-ShareAlike 4.0 International License</a>.
-              </p>
-
+                    <!-- Indicators - Now below the video -->
+                    <div class="carousel-indicators">
+                        <div class="indicator active" onclick="currentSlide(1)"></div>
+                        <div class="indicator" onclick="currentSlide(2)"></div>
+                        <div class="indicator" onclick="currentSlide(3)"></div>
+                        <div class="indicator" onclick="currentSlide(4)"></div>
+                        <div class="indicator" onclick="currentSlide(5)"></div>
+                        <div class="indicator" onclick="currentSlide(6)"></div>
+                        <div class="indicator" onclick="currentSlide(7)"></div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-    </footer>
+    </section>
 
-    <!-- Statcounter tracking code -->
+    <!-- Long-term Memory Section -->
+    <section class="memory-section">
+        <div class="memory-container">
+            <h2 class="memory-section-title">Long-term Memory Performance</h2>
+            <p class="memory-subtitle">
+                Demonstration of model performance on long-term memory tasks, comparing Ground Truth and model output
+                results.
+            </p>
 
-    <!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+            <div class="memory-controls-hint">
+                💡 Tip: Click to pause/play video pairs, double-click to restart from beginning.
+            </div>
 
-    <!-- End of Statcounter Code -->
+            <!-- 视频网格 -->
+            <div class="memory-video-grid" id="memoryVideoGrid">
+                <!-- 视频将通过JavaScript动态生成 -->
+            </div>
 
+            <!-- Show More按钮 -->
+            <div class="memory-show-more-wrapper">
+                <button class="memory-show-more-btn" id="memoryShowMoreBtn" onclick="toggleMoreVideos()">
+                    <span id="showMoreText">Show More Results</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Citation Section -->
+    <section class="citation-section">
+        <div class="container">
+            <h2 class="section-title">BibTeX</h2>
+            <div class="citation-code">@misc{huang2025memoryforcingspatiotemporalmemory,
+                title={Memory Forcing: Spatio-Temporal Memory for Consistent Scene Generation on Minecraft},
+                author={Junchao Huang and Xinting Hu and Boyao Han and Shaoshuai Shi and Zhuotao Tian and Tianyu He and
+                Li Jiang},
+                year={2025},
+                eprint={2510.03198},
+                archivePrefix={arXiv},
+                primaryClass={cs.CV},
+                url={https://arxiv.org/abs/2510.03198},
+                }</div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <!-- <footer class="footer">
+        <div class="container">
+            <p>
+                This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+                <br>This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0" target="_blank">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+        </div>
+    </footer> -->
+
+    <script>
+        // 全局变量
+        let isExpanded = false;
+        let allVideosGenerated = false;
+        let loadingStage = 0; // 0: center videos, 1: background videos, 2: carousel videos, 3: memory videos
+
+        // 优化的视频加载管理器
+        class VideoLoadManager {
+            constructor() {
+                this.loadedVideos = new Set();
+                this.loadingQueue = [];
+                this.maxConcurrentLoads = 3; // 最大并发加载数
+                this.currentLoads = 0;
+                this.loadingIndicator = document.getElementById('loadingIndicator');
+            }
+
+            showLoading(message) {
+                this.loadingIndicator.textContent = message;
+                this.loadingIndicator.style.display = 'block';
+            }
+
+            hideLoading() {
+                this.loadingIndicator.style.display = 'none';
+            }
+
+            updateLoading(message) {
+                this.loadingIndicator.textContent = message;
+            }
+
+            async loadVideo(video, priority = 1) {
+                return new Promise((resolve, reject) => {
+                    this.loadingQueue.push({ video, priority, resolve, reject });
+                    this.loadingQueue.sort((a, b) => b.priority - a.priority);
+                    this.processQueue();
+                });
+            }
+
+            async processQueue() {
+                if (this.currentLoads >= this.maxConcurrentLoads || this.loadingQueue.length === 0) {
+                    return;
+                }
+
+                const { video, resolve, reject } = this.loadingQueue.shift();
+                this.currentLoads++;
+
+                const videoSrc = video.querySelector('source').src;
+                if (this.loadedVideos.has(videoSrc)) {
+                    this.currentLoads--;
+                    resolve();
+                    this.processQueue();
+                    return;
+                }
+
+                video.preload = 'metadata';
+
+                const onLoad = () => {
+                    this.loadedVideos.add(videoSrc);
+                    this.currentLoads--;
+                    cleanup();
+                    resolve();
+                    this.processQueue();
+                };
+
+                const onError = () => {
+                    this.currentLoads--;
+                    cleanup();
+                    console.warn('Failed to load video:', videoSrc);
+                    reject();
+                    this.processQueue();
+                };
+
+                const cleanup = () => {
+                    video.removeEventListener('loadeddata', onLoad);
+                    video.removeEventListener('error', onError);
+                };
+
+                video.addEventListener('loadeddata', onLoad);
+                video.addEventListener('error', onError);
+
+                // 触发加载
+                video.load();
+            }
+        }
+
+        const videoManager = new VideoLoadManager();
+
+        // 分阶段加载视频 - 修正后的版本
+        async function loadVideosInStages() {
+            try {
+                // 第1阶段：加载中心16个视频（最高优先级5）
+                videoManager.showLoading('Loading center videos...');
+                const centerVideos = document.querySelectorAll('.center-video video');
+                await Promise.all(Array.from(centerVideos).map(video =>
+                    videoManager.loadVideo(video, 5)
+                ));
+
+                // 开始播放中心视频
+                centerVideos.forEach(video => {
+                    video.play().catch(() => { });
+                });
+
+                // 第2阶段：加载背景视频（优先级4）
+                videoManager.updateLoading('Loading background videos...');
+                const backgroundVideos = document.querySelectorAll('.video-cell:not(.center-video) video');
+                await Promise.all(Array.from(backgroundVideos).map((video, index) =>
+                    videoManager.loadVideo(video, 4)
+                ));
+
+                // 开始播放背景视频
+                backgroundVideos.forEach((video, index) => {
+                    setTimeout(() => {
+                        video.play().catch(() => { });
+                    }, index * 100);
+                });
+
+                // 加载并播放对比小节的视频（优先级3.5）
+                videoManager.updateLoading('Loading comparison videos...');
+                const compareVideos = Array.from(document.querySelectorAll('video')).filter(video => {
+                    const source = video.querySelector('source');
+                    return source && source.src.includes('static/highlight_compare/video');
+                });
+
+                console.log('Found comparison videos:', compareVideos.length); // 调试信息
+
+                await Promise.all(compareVideos.map(video =>
+                    videoManager.loadVideo(video, 3.5)
+                ));
+
+                compareVideos.forEach(video => {
+                    video.playbackRate = 2.0;
+                    video.play().catch(err => {
+                        console.log('Failed to autoplay comparison video:', err);
+                    });
+                });
+
+                // 第3阶段：加载轮播视频（优先级3）
+                videoManager.updateLoading('Loading carousel videos...');
+                const carouselVideos = document.querySelectorAll('.video-slide video');
+                await Promise.all(Array.from(carouselVideos).map(video =>
+                    videoManager.loadVideo(video, 3)
+                ));
+
+                // 第4阶段：预加载前8个记忆视频（优先级2）
+                videoManager.updateLoading('Loading memory videos...');
+                generateAllMemoryVideos();
+                hideExtraVideos();
+
+                const initialMemoryVideos = document.querySelectorAll('.memory-video-pair:nth-child(-n+8) .memory-video');
+                await Promise.all(Array.from(initialMemoryVideos).map(video =>
+                    videoManager.loadVideo(video, 2)
+                ));
+
+                addMemoryVideoInteractions();
+                videoManager.hideLoading();
+                console.log('All priority videos loaded successfully!');
+
+                // 第5阶段：后台加载剩余记忆视频（最低优先级1）
+                setTimeout(() => {
+                    const remainingMemoryVideos = document.querySelectorAll('.memory-video-pair:nth-child(n+9) .memory-video');
+                    Array.from(remainingMemoryVideos).forEach(video => {
+                        videoManager.loadVideo(video, 1);
+                    });
+                }, 2000);
+
+            } catch (error) {
+                console.error('Error loading videos:', error);
+                videoManager.hideLoading();
+            }
+        }
+
+        // 页面加载完成后开始分阶段加载
+        document.addEventListener('DOMContentLoaded', function () {
+            loadVideosInStages();
+        });
+
+        // Video carousel functionality
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.video-slide');
+        const indicators = document.querySelectorAll('.indicator');
+        const totalSlides = slides.length;
+        let isAutoPlaying = true;
+
+        function showSlide(index) {
+            // Hide all slides and stop all videos
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                const video = slide.querySelector('video');
+                video.pause();
+                video.currentTime = 0;
+            });
+
+            // Remove active class from all indicators
+            indicators.forEach(indicator => indicator.classList.remove('active'));
+
+            // Show current slide and play video
+            slides[index].classList.add('active');
+            indicators[index].classList.add('active');
+            const currentVideo = slides[index].querySelector('video');
+
+            // 确保视频已加载再播放
+            if (currentVideo.readyState >= 2) {
+                currentVideo.playbackRate = 3.0;
+                currentVideo.play().catch(() => { });
+            } else {
+                // 如果未加载，先加载再播放（轮播视频优先级3）
+                videoManager.loadVideo(currentVideo, 3).then(() => {
+                    currentVideo.playbackRate = 3.0;
+                    currentVideo.play().catch(() => { });
+                });
+            }
+
+            currentSlideIndex = index;
+        }
+
+        function changeSlide(direction) {
+            isAutoPlaying = false;
+
+            currentSlideIndex += direction;
+
+            if (currentSlideIndex >= totalSlides) {
+                currentSlideIndex = 0;
+            } else if (currentSlideIndex < 0) {
+                currentSlideIndex = totalSlides - 1;
+            }
+
+            showSlide(currentSlideIndex);
+
+            setTimeout(() => {
+                isAutoPlaying = true;
+            }, 3000);
+        }
+
+        function currentSlide(index) {
+            isAutoPlaying = false;
+            showSlide(index - 1);
+
+            setTimeout(() => {
+                isAutoPlaying = true;
+            }, 3000);
+        }
+
+        // Initialize carousel
+        setTimeout(() => {
+            showSlide(0);
+        }, 1000);
+
+        // Auto-advance when video ends
+        slides.forEach((slide, index) => {
+            const video = slide.querySelector('video');
+            video.addEventListener('ended', () => {
+                if (index === currentSlideIndex && isAutoPlaying) {
+                    currentSlideIndex++;
+                    if (currentSlideIndex >= totalSlides) {
+                        currentSlideIndex = 0;
+                    }
+                    showSlide(currentSlideIndex);
+                }
+            });
+        });
+
+        // Pause auto-playing when user hovers over carousel
+        const carousel = document.querySelector('.video-carousel-wrapper');
+        carousel.addEventListener('mouseenter', () => {
+            isAutoPlaying = false;
+        });
+
+        carousel.addEventListener('mouseleave', () => {
+            isAutoPlaying = true;
+        });
+
+        // 生成视频对HTML
+        function createVideoPairHTML(index) {
+            const basePath = 'static/memory_videos/';
+            return `
+                <div class="memory-video-pair" data-index="${index}">
+                    <div class="memory-video-container">
+                        <div class="memory-video-label memory-gt-label">Ground Truth</div>
+                        <video class="memory-video" muted preload="none" loop>
+                            <source src="${basePath}${index}_GT.mp4" type="video/mp4">
+                            Your browser does not support video playback.
+                        </video>
+                    </div>
+                    
+                    <div class="memory-video-container">
+                        <div class="memory-video-label memory-output-label">Model Output</div>
+                        <video class="memory-video" muted preload="none" loop>
+                            <source src="${basePath}${index}_output.mp4" type="video/mp4">
+                            Your browser does not support video playback.
+                        </video>
+                    </div>
+                </div>
+            `;
+        }
+
+        // 生成所有52个长期记忆视频
+        function generateAllMemoryVideos() {
+            if (allVideosGenerated) return;
+
+            const videoGrid = document.getElementById('memoryVideoGrid');
+
+            // 生成所有52个视频对
+            for (let i = 1; i <= 52; i++) {
+                const pairElement = document.createElement('div');
+                pairElement.innerHTML = createVideoPairHTML(i);
+                videoGrid.appendChild(pairElement.firstElementChild);
+            }
+
+            allVideosGenerated = true;
+            console.log('All 52 video pairs generated');
+        }
+
+        // 隐藏超过8个的视频
+        function hideExtraVideos() {
+            const videoPairs = document.querySelectorAll('.memory-video-pair');
+
+            videoPairs.forEach((pair, index) => {
+                if (index >= 8) {
+                    pair.style.display = 'none';
+                }
+            });
+
+            console.log(`Hidden ${videoPairs.length - 8} video pairs`);
+        }
+
+        // 展开/折叠更多视频
+        async function toggleMoreVideos() {
+            const videoPairs = document.querySelectorAll('.memory-video-pair');
+            const showMoreBtn = document.getElementById('memoryShowMoreBtn');
+            const showMoreText = document.getElementById('showMoreText');
+            const icon = showMoreBtn.querySelector('i');
+
+            if (!isExpanded) {
+                // 显示所有视频
+                videoPairs.forEach((pair, index) => {
+                    if (index >= 8) {
+                        pair.style.display = 'block';
+                    }
+                });
+
+                // 加载新显示的视频（优先级1）
+                const newlyVisibleVideos = document.querySelectorAll('.memory-video-pair:nth-child(n+9) .memory-video');
+                videoManager.showLoading('Loading additional videos...');
+
+                try {
+                    await Promise.all(Array.from(newlyVisibleVideos).map(video =>
+                        videoManager.loadVideo(video, 1)
+                    ));
+                    videoManager.hideLoading();
+                } catch (error) {
+                    console.warn('Some videos failed to load');
+                    videoManager.hideLoading();
+                }
+
+                showMoreText.textContent = 'Show Less Results';
+                showMoreBtn.classList.add('expanded');
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+                isExpanded = true;
+
+                console.log('Expanded to show all videos');
+
+            } else {
+                // 隐藏多余视频
+                videoPairs.forEach((pair, index) => {
+                    if (index >= 8) {
+                        pair.style.display = 'none';
+                    }
+                });
+
+                showMoreText.textContent = 'Show More Results';
+                showMoreBtn.classList.remove('expanded');
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
+                isExpanded = false;
+
+                // 滚动到section顶部
+                document.querySelector('.memory-section').scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+
+                console.log('Collapsed to show only first 8 videos');
+            }
+        }
+
+        // 视频同步播放函数
+        function createSyncFunctions(gtVideo, outputVideo) {
+            // 设置播放速度为0.5倍
+            gtVideo.playbackRate = 0.5;
+            outputVideo.playbackRate = 0.5;
+
+            // 强制同步播放函数
+            function syncPlay() {
+                gtVideo.currentTime = 0;
+                outputVideo.currentTime = 0;
+
+                Promise.all([
+                    gtVideo.play().catch(() => { }),
+                    outputVideo.play().catch(() => { })
+                ]);
+            }
+
+            // 强制同步暂停函数
+            function syncPause() {
+                gtVideo.pause();
+                outputVideo.pause();
+            }
+
+            return { syncPlay, syncPause };
+        }
+
+        // 添加长期记忆视频交互功能
+        function addMemoryVideoInteractions() {
+            setTimeout(() => {
+                const memoryPairs = document.querySelectorAll('.memory-video-pair:not([data-processed])');
+
+                console.log('Processing video pairs:', memoryPairs.length);
+
+                memoryPairs.forEach(pair => {
+                    // 标记为已处理
+                    pair.setAttribute('data-processed', 'true');
+
+                    const videos = pair.querySelectorAll('.memory-video');
+                    const [gtVideo, outputVideo] = videos;
+
+                    if (!gtVideo || !outputVideo) {
+                        console.log('Videos not found in pair:', pair);
+                        return;
+                    }
+
+                    const { syncPlay, syncPause } = createSyncFunctions(gtVideo, outputVideo);
+
+                    // 单击事件：切换播放/暂停
+                    pair.addEventListener('click', function (e) {
+                        e.preventDefault();
+
+                        // 确保视频已加载
+                        if (gtVideo.readyState < 2 || outputVideo.readyState < 2) {
+                            Promise.all([
+                                videoManager.loadVideo(gtVideo, 2),
+                                videoManager.loadVideo(outputVideo, 2)
+                            ]).then(() => {
+                                if (gtVideo.paused) {
+                                    syncPlay();
+                                } else {
+                                    syncPause();
+                                }
+                            });
+                        } else {
+                            if (gtVideo.paused) {
+                                syncPlay();
+                            } else {
+                                syncPause();
+                            }
+                        }
+                    });
+
+                    // 双击事件：重新从头开始播放
+                    pair.addEventListener('dblclick', function (e) {
+                        e.preventDefault();
+
+                        if (gtVideo.readyState >= 2 && outputVideo.readyState >= 2) {
+                            syncPlay();
+                        }
+                    });
+
+                    // 视频循环结束时强制同步重新开始
+                    gtVideo.addEventListener('ended', function () {
+                        syncPlay();
+                    });
+
+                    outputVideo.addEventListener('ended', function () {
+                        syncPlay();
+                    });
+
+                    // 视频时间更新时进行微调同步
+                    let syncTimeout;
+                    gtVideo.addEventListener('timeupdate', function () {
+                        clearTimeout(syncTimeout);
+                        syncTimeout = setTimeout(() => {
+                            if (!gtVideo.paused && !outputVideo.paused) {
+                                const timeDiff = Math.abs(gtVideo.currentTime - outputVideo.currentTime);
+                                if (timeDiff > 0.1) {
+                                    outputVideo.currentTime = gtVideo.currentTime;
+                                }
+                            }
+                        }, 100);
+                    });
+
+                    // 禁用视频的默认控件事件
+                    videos.forEach(video => {
+                        video.addEventListener('click', function (e) {
+                            e.stopPropagation();
+                            e.preventDefault();
+                        });
+
+                        // 错误处理
+                        video.addEventListener('error', function () {
+                            console.log('Video load error:', this.src);
+                            this.style.background = '#2c1810';
+                            this.style.display = 'flex';
+                            this.style.alignItems = 'center';
+                            this.style.justifyContent = 'center';
+                            this.innerHTML = '<div style="color: #ff6b6b; text-align: center; padding: 20px;">Video loading failed</div>';
+                        });
+
+                        // 数据加载完成后自动开始同步播放（仅对前8个）
+                        video.addEventListener('loadeddata', function () {
+                            const pairIndex = Array.from(document.querySelectorAll('.memory-video-pair')).indexOf(pair);
+                            if (pairIndex < 8) {
+                                if (video === gtVideo) {
+                                    if (outputVideo.readyState >= 2) {
+                                        syncPlay();
+                                    }
+                                } else if (video === outputVideo) {
+                                    if (gtVideo.readyState >= 2) {
+                                        syncPlay();
+                                    }
+                                }
+                            }
+                        });
+                    });
+                });
+
+                console.log('Video interactions added to', memoryPairs.length, 'pairs');
+            }, 100);
+        }
+    </script>
 </body>
 
 </html>
