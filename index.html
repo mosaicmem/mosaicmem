@@ -1855,6 +1855,16 @@
         button.classList.add("active");
     }
     </script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        // 让所有指定视频默认 2x
+        document.querySelectorAll("#long1, #long2, #long3").forEach(video => {
+            video.playbackRate = 2;
+        });
+
+    });
+    </script>
 
 </body>
 
