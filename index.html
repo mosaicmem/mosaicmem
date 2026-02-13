@@ -999,6 +999,80 @@
             </div>
             <hr>
 
+            <div class="container">
+            <h2 class="section-title">Precise Camera Controll & Dynamic Scene Generation</h2>
+            <div class="row g-4 justify-content-center" style="max-width: 1800px;"> 
+            
+                <div class="col-md-3">
+                <video
+                    style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
+                    muted loop preload="metadata" controls>
+                    <source src="static\videos\cam1.mp4" type="video/mp4">
+                </video>
+                </div>
+                <div class="col-md-3">
+                <video
+                    style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
+                    muted loop preload="metadata" controls>
+                    <source src="static\videos\cam2.mp4" type="video/mp4">
+                </video>
+                </div>
+                <div class="col-md-3">
+                <video
+                    style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
+                    muted loop preload="metadata" controls>
+                    <source src="static\videos\cam3.mp4" type="video/mp4">
+                </video>
+                </div>
+                <div class="col-md-3">
+                <video
+                    style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
+                    muted loop preload="metadata" controls>
+                    <source src="static\videos\cam4.mp4" type="video/mp4">
+                </video>
+                </div>
+            <!-- <p style="font-size: 0.9rem; color: #aaa; margin-top: 0;">
+            The scenes on the top and bottom come from different spatial memories. This allows us to generate impossible, Inception-like environments that could not exist in reality.
+            </p> -->
+            </div>
+            <!-- <hr> -->
+            <div class="row g-4 justify-content-center" style="max-width: 1800px;"> 
+            
+                <div class="col-md-3">
+                <video
+                    style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
+                    muted loop preload="metadata" controls>
+                    <source src="static\videos\cam8.mp4" type="video/mp4">
+                </video>
+                </div>
+                <div class="col-md-3">
+                <video
+                    style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
+                    muted loop preload="metadata" controls>
+                    <source src="static\videos\cam5.mp4" type="video/mp4">
+                </video>
+                </div>
+                <div class="col-md-3">
+                <video
+                    style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
+                    muted loop preload="metadata" controls>
+                    <source src="static\videos\cam6.mp4" type="video/mp4">
+                </video>
+                </div>
+                <div class="col-md-3">
+                <video
+                    style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
+                    muted loop preload="metadata" controls>
+                    <source src="static\videos\cam7.mp4" type="video/mp4">
+                </video>
+                </div>
+            <!-- <p style="font-size: 0.9rem; color: #aaa; margin-top: 0;">
+            The scenes on the top and bottom come from different spatial memories. This allows us to generate impossible, Inception-like environments that could not exist in reality.
+            </p> -->
+            </div>
+            <!-- <hr> -->
+        </div>
+
             <template id="disabled-section">
                 <!-- Long-term Spatial Memory Comparison Subsection -->
                 <div style="margin-top: 4rem;">
@@ -1160,6 +1234,7 @@
         </div>
     </section>
 
+    
     <!-- Method Section -->
     <section class="content-section">
         <div class="container">
@@ -1857,8 +1932,6 @@
     </script>
     <script>
     document.addEventListener("DOMContentLoaded", function () {
-
-        // 让所有指定视频默认 2x
         document.querySelectorAll("#long1, #long2, #long3").forEach(video => {
             video.playbackRate = 2;
         });
