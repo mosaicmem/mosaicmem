@@ -20,807 +20,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="static/css/index.css">
-    <style>
-    .speed-control {
-        margin-top: 12px;
-        display: flex;
-        gap: 10px;
-        justify-content: center;
-    }
 
-    .speed-btn {
-        background: rgba(255,255,255,0.08);
-        color: #ffffff;
-        border: 1px solid rgba(255,255,255,0.4);
-        padding: 6px 16px;
-        border-radius: 50px;
-        cursor: pointer;
-        font-weight: 600;
-        backdrop-filter: blur(6px);
-        transition: all 0.25s ease;
-    }
-
-    .speed-btn:hover {
-        background: rgba(255,255,255,0.2);
-        transform: scale(1.05);
-    }
-
-    /* 当前选中高亮 */
-    .speed-btn.active {
-        background: #ffffff;
-        color: #000000;
-        border-color: #ffffff;
-    }
-    </style>
-
-    <style>
-        .ai {
-            font-family: 'Academicons';
-            font-weight: 400;
-            display: inline-block;
-            font-style: normal;
-            font-variant: normal;
-            text-rendering: auto;
-            line-height: 1;
-        }
-
-        .ai-arxiv:before {
-            content: "\e974";
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: #ffffff;
-            background-color: #000000;
-            overflow-x: hidden;
-        }
-
-        /* Hero Section with Video Grid */
-        /* Hero Section with Single Video Background */
-        .hero-section {
-            position: relative;
-            min-height: 100vh;
-            overflow: hidden;
-            display: block;
-        }
-        .hero-video {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 1;
-        }
-        .hero-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg,
-                    rgba(0, 0, 0, 0.75) 0%,
-                    rgba(0, 0, 0, 0.6) 50%,
-                    rgba(0, 0, 0, 0.75) 100%);
-            z-index: 2;
-        }
-         
-/* .hero-overlay {
-    position: absolute;
-    inset: 0;
-
-    background: linear-gradient(135deg,
-        rgba(0,0,0,0.2) 0%,
-        rgba(0,0,0,0.1) 50%,
-        rgba(0,0,0,0.2) 100%
-    );
-
-    z-index: 2;
-} */
-
-        .hero-content {
-            position: relative;
-            z-index: 3;
-            text-align: center;
-            max-width: 1200px;
-            padding: 0 2rem;
-            margin: 0 auto;
-            min-height: 100vh;
-
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-
-            animation: fadeInUp 1s ease-out;
-        }
-
-
-        @keyframes zoomOut {
-
-            0%,
-            60% {
-                transform: scale(2);
-            }
-
-            100% {
-                transform: scale(1);
-            }
-        }
-
-        .video-cell {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .video-cell video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 1;
-            transition: opacity 0.1s ease;
-        }
-
-        .video-cell:hover video {
-            opacity: 0.8;
-        }
-
-        /* Center 4x4 videos (demo1-16) - positions 19-22, 27-30, 35-38, 43-46 in 8x8 grid */
-        .video-cell:nth-child(n+19):nth-child(-n+22),
-        .video-cell:nth-child(n+27):nth-child(-n+30),
-        .video-cell:nth-child(n+35):nth-child(-n+38),
-        .video-cell:nth-child(n+43):nth-child(-n+46) {
-            z-index: 10;
-        }
-
-        /* Overlay for better text readability */
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg,
-                    rgba(0, 0, 0, 0.75) 0%,
-                    rgba(0, 0, 0, 0.6) 50%,
-                    rgba(0, 0, 0, 0.75) 100%);
-            z-index: 2;
-        }
-
-        /* Hero Content */
-        .hero-content {
-            position: relative;
-            z-index: 3;
-            text-align: center;
-            max-width: 1200px;
-            padding: 0 2rem;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero-title {
-            margin-bottom: 2rem;
-        }
-
-        .main-title {
-            font-family: 'Press Start 2P', monospace;
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
-            font-weight: normal;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(45deg,
-                    #ff6b6b, #4ecdc4, #45b7d1, #96ceb4,
-                    #feca57, #ff9ff3, #54a0ff, #5f27cd);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.2;
-            letter-spacing: 0.05em;
-            animation: gradientShift 3s ease-in-out infinite;
-            text-shadow: 0 0 20px rgba(255, 107, 107, 0.3);
-        }
-
-        @keyframes gradientShift {
-
-            0%,
-            100% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-        }
-
-        .subtitle {
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(1rem, 2.5vw, 1.6rem);
-            font-weight: 600;
-            color: #e8e8e8;
-            line-height: 1.3;
-            letter-spacing: 0.02em;
-        }
-
-        .hero-subtitle {
-            font-size: 1.2rem;
-            color: #cccccc;
-            margin-bottom: 2rem;
-            font-weight: 300;
-        }
-
-        .authors {
-            margin-bottom: 1.5rem;
-        }
-
-        .author-row {
-            margin-bottom: 0.5rem;
-        }
-
-        .author-link {
-            color: #ffffff;
-            text-decoration: none;
-            margin: 0 0.5rem;
-            transition: color 0.3s ease;
-            font-weight: 500;
-        }
-
-        .author-link:hover {
-            color: #4fc3f7;
-        }
-
-        .affiliations {
-            font-size: 0.9rem;
-            color: #ffffff;
-            margin-bottom: 2rem;
-            line-height: 1.8;
-        }
-
-        .links {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .link-button {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.75rem 1.5rem;
-            background: rgba(255, 255, 255, 0.95);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50px;
-            color: #000000 !important;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .link-button:hover {
-            background: rgba(255, 255, 255, 1);
-            border-color: rgba(255, 255, 255, 0.5);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
-            color: #000000 !important;
-        }
-
-        .link-button i {
-            margin-right: 0.5rem;
-            font-size: 1.1rem;
-            color: #000000 !important;
-        }
-
-        /* Content Sections */
-        .content-section {
-            padding: 4rem 0;
-            background: #000000;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .section-title {
-            font-family: 'Source Sans Pro', 'Orbitron', sans-serif;
-            font-size: 3rem;
-            font-weight: 600;
-            text-align: center;
-            margin-bottom: 3rem;
-            color: #ffffff;
-            letter-spacing: 0.02em;
-        }
-
-        .content-text {
-            font-family: 'Source Sans Pro', 'Inter', sans-serif;
-            font-size: 1.2rem;
-            line-height: 1.75;
-            color: #e8e8e8;
-            margin-bottom: 2rem;
-            font-weight: 400;
-            letter-spacing: 0.01em;
-        }
-
-        .method-image {
-            width: 100%;
-            border-radius: 12px;
-            margin: 2rem 0;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .results-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .result-item {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: transform 0.3s ease;
-        }
-
-        .result-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .result-item img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* Video Carousel */
-        .comparison-section {
-            text-align: center;
-            margin: 3rem 0;
-        }
-
-        .comparison-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
-            font-weight: 600;
-            color: #ffffff;
-            margin-bottom: 2rem;
-            letter-spacing: 0.02em;
-        }
-
-        .video-note {
-            text-align: center;
-            color: #888888;
-            font-size: 1rem;
-            margin-top: 0.5rem;
-            margin-bottom: 2rem;
-            font-style: italic;
-        }
-
-        .video-carousel-wrapper {
-            position: relative;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 80px;
-            /* Space for navigation arrows */
-        }
-
-        .video-carousel {
-            position: relative;
-            border-radius: 12px;
-            overflow: hidden;
-            background: rgba(255, 255, 255, 0.05);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .video-container {
-            position: relative;
-            width: 100%;
-            height: 0;
-            padding-bottom: 56.25%;
-            /* 16:9 aspect ratio */
-            overflow: hidden;
-        }
-
-        .video-slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
-        }
-
-        .video-slide.active {
-            opacity: 1;
-        }
-
-        .video-slide video {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            /* Changed from cover to contain to show full video */
-            background: #000000;
-        }
-
-        .carousel-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.7);
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            padding: 0.75rem 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-radius: 50%;
-            z-index: 10;
-        }
-
-        .carousel-nav:hover {
-            background: rgba(0, 0, 0, 0.9);
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .carousel-nav.prev {
-            left: -60px;
-        }
-
-        .carousel-nav.next {
-            right: -60px;
-        }
-
-        .carousel-indicators {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            margin-top: 1.5rem;
-            /* Moved outside the video container */
-        }
-
-        .indicator {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .indicator.active {
-            background: white;
-            transform: scale(1.2);
-        }
-
-        /* Long-term Memory Section Styles */
-        .memory-section {
-            background: #000000;
-            padding: 4rem 0;
-        }
-
-        .memory-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .memory-section-title {
-            font-family: 'Source Sans Pro', 'Orbitron', sans-serif;
-            font-size: 3rem;
-            font-weight: 600;
-            text-align: center;
-            margin-bottom: 1rem;
-            color: #ffffff;
-            letter-spacing: 0.02em;
-        }
-
-        .memory-subtitle {
-            text-align: center;
-            font-size: 1.2rem;
-            color: #cccccc;
-            margin-bottom: 3rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            font-weight: 300;
-        }
-
-        .memory-video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .memory-video-pair {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            padding: 1.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .memory-video-pair:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-
-        .memory-video-container {
-            margin-bottom: 1rem;
-        }
-
-        .memory-video-container:last-child {
-            margin-bottom: 0;
-        }
-
-        .memory-video-label {
-            font-size: 0.9rem;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-            padding: 0.4rem 0.8rem;
-            border-radius: 6px;
-            text-align: center;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .memory-gt-label {
-            background-color: rgba(76, 175, 80, 0.2);
-            color: #81c784;
-            border: 1px solid rgba(76, 175, 80, 0.3);
-        }
-
-        .memory-output-label {
-            background-color: rgba(33, 150, 243, 0.2);
-            color: #64b5f6;
-            border: 1px solid rgba(33, 150, 243, 0.3);
-        }
-
-        .memory-video {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-            background: #111111;
-            pointer-events: none;
-            /* 禁用视频的默认点击事件 */
-        }
-
-        .memory-video:hover {
-            border-color: rgba(255, 255, 255, 0.3);
-            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
-        }
-
-        /* Additional videos section */
-        .memory-additional-videos {
-            display: none;
-        }
-
-        .memory-additional-videos.show {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        /* Show more button */
-        .memory-show-more-wrapper {
-            text-align: center;
-            margin-top: 2rem;
-        }
-
-        .memory-show-more-btn {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.75rem 2rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50px;
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .memory-show-more-btn:hover {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
-        }
-
-        .memory-show-more-btn i {
-            margin-left: 0.5rem;
-            font-size: 0.9rem;
-            transition: transform 0.3s ease;
-        }
-
-        .memory-show-more-btn.expanded i {
-            transform: rotate(180deg);
-        }
-
-        .memory-controls-hint {
-            text-align: center;
-            color: #888888;
-            font-size: 1rem;
-            margin-top: 0.5rem;
-            margin-bottom: 2rem;
-            font-style: italic;
-        }
-
-        /* Citation Section */
-        .citation-section {
-            background: rgba(255, 255, 255, 0.03);
-            padding: 3rem 0;
-        }
-
-        .citation-code {
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            padding: 1.5rem;
-            font-family: 'Monaco', 'Menlo', monospace;
-            font-size: 0.9rem;
-            color: #e0e0e0;
-            overflow-x: auto;
-            white-space: pre;
-        }
-
-        /* Footer */
-        .footer {
-            background: rgba(255, 255, 255, 0.02);
-            padding: 2rem 0;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .footer p {
-            color: #888888;
-            font-size: 0.9rem;
-        }
-
-        .footer a {
-            color: #4fc3f7;
-            text-decoration: none;
-        }
-
-        .footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* Loading indicator styles */
-        .loading-indicator {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 10px 15px;
-            border-radius: 5px;
-            font-size: 12px;
-            z-index: 1000;
-            display: none;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .video-grid {
-                grid-template-columns: repeat(4, 1fr);
-                grid-template-rows: repeat(4, 1fr);
-                animation: zoomOutMobile 10s ease-in-out forwards;
-            }
-
-            @keyframes zoomOutMobile {
-
-                0%,
-                60% {
-                    transform: scale(1.5);
-                }
-
-                100% {
-                    transform: scale(1);
-                }
-            }
-
-            .hero-content {
-                padding: 0 1rem;
-            }
-
-            .main-title {
-                font-size: clamp(1.5rem, 6vw, 2.5rem);
-                margin-bottom: 1.2rem;
-            }
-
-            .subtitle {
-                font-size: clamp(0.8rem, 3.5vw, 1.2rem);
-            }
-
-            .links {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .link-button {
-                width: 200px;
-                justify-content: center;
-            }
-
-            .video-carousel-wrapper {
-                padding: 0 60px;
-            }
-
-            .carousel-nav {
-                font-size: 1.2rem;
-                padding: 0.5rem 0.75rem;
-            }
-
-            .carousel-nav.prev {
-                left: -45px;
-            }
-
-            .carousel-nav.next {
-                right: -45px;
-            }
-
-            .memory-video-grid,
-            .memory-additional-videos.show {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1.5rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .video-carousel-wrapper {
-                padding: 0 40px;
-            }
-
-            .carousel-nav.prev {
-                left: -35px;
-            }
-
-            .carousel-nav.next {
-                right: -35px;
-            }
-
-            .memory-video-grid,
-            .memory-additional-videos.show {
-                grid-template-columns: 1fr;
-            }
-
-            .memory-container {
-                padding: 0 1rem;
-            }
-
-            .memory-section-title {
-                font-size: 2rem;
-            }
-        }
-    </style>
 </head>
 
 <body>
@@ -831,7 +31,7 @@
     <section class="hero-section">
         <!-- Video Grid Background -->
         <video class="hero-video" autoplay muted loop playsinline preload="metadata">
-        <source src="static/videos/title.mp4" type="video/mp4">
+            <source src="static/videos/title.mp4" type="video/mp4">
         </video>
 
         <!-- Overlay -->
@@ -943,149 +143,152 @@
                     <button class="speed-btn" onclick="setSpeed(this, 10)">5x</button>
                 </div>
             </div>
-         </div>
+        </div>
     </section>
 
     <section class="content-section d-flex flex-column align-items-center text-center">
         <div class="container text-center">
             <h2 class="section-title">Memory Manipulation</h2>
             <p class="content-text">
-                We can extract spatial memory from different scenes, perform stitching and spatial transformations such as translations, and synthesize scenes that would be impossible to exist in the real world.
+                We can extract spatial memory from different scenes, perform stitching and spatial transformations such
+                as translations, and synthesize scenes that would be impossible to exist in the real world.
             </p>
             <hr>
             <div class="row g-3 justify-content-center" style="max-width: 1400px;">
                 <div class="col-md-4">
-                <video
-                    style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
-                    muted loop preload="metadata" controls>
-                    <source src="static\videos\token_manip_1.mp4" type="video/mp4">
-                </video>
+                    <video
+                        style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
+                        muted loop preload="metadata" controls>
+                        <source src="static\videos\token_manip_1.mp4" type="video/mp4">
+                    </video>
                 </div>
-                
+
                 <div class="col-md-4">
-                <video
-                    style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
-                    muted loop preload="metadata" controls>
-                    <source src="static\videos\token_manip_2.mp4" type="video/mp4">
-                </video>
+                    <video
+                        style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
+                        muted loop preload="metadata" controls>
+                        <source src="static\videos\token_manip_2.mp4" type="video/mp4">
+                    </video>
                 </div>
                 <div class="col-md-4">
-                <video
-                    style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
-                    muted loop preload="metadata" controls>
-                    <source src="static\videos\token_manip_3.mp4" type="video/mp4">
-                </video>
+                    <video
+                        style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
+                        muted loop preload="metadata" controls>
+                        <source src="static\videos\token_manip_3.mp4" type="video/mp4">
+                    </video>
                 </div>
                 <p style="font-size: 0.9rem; color: #aaa; margin-top: 0;">
-            The scenes on the left and right come from different spatial memories—some are virtual, some are real. The agent can freely explore within the synthesized imaginary environment.
-            </p>
+                    The scenes on the left and right come from different spatial memories—some are virtual, some are
+                    real. The agent can freely explore within the synthesized imaginary environment.
+                </p>
             </div>
 
             <hr>
-            
 
-            <div class="row g-3 justify-content-center" style="max-width: 1400px;"> 
-            
+
+            <div class="row g-3 justify-content-center" style="max-width: 1400px;">
+
                 <div class="col-md-4">
-                <video
-                    style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
-                    muted loop preload="metadata" controls>
-                    <source src="static\videos\token_manip_4.mp4" type="video/mp4">
-                </video>
+                    <video
+                        style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
+                        muted loop preload="metadata" controls>
+                        <source src="static\videos\token_manip_4.mp4" type="video/mp4">
+                    </video>
                 </div>
                 <div class="col-md-4">
-                <video
-                    style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
-                    muted loop preload="metadata" controls>
-                    <source src="static\videos\token_manip_5.mp4" type="video/mp4">
-                </video>
+                    <video
+                        style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
+                        muted loop preload="metadata" controls>
+                        <source src="static\videos\token_manip_5.mp4" type="video/mp4">
+                    </video>
                 </div>
                 <div class="col-md-4">
-                <video
-                    style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
-                    muted loop preload="metadata" controls>
-                    <source src="static\videos\token_manip_6.mp4" type="video/mp4">
-                </video>
+                    <video
+                        style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
+                        muted loop preload="metadata" controls>
+                        <source src="static\videos\token_manip_6.mp4" type="video/mp4">
+                    </video>
                 </div>
-            <p style="font-size: 0.9rem; color: #aaa; margin-top: 0;">
-            The scenes on the top and bottom come from different spatial memories. This allows us to generate impossible, Inception-like environments that could not exist in reality.
-            </p>
+                <p style="font-size: 0.9rem; color: #aaa; margin-top: 0;">
+                    The scenes on the top and bottom come from different spatial memories. This allows us to generate
+                    impossible, Inception-like environments that could not exist in reality.
+                </p>
             </div>
             <hr>
 
             <div class="container">
-            <h2 class="section-title">Precise Camera Controll & Dynamic Scene Generation</h2>
-            <div class="row g-4 justify-content-center" style="max-width: 1800px;"> 
-            
-                <div class="col-md-3">
-                <video
-                    style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
-                    muted loop preload="metadata" controls>
-                    <source src="static\videos\cam1.mp4" type="video/mp4">
-                </video>
-                </div>
-                <div class="col-md-3">
-                <video
-                    style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
-                    muted loop preload="metadata" controls>
-                    <source src="static\videos\cam2.mp4" type="video/mp4">
-                </video>
-                </div>
-                <div class="col-md-3">
-                <video
-                    style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
-                    muted loop preload="metadata" controls>
-                    <source src="static\videos\cam3.mp4" type="video/mp4">
-                </video>
-                </div>
-                <div class="col-md-3">
-                <video
-                    style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
-                    muted loop preload="metadata" controls>
-                    <source src="static\videos\cam4.mp4" type="video/mp4">
-                </video>
-                </div>
-            <!-- <p style="font-size: 0.9rem; color: #aaa; margin-top: 0;">
+                <h2 class="section-title">Precise Camera Controll & Dynamic Scene Generation</h2>
+                <div class="row g-4 justify-content-center" style="max-width: 1800px;">
+
+                    <div class="col-md-3">
+                        <video
+                            style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
+                            muted loop preload="metadata" controls>
+                            <source src="static\videos\cam1.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="col-md-3">
+                        <video
+                            style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
+                            muted loop preload="metadata" controls>
+                            <source src="static\videos\cam2.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="col-md-3">
+                        <video
+                            style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
+                            muted loop preload="metadata" controls>
+                            <source src="static\videos\cam3.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="col-md-3">
+                        <video
+                            style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
+                            muted loop preload="metadata" controls>
+                            <source src="static\videos\cam4.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <!-- <p style="font-size: 0.9rem; color: #aaa; margin-top: 0;">
             The scenes on the top and bottom come from different spatial memories. This allows us to generate impossible, Inception-like environments that could not exist in reality.
             </p> -->
-            </div>
-            <!-- <hr> -->
-            <div class="row g-4 justify-content-center" style="max-width: 1800px;"> 
-            
-                <div class="col-md-3">
-                <video
-                    style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
-                    muted loop preload="metadata" controls>
-                    <source src="static\videos\cam8.mp4" type="video/mp4">
-                </video>
                 </div>
-                <div class="col-md-3">
-                <video
-                    style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
-                    muted loop preload="metadata" controls>
-                    <source src="static\videos\cam5.mp4" type="video/mp4">
-                </video>
-                </div>
-                <div class="col-md-3">
-                <video
-                    style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
-                    muted loop preload="metadata" controls>
-                    <source src="static\videos\cam6.mp4" type="video/mp4">
-                </video>
-                </div>
-                <div class="col-md-3">
-                <video
-                    style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
-                    muted loop preload="metadata" controls>
-                    <source src="static\videos\cam7.mp4" type="video/mp4">
-                </video>
-                </div>
-            <!-- <p style="font-size: 0.9rem; color: #aaa; margin-top: 0;">
+                <!-- <hr> -->
+                <div class="row g-4 justify-content-center" style="max-width: 1800px;">
+
+                    <div class="col-md-3">
+                        <video
+                            style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
+                            muted loop preload="metadata" controls>
+                            <source src="static\videos\cam8.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="col-md-3">
+                        <video
+                            style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
+                            muted loop preload="metadata" controls>
+                            <source src="static\videos\cam5.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="col-md-3">
+                        <video
+                            style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
+                            muted loop preload="metadata" controls>
+                            <source src="static\videos\cam6.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="col-md-3">
+                        <video
+                            style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
+                            muted loop preload="metadata" controls>
+                            <source src="static\videos\cam7.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <!-- <p style="font-size: 0.9rem; color: #aaa; margin-top: 0;">
             The scenes on the top and bottom come from different spatial memories. This allows us to generate impossible, Inception-like environments that could not exist in reality.
             </p> -->
+                </div>
+                <!-- <hr> -->
             </div>
-            <!-- <hr> -->
-        </div>
 
             <template id="disabled-section">
                 <!-- Long-term Spatial Memory Comparison Subsection -->
@@ -1248,7 +451,7 @@
         </div>
     </section>
 
-    
+
     <!-- Method Section -->
     <section class="content-section">
         <div class="container">
@@ -1929,28 +1132,28 @@
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
     <script>
-    function setSpeed(button, rate) {
+        function setSpeed(button, rate) {
 
-        const container = button.closest(".col-md-4");
+            const container = button.closest(".col-md-4");
 
-        const video = container.querySelector("video");
+            const video = container.querySelector("video");
 
-        video.playbackRate = rate;
+            video.playbackRate = rate;
 
-        container.querySelectorAll(".speed-btn").forEach(btn => {
-            btn.classList.remove("active");
-        });
+            container.querySelectorAll(".speed-btn").forEach(btn => {
+                btn.classList.remove("active");
+            });
 
-        button.classList.add("active");
-    }
+            button.classList.add("active");
+        }
     </script>
     <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        document.querySelectorAll("#long1, #long2, #long3").forEach(video => {
-            video.playbackRate = 2;
-        });
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll("#long1, #long2, #long3").forEach(video => {
+                video.playbackRate = 2;
+            });
 
-    });
+        });
     </script>
 
 </body>
