@@ -41,7 +41,8 @@
         <div class="hero-content">
             <div class="hero-title">
                 <h1 class="main-title">MosaicMem</h1>
-                <h2 class="subtitle">Unified Spatial Memory for Controllable Video World Models
+                <h2 class="subtitle">Hybrid Spatial Memory for Controllable Video World Models
+
 </h2>
             </div>
 
@@ -81,68 +82,109 @@
         <div class="container">
             <h2 class="section-title">Abstract</h2>
             <p class="content-text">
-                Video diffusion models are moving beyond short, plausible clips toward world simulators that must remain
-                consistent under camera motion, revisits, and intervention. Yet spatial memory is still a key
-                bottleneck: explicit 3D structures can improve reprojection-based consistency but struggle with
-                depicting multiple independently moving objects, while implicit memory is redundant, sensitive to pose
-                noise, and ultimately constrained by finite context.
-            </p>
-            <p class="content-text">
-                We propose Mosaic Memory (MosaicMem), a hybrid
-                spatial memory that lifts spacetime patches into 3D for reliable localization and targeted retrieval,
-                while conditioning generation through native attention to naturally handle non-rigid dynamics. MosaicMem
-                composes spatially aligned patches in the queried view via a patch-and-compose interface, preserving
-                what should persist while letting the model inpaint what should evolve. With PRoPE camera conditioning
-                and a new revisit-focused benchmark, experiments show improved pose adherence versus implicit memory and
-                stronger dynamic modeling than explicit baselines. MosaicMem further enables minute-level navigation,
-                multi-view reconstruction, controllable motion diversity, and intuitive memory-based scene editing.
+                Video diffusion models are moving beyond short, plausible clips toward world simulators that must remain consistent under camera motion, revisits, and intervention. Yet spatial memory is still a key bottleneck: explicit 3D structures can improve reprojection-based consistency but struggle with depicting moving objects, while implicit memory often produces inaccurate camera motion even with correct poses. We propose Mosaic Memory (MosaicMem), a hybrid spatial memory that lifts patches into 3D for reliable localization and targeted retrieval, while exploiting model’s native conditioning to preserve prompt-following generation. MosaicMem composes spatially aligned patches in the queried view via a patch-and-compose interface, preserving what should persist while letting the model inpaint what should evolve. With PRoPE camera conditioning and two new memory alignment methods, experiments show improved pose adherence versus implicit memory and stronger dynamic modeling than explicit baselines. MosaicMem further enables minute-level navigation, memory-based scene editing and autoregressive rollout.
             </p>
         </div>
     </section>
 
+    <section class="content-section">
+    <div class="container d-flex flex-column align-items-center text-center">
+        <h2 class="section-title">Mosaic Memory</h2>
+        <p style="font-size: 0.9rem; color: #aaa; margin-top: 0;"></p>
+        MosaicMem lifts video patches into 3D space and gathers them in the target viewpoint, stitching them together like a mosaic. Our model simultaneously supports text-driven dynamics and free camera navigation. Navigation is jointly controlled by MosaicMem retrieval and PRoPE conditioning. The retrieved mosaic patches are flattened and concatenated with the token sequence as conditioning inputs, while residual alignment errors are corrected through warping.
+         </p>
+        <div class="row justify-content-center w-100">
+            <div class="col-md-8" style="max-width: 800px;"> 
+                <video id="mosaic-video" autoplay muted loop preload="metadata" controls
+                    style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 1.5rem;">
+                    <source src="static\videos\mosaic.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content-section">
+    <div class="container text-center">
+        <h2 class="section-title">Promptable World Events</h2>
+        <p style="font-size: 0.9rem; color: #aaa; margin-top: 0;">
+            Similar to Genie3, our system supports promptable world events.
+            These events allow users to dynamically modify the generated world, thereby enriching the interactive experience beyond simple navigation control.
+        </p>
+        
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <video id="single-switch-video" muted loop controls playsinline preload="metadata"
+                    style="width:100%; border-radius:8px; border:1px solid rgba(255,255,255,0.1); margin-bottom:1.5rem;">
+                    <source id="single-switch-source" src="static\videos\select1\a1.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center flex-wrap gap-2 mb-5">
+            <button class="btn btn-outline-light single-video-btn active" data-src="static\videos\select1\a1.mp4">camel</button>
+            <button class="btn btn-outline-light single-video-btn" data-src="static\videos\select1\a2.mp4">armoured car</button>
+            <button class="btn btn-outline-light single-video-btn" data-src="static\videos\select1\a3.mp4">giraffe</button>
+        </div>
+        <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 3rem 0;">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <video id="single-switch-video2" muted loop controls playsinline preload="metadata"
+                    style="width:100%; border-radius:8px; border:1px solid rgba(255,255,255,0.1); margin-bottom:1.5rem;">
+                    <source id="single-switch-source2" src="static\videos\select2\Stormtrooper.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center flex-wrap gap-2">
+            <button class="btn btn-outline-light single-video-btn2 active" data-src="static\videos\select2\Stormtrooper.mp4">stormtrooper</button>
+            <button class="btn btn-outline-light single-video-btn2" data-src="static\videos\select2\wolf.mp4">wolf</button>
+            <button class="btn btn-outline-light single-video-btn2" data-src="static\videos\select2\rhino.mp4">rhino</button>
+        </div>
+        <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 3rem 0;">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <video id="single-switch-video3" muted loop controls playsinline preload="metadata"
+                    style="width:100%; border-radius:8px; border:1px solid rgba(255,255,255,0.1); margin-bottom:1.5rem;">
+                    <source id="single-switch-source3" src="static\videos\select3\astcoming.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center flex-wrap gap-2">
+            <button class="btn btn-outline-light single-video-btn3 active" data-src="static\videos\select3\astcoming.mp4">astronaut coming</button>
+            <button class="btn btn-outline-light single-video-btn3" data-src="static\videos\select3\astleav.mp4">astronaut leaving</button>
+            <button class="btn btn-outline-light single-video-btn3" data-src="static\videos\select3\penguin.mp4">penguin</button>
+        </div>
+    </div> </section>
+    
     <section class="content-section d-flex flex-column align-items-center text-center">
         <div class="container">
             <h2 class="section-title">Long Video</h2>
         </div>
         <p style="font-size: 0.9rem; color: #aaa; margin-top: 0;">
-            3 minutes videos generated by MosaicMem.
+            2 minutes videos generated by MosaicMem. Played at 4x speed for better visualization.
         </p>
         <div class="row g-2 justify-content-center" style="max-width: 1400px;">
             <div class="col-md-4">
-                <video id="long1" muted loop preload="metadata" controls
+                <video id="long1"autoplay muted loop preload="metadata" controls
                     style="width:100%; border-radius:8px; border:1px solid rgba(255,255,255,0.1); margin-bottom:1.5rem;">
                     <source src="static\videos\long1.mp4" type="video/mp4">
                 </video>
 
-                <div class="speed-control">
-                    <button class="speed-btn active" onclick="setSpeed(this, 2)">1x</button>
-                    <button class="speed-btn" onclick="setSpeed(this, 5)">3x</button>
-                    <button class="speed-btn" onclick="setSpeed(this, 10)">5x</button>
-                </div>
             </div>
             <div class="col-md-4">
-                <video id="long2" muted loop preload="metadata" controls
+                <video id="long2"autoplay muted loop preload="metadata" controls
                     style="width:100%; border-radius:8px; border:1px solid rgba(255,255,255,0.1); margin-bottom:1.5rem;">
                     <source src="static\videos\long2.mp4" type="video/mp4">
                 </video>
 
-                <div class="speed-control">
-                    <button class="speed-btn active" onclick="setSpeed(this, 2)">1x</button>
-                    <button class="speed-btn" onclick="setSpeed(this, 5)">3x</button>
-                    <button class="speed-btn" onclick="setSpeed(this, 10)">5x</button>
-                </div>
             </div>
             <div class="col-md-4">
-                <video id="long3" muted loop preload="metadata" controls
+                <video id="long3"autoplay muted loop preload="metadata" controls
                     style="width:100%; border-radius:8px; border:1px solid rgba(255,255,255,0.1); margin-bottom:1.5rem;">
                     <source src="static\videos\long3.mp4" type="video/mp4">
                 </video>
-
-                <div class="speed-control">
-                    <button class="speed-btn active" onclick="setSpeed(this, 2)">1x</button>
-                    <button class="speed-btn" onclick="setSpeed(this, 5)">3x</button>
-                    <button class="speed-btn" onclick="setSpeed(this, 10)">5x</button>
-                </div>
             </div>
         </div>
     </section>
@@ -159,7 +201,7 @@
                 <div class="col-md-4">
                     <video
                         style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
-                        muted loop preload="metadata" controls>
+                        autoplay muted loop preload="metadata" controls>
                         <source src="static\videos\token_manip_1.mp4" type="video/mp4">
                     </video>
                 </div>
@@ -167,14 +209,14 @@
                 <div class="col-md-4">
                     <video
                         style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
-                        muted loop preload="metadata" controls>
+                        autoplay muted loop preload="metadata" controls>
                         <source src="static\videos\token_manip_2.mp4" type="video/mp4">
                     </video>
                 </div>
                 <div class="col-md-4">
                     <video
                         style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
-                        muted loop preload="metadata" controls>
+                        autoplay muted loop preload="metadata" controls>
                         <source src="static\videos\token_manip_3.mp4" type="video/mp4">
                     </video>
                 </div>
@@ -192,21 +234,21 @@
                 <div class="col-md-4">
                     <video
                         style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
-                        muted loop preload="metadata" controls>
+                        autoplay muted loop preload="metadata" controls>
                         <source src="static\videos\token_manip_4.mp4" type="video/mp4">
                     </video>
                 </div>
                 <div class="col-md-4">
                     <video
                         style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
-                        muted loop preload="metadata" controls>
+                        autoplay muted loop preload="metadata" controls>
                         <source src="static\videos\token_manip_5.mp4" type="video/mp4">
                     </video>
                 </div>
                 <div class="col-md-4">
                     <video
                         style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
-                        muted loop preload="metadata" controls>
+                        autoplay muted loop preload="metadata" controls>
                         <source src="static\videos\token_manip_6.mp4" type="video/mp4">
                     </video>
                 </div>
@@ -218,35 +260,39 @@
             <hr>
 
             <div class="container">
-                <h2 class="section-title">Precise Camera Controll & Dynamic Scene Generation</h2>
+                <h2 class="section-title">Dynamic Scene Generation</h2>
                 <div class="row g-4 justify-content-center" style="max-width: 1800px;">
 
                     <div class="col-md-3">
                         <video
+                        oncanplay="this.playbackRate = 2;"
                             style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
-                            muted loop preload="metadata" controls>
-                            <source src="static\videos\cam1.mp4" type="video/mp4">
+                            autoplay muted loop preload="metadata" controls>
+                            <source src="static\videos\dynamic\dynamic1.mp4" type="video/mp4">
                         </video>
                     </div>
                     <div class="col-md-3">
                         <video
+                        oncanplay="this.playbackRate = 2;"
                             style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
-                            muted loop preload="metadata" controls>
-                            <source src="static\videos\cam2.mp4" type="video/mp4">
+                            autoplay muted loop preload="metadata" controls>
+                            <source src="static\videos\dynamic\dynamic2.mp4" type="video/mp4">
                         </video>
                     </div>
                     <div class="col-md-3">
                         <video
+                        oncanplay="this.playbackRate = 2;"
                             style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
-                            muted loop preload="metadata" controls>
-                            <source src="static\videos\cam3.mp4" type="video/mp4">
+                            autoplay muted loop preload="metadata" controls>
+                            <source src="static\videos\dynamic\dynamic3.mp4" type="video/mp4">
                         </video>
                     </div>
                     <div class="col-md-3">
                         <video
+                        oncanplay="this.playbackRate = 2;"
                             style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
-                            muted loop preload="metadata" controls>
-                            <source src="static\videos\cam4.mp4" type="video/mp4">
+                            autoplay muted loop preload="metadata" controls>
+                            <source src="static\videos\dynamic\dynamic4.mp4" type="video/mp4">
                         </video>
                     </div>
                     <!-- <p style="font-size: 0.9rem; color: #aaa; margin-top: 0;">
@@ -254,40 +300,46 @@
             </p> -->
                 </div>
                 <!-- <hr> -->
+                <!-- <hr> -->
+            </div>
+
+            <div class="container">
+                <h2 class="section-title">Precise Camera Controll</h2>
                 <div class="row g-4 justify-content-center" style="max-width: 1800px;">
 
                     <div class="col-md-3">
                         <video
                             style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
-                            muted loop preload="metadata" controls>
-                            <source src="static\videos\cam8.mp4" type="video/mp4">
+                            autoplay muted loop preload="metadata" controls>
+                            <source src="static\videos\camera\CAMERA1.mp4" type="video/mp4">
                         </video>
                     </div>
                     <div class="col-md-3">
                         <video
                             style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
-                            muted loop preload="metadata" controls>
-                            <source src="static\videos\cam5.mp4" type="video/mp4">
+                            autoplay muted loop preload="metadata" controls>
+                            <source src="static\videos\camera\CAMERA2.mp4" type="video/mp4">
                         </video>
                     </div>
                     <div class="col-md-3">
                         <video
                             style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
-                            muted loop preload="metadata" controls>
-                            <source src="static\videos\cam6.mp4" type="video/mp4">
+                            autoplay muted loop preload="metadata" controls>
+                            <source src="static\videos\camera\CAMERA3.mp4" type="video/mp4">
                         </video>
                     </div>
                     <div class="col-md-3">
                         <video
                             style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
-                            muted loop preload="metadata" controls>
-                            <source src="static\videos\cam7.mp4" type="video/mp4">
+                            autoplay muted loop preload="metadata" controls>
+                            <source src="static\videos\camera\CAMERA4.mp4" type="video/mp4">
                         </video>
                     </div>
                     <!-- <p style="font-size: 0.9rem; color: #aaa; margin-top: 0;">
             The scenes on the top and bottom come from different spatial memories. This allows us to generate impossible, Inception-like environments that could not exist in reality.
             </p> -->
                 </div>
+                <!-- <hr> -->
                 <!-- <hr> -->
             </div>
 
@@ -572,33 +624,9 @@
     </section>
 
     <!-- Citation Section -->
-    <section class="citation-section">
-        <div class="container">
-            <h2 class="section-title">BibTeX</h2>
-            <div class="citation-code">@misc{huang2025memoryforcingspatiotemporalmemory,
-                title={Memory Forcing: Spatio-Temporal Memory for Consistent Scene Generation on Minecraft},
-                author={Junchao Huang and Xinting Hu and Boyao Han and Shaoshuai Shi and Zhuotao Tian and Tianyu He and
-                Li Jiang},
-                year={2025},
-                eprint={2510.03198},
-                archivePrefix={arXiv},
-                primaryClass={cs.CV},
-                url={https://arxiv.org/abs/2510.03198},
-                }</div>
-        </div>
-    </section>
+
 
     </template>
-
-    <!-- Footer -->
-    <!-- <footer class="footer">
-        <div class="container">
-            <p>
-                This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
-                <br>This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0" target="_blank">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
-            </p>
-        </div>
-    </footer> -->
 
     <script>
         // 全局变量
@@ -860,7 +888,6 @@
             });
         });
 
-        // Pause auto-playing when user hovers over carousel
         const carousel = document.querySelector('.video-carousel-wrapper');
         carousel.addEventListener('mouseenter', () => {
             isAutoPlaying = false;
@@ -869,8 +896,6 @@
         carousel.addEventListener('mouseleave', () => {
             isAutoPlaying = true;
         });
-
-        // 生成视频对HTML
         function createVideoPairHTML(index) {
             const basePath = 'static/memory_videos/';
             return `
@@ -894,13 +919,11 @@
             `;
         }
 
-        // 生成所有52个长期记忆视频
         function generateAllMemoryVideos() {
             if (allVideosGenerated) return;
 
             const videoGrid = document.getElementById('memoryVideoGrid');
 
-            // 生成所有52个视频对
             for (let i = 1; i <= 52; i++) {
                 const pairElement = document.createElement('div');
                 pairElement.innerHTML = createVideoPairHTML(i);
@@ -910,8 +933,6 @@
             allVideosGenerated = true;
             console.log('All 52 video pairs generated');
         }
-
-        // 隐藏超过8个的视频
         function hideExtraVideos() {
             const videoPairs = document.querySelectorAll('.memory-video-pair');
 
@@ -923,8 +944,6 @@
 
             console.log(`Hidden ${videoPairs.length - 8} video pairs`);
         }
-
-        // 展开/折叠更多视频
         async function toggleMoreVideos() {
             const videoPairs = document.querySelectorAll('.memory-video-pair');
             const showMoreBtn = document.getElementById('memoryShowMoreBtn');
@@ -932,14 +951,12 @@
             const icon = showMoreBtn.querySelector('i');
 
             if (!isExpanded) {
-                // 显示所有视频
                 videoPairs.forEach((pair, index) => {
                     if (index >= 8) {
                         pair.style.display = 'block';
                     }
                 });
 
-                // 加载新显示的视频（优先级1）
                 const newlyVisibleVideos = document.querySelectorAll('.memory-video-pair:nth-child(n+9) .memory-video');
                 videoManager.showLoading('Loading additional videos...');
 
@@ -962,7 +979,6 @@
                 console.log('Expanded to show all videos');
 
             } else {
-                // 隐藏多余视频
                 videoPairs.forEach((pair, index) => {
                     if (index >= 8) {
                         pair.style.display = 'none';
@@ -975,7 +991,6 @@
                 icon.classList.add('fa-chevron-down');
                 isExpanded = false;
 
-                // 滚动到section顶部
                 document.querySelector('.memory-section').scrollIntoView({
                     behavior: 'smooth',
                     block: 'start'
@@ -985,13 +1000,10 @@
             }
         }
 
-        // 视频同步播放函数
         function createSyncFunctions(gtVideo, outputVideo) {
-            // 设置播放速度为0.5倍
             gtVideo.playbackRate = 0.5;
             outputVideo.playbackRate = 0.5;
 
-            // 强制同步播放函数
             function syncPlay() {
                 gtVideo.currentTime = 0;
                 outputVideo.currentTime = 0;
@@ -1002,7 +1014,6 @@
                 ]);
             }
 
-            // 强制同步暂停函数
             function syncPause() {
                 gtVideo.pause();
                 outputVideo.pause();
@@ -1010,8 +1021,6 @@
 
             return { syncPlay, syncPause };
         }
-
-        // 添加长期记忆视频交互功能
         function addMemoryVideoInteractions() {
             setTimeout(() => {
                 const memoryPairs = document.querySelectorAll('.memory-video-pair:not([data-processed])');
@@ -1019,7 +1028,6 @@
                 console.log('Processing video pairs:', memoryPairs.length);
 
                 memoryPairs.forEach(pair => {
-                    // 标记为已处理
                     pair.setAttribute('data-processed', 'true');
 
                     const videos = pair.querySelectorAll('.memory-video');
@@ -1032,11 +1040,9 @@
 
                     const { syncPlay, syncPause } = createSyncFunctions(gtVideo, outputVideo);
 
-                    // 单击事件：切换播放/暂停
                     pair.addEventListener('click', function (e) {
                         e.preventDefault();
 
-                        // 确保视频已加载
                         if (gtVideo.readyState < 2 || outputVideo.readyState < 2) {
                             Promise.all([
                                 videoManager.loadVideo(gtVideo, 2),
@@ -1057,7 +1063,6 @@
                         }
                     });
 
-                    // 双击事件：重新从头开始播放
                     pair.addEventListener('dblclick', function (e) {
                         e.preventDefault();
 
@@ -1066,7 +1071,6 @@
                         }
                     });
 
-                    // 视频循环结束时强制同步重新开始
                     gtVideo.addEventListener('ended', function () {
                         syncPlay();
                     });
@@ -1075,7 +1079,6 @@
                         syncPlay();
                     });
 
-                    // 视频时间更新时进行微调同步
                     let syncTimeout;
                     gtVideo.addEventListener('timeupdate', function () {
                         clearTimeout(syncTimeout);
@@ -1089,14 +1092,12 @@
                         }, 100);
                     });
 
-                    // 禁用视频的默认控件事件
                     videos.forEach(video => {
                         video.addEventListener('click', function (e) {
                             e.stopPropagation();
                             e.preventDefault();
                         });
 
-                        // 错误处理
                         video.addEventListener('error', function () {
                             console.log('Video load error:', this.src);
                             this.style.background = '#2c1810';
@@ -1106,7 +1107,6 @@
                             this.innerHTML = '<div style="color: #ff6b6b; text-align: center; padding: 20px;">Video loading failed</div>';
                         });
 
-                        // 数据加载完成后自动开始同步播放（仅对前8个）
                         video.addEventListener('loadeddata', function () {
                             const pairIndex = Array.from(document.querySelectorAll('.memory-video-pair')).indexOf(pair);
                             if (pairIndex < 8) {
@@ -1148,15 +1148,113 @@
             button.classList.add("active");
         }
     </script>
-    <script>
+    <!-- <script>
         document.addEventListener("DOMContentLoaded", function () {
             document.querySelectorAll("#long1, #long2, #long3").forEach(video => {
                 video.playbackRate = 2;
             });
 
         });
-    </script>
+    </script> -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const video = document.getElementById("single-switch-video");
+        const source = document.getElementById("single-switch-source");
+        const buttons = document.querySelectorAll(".single-video-btn");
 
+        video.load();
+        video.play().catch(() => {});
+
+        buttons.forEach(button => {
+            button.addEventListener("click", function () {
+                const newSrc = this.getAttribute("data-src");
+                const wasPaused = video.paused;
+                const currentTime = 0;
+
+                if (source.getAttribute("src") === newSrc) {
+                    return;
+                }
+
+                source.setAttribute("src", newSrc);
+                video.load();
+                video.currentTime = currentTime;
+
+                if (!wasPaused) {
+                    video.play().catch(() => {});
+                }
+
+                buttons.forEach(btn => btn.classList.remove("active"));
+                this.classList.add("active");
+            });
+        });
+    });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const video = document.getElementById("single-switch-video2");
+        const source = document.getElementById("single-switch-source2");
+        const buttons = document.querySelectorAll(".single-video-btn2");
+
+        video.load();
+        video.play().catch(() => {});
+
+        buttons.forEach(button => {
+            button.addEventListener("click", function () {
+                const newSrc = this.getAttribute("data-src");
+                const wasPaused = video.paused;
+                const currentTime = 0;
+
+                if (source.getAttribute("src") === newSrc) {
+                    return;
+                }
+
+                source.setAttribute("src", newSrc);
+                video.load();
+                video.currentTime = currentTime;
+
+                if (!wasPaused) {
+                    video.play().catch(() => {});
+                }
+
+                buttons.forEach(btn => btn.classList.remove("active"));
+                this.classList.add("active");
+            });
+        });
+    });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const video = document.getElementById("single-switch-video3");
+        const source = document.getElementById("single-switch-source3");
+        const buttons = document.querySelectorAll(".single-video-btn3");
+
+        video.load();
+        video.play().catch(() => {});
+
+        buttons.forEach(button => {
+            button.addEventListener("click", function () {
+                const newSrc = this.getAttribute("data-src");
+                const wasPaused = video.paused;
+                const currentTime = 0;
+
+                if (source.getAttribute("src") === newSrc) {
+                    return;
+                }
+
+                source.setAttribute("src", newSrc);
+                video.load();
+                video.currentTime = currentTime;
+
+                if (!wasPaused) {
+                    video.play().catch(() => {});
+                }
+
+                buttons.forEach(btn => btn.classList.remove("active"));
+                this.classList.add("active");
+            });
+        });
+    });
+</script>
 </body>
 
 </html>
