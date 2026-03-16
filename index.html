@@ -9,14 +9,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>MosaicMem</title>
-    <!-- <link rel="icon" type="image/x-icon" href="static/images/favicon.ico"> -->
-
     <link
         href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-    <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="static/css/index.css">
@@ -24,29 +21,21 @@
 </head>
 
 <body>
-    <!-- Loading indicator -->
-    <div class="loading-indicator" id="loadingIndicator">Loading videos...</div>
+    <div class="loading-indicator" id="loadingIndicator">Initializing Experience...</div>
 
-    <!-- Hero Section with Video Grid Background -->
     <section class="hero-section">
-        <!-- Video Grid Background -->
-        <video id="hero-vid" class="hero-video" autoplay muted loop playsinline preload="auto">
+        <video id="hero-vid" class="hero-video" autoplay muted loop playsinline preload="auto" fetchpriority="high">
             <source src="static/videos/title.mp4" type="video/mp4">
         </video>
 
-        <!-- Overlay -->
         <div class="hero-overlay"></div>
 
-        <!-- Hero Content -->
         <div class="hero-content">
             <div class="hero-title">
                 <h1 class="main-title">MosaicMem</h1>
-                <h2 class="subtitle">Hybrid Spatial Memory for Controllable Video World Models
-
-</h2>
+                <h2 class="subtitle">Hybrid Spatial Memory for Controllable Video World Models</h2>
             </div>
 
-            <!-- Authors -->
             <div class="authors">
                 <div class="author-row">
                     <a href="" class="author-link">Anonymous Authors<sup></sup></a>
@@ -55,11 +44,9 @@
                 </div>
             </div>
 
-            <!-- Affiliations -->
             <div class="affiliations">
             </div>
 
-            <!-- Links -->
             <div class="links">
                 <a href="" class="link-button">
                     <i class="fas fa-file-pdf"></i>
@@ -69,15 +56,10 @@
                     <i class="fab fa-github"></i>
                     Code (coming)
                 </a>
-                <!-- <a href="" class="link-button">
-                    <i class="ai ai-arxiv"></i>
-                    arXiv (coming)
-                </a> -->
             </div>
         </div>
     </section>
 
-    <!-- Abstract Section -->
     <section class="content-section">
         <div class="container">
             <h2 class="section-title">Abstract</h2>
@@ -88,118 +70,116 @@
     </section>
 
     <section class="content-section">
-    <div class="container d-flex flex-column align-items-center text-center">
-        <h2 class="section-title">Mosaic Memory</h2>
-        <p style="font-size: 0.9rem; color: #aaa; margin-top: 0;"></p>
-        MosaicMem lifts video patches into 3D space and gathers them in the target viewpoint, stitching them together like a mosaic. Our model simultaneously supports text-driven dynamics and free camera navigation. Navigation is jointly controlled by MosaicMem retrieval and PRoPE conditioning. The retrieved mosaic patches are flattened and concatenated with the token sequence as conditioning inputs, while residual alignment errors are corrected through warping.
-         </p>
-        <div class="row justify-content-center w-100">
-            <div class="col-md-12" style="max-width: 1200px;"> 
-                <video id="mosaic-video" autoplay muted loop preload="metadata" controls
-                    style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 1.5rem;">
-                    <source src="static\videos\mosaic.mp4" type="video/mp4">
-                </video>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="content-section">
-    <div class="container text-center">
-        <h2 class="section-title">Promptable World Events</h2>
-        <p style="font-size: 0.9rem; color: #aaa; margin-top: 0; margin-bottom: 3rem;">
-            Similar to Genie3, our system supports promptable world events.
-            These events allow users to dynamically modify the generated world, thereby enriching the interactive experience beyond simple navigation control.
-        </p>
-
-        <div class="row g-4 justify-content-center mb-4">
-            <div class="col-md-6" >
-                <div class="video-block p-3" style="background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
-                    <video id="single-switch-video" autoplay muted loop controls playsinline preload="metadata"
-                        style="width:100%; border-radius:8px; border:1px solid rgba(255,255,255,0.1); margin-bottom:1rem;">
-                        <source id="single-switch-source" src="static\videos\select1\giraffe.mp4" type="video/mp4">
+        <div class="container d-flex flex-column align-items-center text-center">
+            <h2 class="section-title">Mosaic Memory</h2>
+            <p class="content-text">
+                MosaicMem lifts video patches into 3D space and gathers them in the target viewpoint, stitching them together like a mosaic. Our model simultaneously supports text-driven dynamics and free camera navigation. Navigation is jointly controlled by MosaicMem retrieval and PRoPE conditioning. The retrieved mosaic patches are flattened and concatenated with the token sequence as conditioning inputs, while residual alignment errors are corrected through warping.
+            </p>
+            <div class="row justify-content-center w-100">
+                <div class="col-md-12" style="max-width: 1200px;"> 
+                    <video id="mosaic-video" autoplay muted loop preload="none" playsinline controls
+                        style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 1.5rem;">
+                        <source data-src="static/videos/mosaic.mp4" type="video/mp4">
                     </video>
-                    <div class="d-flex justify-content-center flex-wrap gap-2">
-                        <button class="btn btn-sm btn-outline-light single-video-btn active" data-src="static\videos\select1\giraffe.mp4">giraffe</button>
-                        <button class="btn btn-sm btn-outline-light single-video-btn" data-src="static\videos\select1\armoured.mp4">armoured car</button>
-                        <button class="btn btn-sm btn-outline-light single-video-btn" data-src="static\videos\select1\camel.mp4">camel</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="video-block p-3" style="background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
-                    <video id="single-switch-video2" autoplay muted loop controls playsinline preload="metadata"
-                        style="width:100%; border-radius:8px; border:1px solid rgba(255,255,255,0.1); margin-bottom:1rem;">
-                        <source id="single-switch-source2" src="static\videos\select2\wolf.mp4" type="video/mp4">
-                    </video>
-                    <div class="d-flex justify-content-center flex-wrap gap-2">
-                        <button class="btn btn-sm btn-outline-light single-video-btn2 active" data-src="static\videos\select2\wolf.mp4">wolf</button>
-                        <button class="btn btn-sm btn-outline-light single-video-btn2" data-src="static\videos\select2\Stormtrooper.mp4">stormtrooper</button>
-                        <button class="btn btn-sm btn-outline-light single-video-btn2" data-src="static\videos\select2\rhino.mp4">rhino</button>
-                    </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <div class="row g-4 justify-content-center">
-            <div class="col-md-6">
-                <div class="video-block p-3" style="background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
-                    <video id="single-switch-video3" autoplay muted loop controls playsinline preload="metadata"
-                        style="width:100%; border-radius:8px; border:1px solid rgba(255,255,255,0.1); margin-bottom:1rem;">
-                        <source id="single-switch-source3" src="static\videos\select3\astcoming.mp4" type="video/mp4">
-                    </video>
-                    <div class="d-flex justify-content-center flex-wrap gap-2">
-                        <button class="btn btn-sm btn-outline-light single-video-btn3 active" data-src="static\videos\select3\astcoming.mp4">astronaut coming</button>
-                        <button class="btn btn-sm btn-outline-light single-video-btn3" data-src="static\videos\select3\astleav.mp4">astronaut leaving</button>
-                        <button class="btn btn-sm btn-outline-light single-video-btn3" data-src="static\videos\select3\penguin.mp4">penguin</button>
+    <section class="content-section">
+        <div class="container text-center">
+            <h2 class="section-title">Promptable World Events</h2>
+            <p class="content-text">
+                Similar to Genie3, our system supports promptable world events.
+                These events allow users to dynamically modify the generated world, thereby enriching the interactive experience beyond simple navigation control.
+            </p>
+
+            <div class="row g-4 justify-content-center mb-4">
+                <div class="col-md-6" >
+                    <div class="video-block p-3" style="background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
+                        <video id="single-switch-video" autoplay muted loop controls playsinline preload="none"
+                            style="width:100%; border-radius:8px; border:1px solid rgba(255,255,255,0.1); margin-bottom:1rem;">
+                            <source id="single-switch-source" data-src="static/videos/select1/giraffe.mp4" type="video/mp4">
+                        </video>
+                        <div class="d-flex justify-content-center flex-wrap gap-2">
+                            <button class="btn btn-sm btn-outline-light single-video-btn active" data-src="static/videos/select1/giraffe.mp4">giraffe</button>
+                            <button class="btn btn-sm btn-outline-light single-video-btn" data-src="static/videos/select1/armoured.mp4">armoured car</button>
+                            <button class="btn btn-sm btn-outline-light single-video-btn" data-src="static/videos/select1/camel.mp4">camel</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="video-block p-3" style="background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
+                        <video id="single-switch-video2" autoplay muted loop controls playsinline preload="none"
+                            style="width:100%; border-radius:8px; border:1px solid rgba(255,255,255,0.1); margin-bottom:1rem;">
+                            <source id="single-switch-source2" data-src="static/videos/select2/wolf.mp4" type="video/mp4">
+                        </video>
+                        <div class="d-flex justify-content-center flex-wrap gap-2">
+                            <button class="btn btn-sm btn-outline-light single-video-btn2 active" data-src="static/videos/select2/wolf.mp4">wolf</button>
+                            <button class="btn btn-sm btn-outline-light single-video-btn2" data-src="static/videos/select2/Stormtrooper.mp4">stormtrooper</button>
+                            <button class="btn btn-sm btn-outline-light single-video-btn2" data-src="static/videos/select2/rhino.mp4">rhino</button>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-6">
-                <div class="video-block p-3" style="background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
-                    <video id="single-switch-video4" autoplay muted loop controls playsinline preload="metadata"
-                        style="width:100%; border-radius:8px; border:1px solid rgba(255,255,255,0.1); margin-bottom:1rem;">
-                        <source id="single-switch-source4" src="static\videos\select4\bear.mp4" type="video/mp4">
-                    </video>
-                    <div class="d-flex justify-content-center flex-wrap gap-2">
-                        <button class="btn btn-sm btn-outline-light single-video-btn4 active" data-src="static\videos\select4\bear.mp4">bear</button>
-                        <button class="btn btn-sm btn-outline-light single-video-btn4" data-src="static\videos\select4\zebra.mp4">zebra</button>
-                        <button class="btn btn-sm btn-outline-light single-video-btn4" data-src="static\videos\select4\lion.mp4">lion</button>
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-6">
+                    <div class="video-block p-3" style="background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
+                        <video id="single-switch-video3" autoplay muted loop controls playsinline preload="none"
+                            style="width:100%; border-radius:8px; border:1px solid rgba(255,255,255,0.1); margin-bottom:1rem;">
+                            <source id="single-switch-source3" data-src="static/videos/select3/astcoming.mp4" type="video/mp4">
+                        </video>
+                        <div class="d-flex justify-content-center flex-wrap gap-2">
+                            <button class="btn btn-sm btn-outline-light single-video-btn3 active" data-src="static/videos/select3/astcoming.mp4">astronaut coming</button>
+                            <button class="btn btn-sm btn-outline-light single-video-btn3" data-src="static/videos/select3/astleav.mp4">astronaut leaving</button>
+                            <button class="btn btn-sm btn-outline-light single-video-btn3" data-src="static/videos/select3/penguin.mp4">penguin</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="video-block p-3" style="background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
+                        <video id="single-switch-video4" autoplay muted loop controls playsinline preload="none"
+                            style="width:100%; border-radius:8px; border:1px solid rgba(255,255,255,0.1); margin-bottom:1rem;">
+                            <source id="single-switch-source4" data-src="static/videos/select4/bear.mp4" type="video/mp4">
+                        </video>
+                        <div class="d-flex justify-content-center flex-wrap gap-2">
+                            <button class="btn btn-sm btn-outline-light single-video-btn4 active" data-src="static/videos/select4/bear.mp4">bear</button>
+                            <button class="btn btn-sm btn-outline-light single-video-btn4" data-src="static/videos/select4/zebra.mp4">zebra</button>
+                            <button class="btn btn-sm btn-outline-light single-video-btn4" data-src="static/videos/select4/lion.mp4">lion</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
     
     <section class="content-section d-flex flex-column align-items-center text-center">
         <div class="container">
             <h2 class="section-title">Long Video</h2>
         </div>
-        <p style="font-size: 0.9rem; color: #aaa; margin-top: 0;">
+        <p class="content-text">
             2 minutes videos generated by MosaicMem. Played at 4x speed for better visualization.
         </p>
         <div class="row g-2 justify-content-center" style="max-width: 1400px;">
             <div class="col-md-4">
-                <video id="long1"autoplay muted loop preload="metadata" controls
+                <video id="long1" autoplay muted loop playsinline preload="none" controls
                     style="width:100%; border-radius:8px; border:1px solid rgba(255,255,255,0.1); margin-bottom:1.5rem;">
-                    <source src="static\videos\long1_overlay.mp4" type="video/mp4">
+                    <source data-src="static/videos/long1_overlay.mp4" type="video/mp4">
                 </video>
-
             </div>
             <div class="col-md-4">
-                <video id="long2"autoplay muted loop preload="metadata" controls
+                <video id="long2" autoplay muted loop playsinline preload="none" controls
                     style="width:100%; border-radius:8px; border:1px solid rgba(255,255,255,0.1); margin-bottom:1.5rem;">
-                    <source src="static\videos\long2_overlay.mp4" type="video/mp4">
+                    <source data-src="static/videos/long2_overlay.mp4" type="video/mp4">
                 </video>
-
             </div>
             <div class="col-md-4">
-                <video id="long3"autoplay muted loop preload="metadata" controls
+                <video id="long3" autoplay muted loop playsinline preload="none" controls
                     style="width:100%; border-radius:8px; border:1px solid rgba(255,255,255,0.1); margin-bottom:1.5rem;">
-                    <source src="static\videos\long3_overlay.mp4" type="video/mp4">
+                    <source data-src="static/videos/long3_overlay.mp4" type="video/mp4">
                 </video>
             </div>
         </div>
@@ -215,25 +195,21 @@
             <hr>
             <div class="row g-3 justify-content-center" style="max-width: 1400px;">
                 <div class="col-md-4">
-                    <video
-                        style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
-                        autoplay muted loop preload="metadata" controls>
-                        <source src="static\videos\token_manip_1.mp4" type="video/mp4">
-                    </video>
-                </div>
-
-                <div class="col-md-4">
-                    <video
-                        style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
-                        autoplay muted loop preload="metadata" controls>
-                        <source src="static\videos\token_manip_2.mp4" type="video/mp4">
+                    <video style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
+                        autoplay muted loop playsinline preload="none" controls>
+                        <source data-src="static/videos/token_manip_1.mp4" type="video/mp4">
                     </video>
                 </div>
                 <div class="col-md-4">
-                    <video
-                        style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
-                        autoplay muted loop preload="metadata" controls>
-                        <source src="static\videos\token_manip_3.mp4" type="video/mp4">
+                    <video style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
+                        autoplay muted loop playsinline preload="none" controls>
+                        <source data-src="static/videos/token_manip_2.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="col-md-4">
+                    <video style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
+                        autoplay muted loop playsinline preload="none" controls>
+                        <source data-src="static/videos/token_manip_3.mp4" type="video/mp4">
                     </video>
                 </div>
                 <p style="font-size: 0.9rem; color: #aaa; margin-top: 0;">
@@ -244,28 +220,23 @@
 
             <hr>
 
-
             <div class="row g-3 justify-content-center" style="max-width: 1400px;">
-
                 <div class="col-md-4">
-                    <video
-                        style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
-                        autoplay muted loop preload="metadata" controls>
-                        <source src="static\videos\token_manip_4.mp4" type="video/mp4">
+                    <video style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
+                        autoplay muted loop playsinline preload="none" controls>
+                        <source data-src="static/videos/token_manip_4.mp4" type="video/mp4">
                     </video>
                 </div>
                 <div class="col-md-4">
-                    <video
-                        style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
-                        autoplay muted loop preload="metadata" controls>
-                        <source src="static\videos\token_manip_5.mp4" type="video/mp4">
+                    <video style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
+                        autoplay muted loop playsinline preload="none" controls>
+                        <source data-src="static/videos/token_manip_5.mp4" type="video/mp4">
                     </video>
                 </div>
                 <div class="col-md-4">
-                    <video
-                        style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
-                        autoplay muted loop preload="metadata" controls>
-                        <source src="static\videos\token_manip_6.mp4" type="video/mp4">
+                    <video style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
+                        autoplay muted loop playsinline preload="none" controls>
+                        <source data-src="static/videos/token_manip_6.mp4" type="video/mp4">
                     </video>
                 </div>
                 <p style="font-size: 0.9rem; color: #aaa; margin-top: 0;">
@@ -278,1016 +249,172 @@
             <div class="container">
                 <h2 class="section-title">Dynamic Scene Generation</h2>
                 <div class="row g-4 justify-content-center" style="max-width: 1800px;">
-
                     <div class="col-md-6">
-                        <video
-                        oncanplay="this.playbackRate = 2;"
-                            style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
-                            autoplay muted loop preload="metadata" controls>
-                            <source src="static\videos\dynamic\dynamic1.mp4" type="video/mp4">
+                        <video style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
+                            autoplay muted loop playsinline preload="none" controls>
+                            <source data-src="static/videos/dynamic/dynamic1.mp4" type="video/mp4">
                         </video>
                     </div>
                     <div class="col-md-6">
-                        <video
-                        oncanplay="this.playbackRate = 2;"
-                            style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
-                            autoplay muted loop preload="metadata" controls>
-                            <source src="static\videos\dynamic\dynamic2.mp4" type="video/mp4">
+                        <video style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
+                            autoplay muted loop playsinline preload="none" controls>
+                            <source data-src="static/videos/dynamic/dynamic2.mp4" type="video/mp4">
                         </video>
                     </div>
                     <div class="col-md-6">
-                        <video
-                        oncanplay="this.playbackRate = 2;"
-                            style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
-                            autoplay muted loop preload="metadata" controls>
-                            <source src="static\videos\dynamic\dynamic3.mp4" type="video/mp4">
+                        <video style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
+                            autoplay muted loop playsinline preload="none" controls>
+                            <source data-src="static/videos/dynamic/dynamic3.mp4" type="video/mp4">
                         </video>
                     </div>
                     <div class="col-md-6">
-                        <video
-                        oncanplay="this.playbackRate = 2;"
-                            style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
-                            autoplay muted loop preload="metadata" controls>
-                            <source src="static\videos\dynamic\dynamic4.mp4" type="video/mp4">
+                        <video style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
+                            autoplay muted loop playsinline preload="none" controls>
+                            <source data-src="static/videos/dynamic/dynamic4.mp4" type="video/mp4">
                         </video>
                     </div>
-                    <!-- <p style="font-size: 0.9rem; color: #aaa; margin-top: 0;">
-            The scenes on the top and bottom come from different spatial memories. This allows us to generate impossible, Inception-like environments that could not exist in reality.
-            </p> -->
                 </div>
-                <!-- <hr> -->
-                <!-- <hr> -->
             </div>
 
             <div class="container">
                 <h2 class="section-title">Precise Camera Controll</h2>
                 <div class="row g-4 justify-content-center" style="max-width: 1800px;">
-
                     <div class="col-md-3">
-                        <video
-                            style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
-                            autoplay muted loop preload="metadata" controls>
-                            <source src="static\videos\camera\CAMERA1.mp4" type="video/mp4">
+                        <video style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
+                            autoplay muted loop playsinline preload="none" controls>
+                            <source data-src="static/videos/camera/CAMERA1.mp4" type="video/mp4">
                         </video>
                     </div>
                     <div class="col-md-3">
-                        <video
-                            style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
-                            autoplay muted loop preload="metadata" controls>
-                            <source src="static\videos\camera\CAMERA2.mp4" type="video/mp4">
+                        <video style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
+                            autoplay muted loop playsinline preload="none" controls>
+                            <source data-src="static/videos/camera/CAMERA2.mp4" type="video/mp4">
                         </video>
                     </div>
                     <div class="col-md-3">
-                        <video
-                            style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
-                            autoplay muted loop preload="metadata" controls>
-                            <source src="static\videos\camera\CAMERA3.mp4" type="video/mp4">
+                        <video style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
+                            autoplay muted loop playsinline preload="none" controls>
+                            <source data-src="static/videos/camera/CAMERA3.mp4" type="video/mp4">
                         </video>
                     </div>
                     <div class="col-md-3">
-                        <video
-                            style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
-                            autoplay muted loop preload="metadata" controls>
-                            <source src="static\videos\camera\CAMERA4.mp4" type="video/mp4">
+                        <video style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
+                            autoplay muted loop playsinline preload="none" controls>
+                            <source data-src="static/videos/camera/CAMERA4.mp4" type="video/mp4">
                         </video>
-                    </div>
-                    <!-- <p style="font-size: 0.9rem; color: #aaa; margin-top: 0;">
-            The scenes on the top and bottom come from different spatial memories. This allows us to generate impossible, Inception-like environments that could not exist in reality.
-            </p> -->
-                </div>
-                <!-- <hr> -->
-                <!-- <hr> -->
-            </div>
-
-            <template id="disabled-section">
-                <!-- Long-term Spatial Memory Comparison Subsection -->
-                <div style="margin-top: 4rem;">
-                    <h3
-                        style="font-family: 'Orbitron', sans-serif; font-size: 1.8rem; font-weight: 600; color: #ffffff; margin-bottom: 2rem; text-align: center;">
-                        Long-term Spatial Memory Comparison
-                    </h3>
-                    <p class="video-note">(Video resolution has been compressed for optimized web loading)</p>
-
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-bottom: 2rem;">
-                        <!-- Left Side: w/o long-term spatial memory -->
-                        <div
-                            style="background: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 2rem; border: 1px solid rgba(255, 255, 255, 0.1);">
-                            <h4
-                                style="font-size: 1.3rem; font-weight: 600; color: #ff6b6b; margin-bottom: 1.5rem; text-align: center;">
-                                w/o Long-term Spatial Memory
-                            </h4>
-
-                            <!-- Video 1 -->
-                            <video style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);"
-                                muted loop preload="metadata" controls>
-                                <source src="static/highlight_compare/video1.mp4" type="video/mp4">
-                            </video>
-
-                            <!-- Two images below video -->
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                                <div>
-                                    <p
-                                        style="font-size: 0.9rem; color: #cccccc; margin-bottom: 0.5rem; text-align: center;">
-                                        Initial View</p>
-                                    <img src="static/highlight_compare/image1.png" alt="Initial View 1"
-                                        style="width: 100%; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);">
-                                </div>
-                                <div>
-                                    <p
-                                        style="font-size: 0.9rem; color: #cccccc; margin-bottom: 0.5rem; text-align: center;">
-                                        Revisit View</p>
-                                    <img src="static/highlight_compare/image2.png" alt="Revisit View 1"
-                                        style="width: 100%; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);">
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Right Side: w/ long-term spatial memory -->
-                        <div
-                            style="background: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 2rem; border: 1px solid rgba(255, 255, 255, 0.1);">
-                            <h4
-                                style="font-size: 1.3rem; font-weight: 600; color: #4ecdc4; margin-bottom: 1.5rem; text-align: center;">
-                                w/ Long-term Spatial Memory
-                            </h4>
-
-                            <!-- Video 2 -->
-                            <video style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);"
-                                muted loop preload="metadata" controls>
-                                <source src="static/highlight_compare/video2.mp4" type="video/mp4">
-                            </video>
-
-                            <!-- Two images below video -->
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                                <div>
-                                    <p
-                                        style="font-size: 0.9rem; color: #cccccc; margin-bottom: 0.5rem; text-align: center;">
-                                        Initial View</p>
-                                    <img src="static/highlight_compare/image3.png" alt="Initial View 2"
-                                        style="width: 100%; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);">
-                                </div>
-                                <div>
-                                    <p
-                                        style="font-size: 0.9rem; color: #cccccc; margin-bottom: 0.5rem; text-align: center;">
-                                        Revisit View</p>
-                                    <img src="static/highlight_compare/image4.png" alt="Revisit View 2"
-                                        style="width: 100%; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <!-- Spatio-Temporal Memory Balance Comparison Subsection -->
-                <div style="margin-top: 4rem;">
-                    <h3
-                        style="font-family: 'Orbitron', sans-serif; font-size: 1.8rem; font-weight: 600; color: #ffffff; margin-bottom: 2rem; text-align: center;">
-                        Spatio-Temporal Memory Balance Comparison
-                    </h3>
-                    <p class="video-note">(Video resolution has been compressed for optimized web loading)</p>
-
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-bottom: 2rem;">
-                        <!-- Left Side: Over-reliance on Spatial Memory -->
-                        <div
-                            style="background: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 2rem; border: 1px solid rgba(255, 255, 255, 0.1);">
-                            <h4
-                                style="font-size: 1.3rem; font-weight: 600; color: #ff6b6b; margin-bottom: 1.5rem; text-align: center;">
-                                Over-reliance on Spatial Memory
-                            </h4>
-
-                            <!-- Video 1 -->
-                            <video
-                                style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
-                                muted loop preload="metadata" controls>
-                                <source src="static/highlight_compare/video3.mp4" type="video/mp4">
-                            </video>
-
-                            <!-- Two images below video -->
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                                <div>
-                                    <p
-                                        style="font-size: 0.9rem; color: #cccccc; margin-bottom: 0.5rem; text-align: center;">
-                                        Initial View</p>
-                                    <img src="static/highlight_compare/image5.png" alt="Initial View 1"
-                                        style="width: 100%; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);">
-                                </div>
-                                <div>
-                                    <p
-                                        style="font-size: 0.9rem; color: #cccccc; margin-bottom: 0.5rem; text-align: center;">
-                                        Forward Exploration</p>
-                                    <img src="static/highlight_compare/image6.png" alt="Forward Exploration 1"
-                                        style="width: 100%; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);">
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Right Side: Balanced Spatio-Temporal Memory -->
-                        <div
-                            style="background: rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 2rem; border: 1px solid rgba(255, 255, 255, 0.1);">
-                            <h4
-                                style="font-size: 1.3rem; font-weight: 600; color: #4ecdc4; margin-bottom: 1.5rem; text-align: center;">
-                                Balanced Spatio-Temporal Memory
-                            </h4>
-
-                            <!-- Video 2 -->
-                            <video
-                                style="width: 100%; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1.5rem;"
-                                muted loop preload="metadata" controls>
-                                <source src="static/highlight_compare/video4.mp4" type="video/mp4">
-                            </video>
-
-                            <!-- Two images below video -->
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                                <div>
-                                    <p
-                                        style="font-size: 0.9rem; color: #cccccc; margin-bottom: 0.5rem; text-align: center;">
-                                        Initial View</p>
-                                    <img src="static/highlight_compare/image7.png" alt="Initial View 2"
-                                        style="width: 100%; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);">
-                                </div>
-                                <div>
-                                    <p
-                                        style="font-size: 0.9rem; color: #cccccc; margin-bottom: 0.5rem; text-align: center;">
-                                        Forward Exploration</p>
-                                    <img src="static/highlight_compare/image8.png" alt="Forward Exploration 2"
-                                        style="width: 100%; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-        </div>
-    </section>
-
-
-    <!-- Method Section -->
-    <section class="content-section">
-        <div class="container">
-            <h2 class="section-title">Method</h2>
-            <img src="static/images/pipeline.png" alt="MemoryForcing Pipeline Overview" class="method-image">
-            <p class="content-text">
-                <strong>Memory Forcing Pipeline.</strong> Our framework combines spatial and temporal memory for video
-                generation. 3D geometry is maintained through streaming reconstruction of key frames along the camera
-                trajectory. During generation, Point-to-Frame Retrieval maps spatial context to historical frames, which
-                are integrated with temporal memory and injected together via memory cross-attention in the DiT
-                backbone. Chained Forward Training creates larger pose variations, encouraging the model to effectively
-                utilize spatial memory for maintaining long-term geometric consistency.
-            </p>
-        </div>
-    </section>
-
-    <!-- Results Section -->
-    <section class="content-section">
-        <div class="container">
-            <h2 class="section-title">Qualitative Comparison</h2>
-            <p class="video-note">(Video resolution has been compressed for optimized web loading)</p>
-
-            <!-- Comparison Video Carousel -->
-            <div class="comparison-section">
-                <!-- <h3 class="comparison-title">Comparison</h3> -->
-                <div class="video-carousel-wrapper">
-                    <div class="video-carousel">
-                        <div class="video-container">
-                            <div class="video-slide active">
-                                <video muted preload="none">
-                                    <source src="static/compare_videos/video_demo_web1.mp4" type="video/mp4">
-                                </video>
-                            </div>
-                            <div class="video-slide">
-                                <video muted preload="none">
-                                    <source src="static/compare_videos/video_demo_web2.mp4" type="video/mp4">
-                                </video>
-                            </div>
-                            <div class="video-slide">
-                                <video muted preload="none">
-                                    <source src="static/compare_videos/video_demo_web3.mp4" type="video/mp4">
-                                </video>
-                            </div>
-                            <div class="video-slide">
-                                <video muted preload="none">
-                                    <source src="static/compare_videos/video_demo_web4.mp4" type="video/mp4">
-                                </video>
-                            </div>
-                            <div class="video-slide">
-                                <video muted preload="none">
-                                    <source src="static/compare_videos/video_demo_web5.mp4" type="video/mp4">
-                                </video>
-                            </div>
-                            <div class="video-slide">
-                                <video muted preload="none">
-                                    <source src="static/compare_videos/video_demo_web6.mp4" type="video/mp4">
-                                </video>
-                            </div>
-                            <div class="video-slide">
-                                <video muted preload="none">
-                                    <source src="static/compare_videos/video_demo_web7.mp4" type="video/mp4">
-                                </video>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Navigation Buttons - Now outside the video container -->
-                    <button class="carousel-nav prev" onclick="changeSlide(-1)">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <button class="carousel-nav next" onclick="changeSlide(1)">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-
-                    <!-- Indicators - Now below the video -->
-                    <div class="carousel-indicators">
-                        <div class="indicator active" onclick="currentSlide(1)"></div>
-                        <div class="indicator" onclick="currentSlide(2)"></div>
-                        <div class="indicator" onclick="currentSlide(3)"></div>
-                        <div class="indicator" onclick="currentSlide(4)"></div>
-                        <div class="indicator" onclick="currentSlide(5)"></div>
-                        <div class="indicator" onclick="currentSlide(6)"></div>
-                        <div class="indicator" onclick="currentSlide(7)"></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Long-term Memory Section -->
-    <section class="memory-section">
-        <div class="memory-container">
-            <h2 class="memory-section-title">Long-term Memory Performance</h2>
-            <p class="memory-subtitle">
-                Demonstration of model performance on long-term memory tasks, comparing Ground Truth and model output
-                results.
-            </p>
-
-            <div class="memory-controls-hint">
-                💡 Tip: Click to pause/play video pairs, double-click to restart from beginning.
-            </div>
-
-            <!-- 视频网格 -->
-            <div class="memory-video-grid" id="memoryVideoGrid">
-                <!-- 视频将通过JavaScript动态生成 -->
-            </div>
-
-            <!-- Show More按钮 -->
-            <div class="memory-show-more-wrapper">
-                <button class="memory-show-more-btn" id="memoryShowMoreBtn" onclick="toggleMoreVideos()">
-                    <span id="showMoreText">Show More Results</span>
-                    <i class="fas fa-chevron-down"></i>
-                </button>
-            </div>
-        </div>
-        </div>
-    </section>
-
-    <!-- Citation Section -->
-
-
-    </template>
 
     <script>
-        // 全局变量
-        let isExpanded = false;
-        let allVideosGenerated = false;
-        let loadingStage = 0; // 0: center videos, 1: background videos, 2: carousel videos, 3: memory videos
-
-        // 优化的视频加载管理器
-        class VideoLoadManager {
-            constructor() {
-                this.loadedVideos = new Set();
-                this.loadingQueue = [];
-                this.maxConcurrentLoads = 3; // 最大并发加载数
-                this.currentLoads = 0;
-                this.loadingIndicator = document.getElementById('loadingIndicator');
-            }
-
-            showLoading(message) {
-                this.loadingIndicator.textContent = message;
-                this.loadingIndicator.style.display = 'block';
-            }
-
-            hideLoading() {
-                this.loadingIndicator.style.display = 'none';
-            }
-
-            updateLoading(message) {
-                this.loadingIndicator.textContent = message;
-            }
-
-            async loadVideo(video, priority = 1) {
-                return new Promise((resolve, reject) => {
-                    this.loadingQueue.push({ video, priority, resolve, reject });
-                    this.loadingQueue.sort((a, b) => b.priority - a.priority);
-                    this.processQueue();
-                });
-            }
-
-            async processQueue() {
-                if (this.currentLoads >= this.maxConcurrentLoads || this.loadingQueue.length === 0) {
-                    return;
-                }
-
-                const { video, resolve, reject } = this.loadingQueue.shift();
-                this.currentLoads++;
-
-                const videoSrc = video.querySelector('source').src;
-                if (this.loadedVideos.has(videoSrc)) {
-                    this.currentLoads--;
-                    resolve();
-                    this.processQueue();
-                    return;
-                }
-
-                video.preload = 'metadata';
-
-                const onLoad = () => {
-                    this.loadedVideos.add(videoSrc);
-                    this.currentLoads--;
-                    cleanup();
-                    resolve();
-                    this.processQueue();
-                };
-
-                const onError = () => {
-                    this.currentLoads--;
-                    cleanup();
-                    console.warn('Failed to load video:', videoSrc);
-                    reject();
-                    this.processQueue();
-                };
-
-                const cleanup = () => {
-                    video.removeEventListener('loadeddata', onLoad);
-                    video.removeEventListener('error', onError);
-                };
-
-                video.addEventListener('loadeddata', onLoad);
-                video.addEventListener('error', onError);
-
-                // 触发加载
-                video.load();
+        // 核心：幽灵加载/懒加载机制，彻底解决带宽竞争
+        function activateVideo(vid) {
+            if (vid.hasAttribute('data-loaded')) return;
+            const source = vid.querySelector('source');
+            if (source && source.hasAttribute('data-src')) {
+                source.src = source.getAttribute('data-src');
+                vid.load();
+                vid.setAttribute('data-loaded', 'true');
             }
         }
 
-        const videoManager = new VideoLoadManager();
-
-        // 分阶段加载视频 - 修正后的版本
-        async function loadVideosInStages() {
-        try {
-        // --- 核心修改：绝对优先级阶段 ---
-        // 1. 明确获取标题视频
-        const heroVid = document.getElementById('hero-vid');
-        
-        if (heroVid) {
-            videoManager.showLoading('Initializing MosaicMem...');
-            // console.log('Step 0: Forcing Hero Video load...');
-            
-            // 强制等待标题视频加载到足够播放的状态
-            // 只有这个 await 完成了，后面的代码才会执行
-            await videoManager.loadVideo(heroVid, 10); 
-            
-            // 确保静音并尝试播放
-            heroVid.muted = true;
-            await heroVid.play().catch(e => console.log("Hero autoplay waiting for interaction"));
-            // console.log('Step 0 Complete: Hero video is now active.');
-        }
-
-        // --- 后续阶段：只有在上面成功后才会开始 ---
-        
-        // 第 1 阶段：加载核心 Mosaic Memory 视频
-        videoManager.updateLoading('Loading core demonstration...');
-        const mosaicVid = document.getElementById('mosaic-video');
-        if (mosaicVid) {
-            await videoManager.loadVideo(mosaicVid, 5);
-            mosaicVid.play().catch(() => { });
-        }
-
-        // 第 2 阶段：加载 Long Video 区域并自动设为 4x 速
-        videoManager.updateLoading('Loading long-term sequences...');
-        const longVideos = document.querySelectorAll('#long1, #long2, #long3');
-        await Promise.all(Array.from(longVideos).map(v => videoManager.loadVideo(v, 4)));
-        longVideos.forEach(v => {
-            v.playbackRate = 4.0; 
-            v.play().catch(() => { });
-        });
-
-        // 第 3 阶段：加载交互式 Demo (Promptable Events)
-        videoManager.updateLoading('Loading interactive events...');
-        const switchVideos = document.querySelectorAll('[id^="single-switch-video"]');
-        await Promise.all(Array.from(switchVideos).map(v => videoManager.loadVideo(v, 3)));
-
-        // 第 4 阶段：准备评价网格（前 8 个对齐视频）
-        videoManager.updateLoading('Preparing evaluation grid...');
-        // generateAllMemoryVideos(); // 生成 HTML 元素
-        // hideExtraVideos();        // 隐藏多余部分
-        const initialPairs = document.querySelectorAll('.memory-video-pair:nth-child(-n+8) .memory-video');
-        await Promise.all(Array.from(initialPairs).map(v => videoManager.loadVideo(v, 2)));
-
-        // 最后收尾
-        // addMemoryVideoInteractions();
-        videoManager.hideLoading();
-        console.log('All priority content loaded.');
-
-        // 第 5 阶段：后台静默加载剩余的所有长时记忆视频
-        setTimeout(() => {
-            const remaining = document.querySelectorAll('video:not([data-loaded])');
-            remaining.forEach(v => videoManager.loadVideo(v, 1));
-        }, 5000);
-
-            } catch (error) {
-                console.error('Priority loading failed:', error);
-                videoManager.hideLoading();
-            }
-        }
-            // 页面加载完成后开始分阶段加载
-            document.addEventListener('DOMContentLoaded', function () {
-                loadVideosInStages();
-            });
-
-            // Video carousel functionality
-            let currentSlideIndex = 0;
-            const slides = document.querySelectorAll('.video-slide');
-            const indicators = document.querySelectorAll('.indicator');
-            const totalSlides = slides.length;
-            let isAutoPlaying = true;
-
-            function showSlide(index) {
-                // Hide all slides and stop all videos
-                slides.forEach((slide, i) => {
-                    slide.classList.remove('active');
-                    const video = slide.querySelector('video');
-                    video.pause();
-                    video.currentTime = 0;
-                });
-
-                // Remove active class from all indicators
-                indicators.forEach(indicator => indicator.classList.remove('active'));
-
-                // Show current slide and play video
-                slides[index].classList.add('active');
-                indicators[index].classList.add('active');
-                const currentVideo = slides[index].querySelector('video');
-
-                // 确保视频已加载再播放
-                if (currentVideo.readyState >= 2) {
-                    currentVideo.playbackRate = 3.0;
-                    currentVideo.play().catch(() => { });
-                } else {
-                    // 如果未加载，先加载再播放（轮播视频优先级3）
-                    videoManager.loadVideo(currentVideo, 3).then(() => {
-                        currentVideo.playbackRate = 3.0;
-                        currentVideo.play().catch(() => { });
-                    });
-                }
-
-                currentSlideIndex = index;
-            }
-
-            function changeSlide(direction) {
-                isAutoPlaying = false;
-
-                currentSlideIndex += direction;
-
-                if (currentSlideIndex >= totalSlides) {
-                    currentSlideIndex = 0;
-                } else if (currentSlideIndex < 0) {
-                    currentSlideIndex = totalSlides - 1;
-                }
-
-                showSlide(currentSlideIndex);
-
-                setTimeout(() => {
-                    isAutoPlaying = true;
-                }, 3000);
-            }
-
-        function currentSlide(index) {
-            isAutoPlaying = false;
-            showSlide(index - 1);
-
-            setTimeout(() => {
-                isAutoPlaying = true;
-            }, 3000);
-        }
-
-        // Initialize carousel
-        setTimeout(() => {
-            showSlide(0);
-        }, 1000);
-
-        // Auto-advance when video ends
-        slides.forEach((slide, index) => {
-            const video = slide.querySelector('video');
-            video.addEventListener('ended', () => {
-                if (index === currentSlideIndex && isAutoPlaying) {
-                    currentSlideIndex++;
-                    if (currentSlideIndex >= totalSlides) {
-                        currentSlideIndex = 0;
+        // 视口侦测器：只加载用户能看到（或即将看到）的视频
+        const videoObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const vid = entry.target;
+                    activateVideo(vid);
+                    if (vid.hasAttribute('autoplay')) {
+                        vid.play().catch(() => {});
                     }
-                    showSlide(currentSlideIndex);
-                }
-            });
-        });
-
-        const carousel = document.querySelector('.video-carousel-wrapper');
-        carousel.addEventListener('mouseenter', () => {
-            isAutoPlaying = false;
-        });
-
-        carousel.addEventListener('mouseleave', () => {
-            isAutoPlaying = true;
-        });
-        function createVideoPairHTML(index) {
-            const basePath = 'static/memory_videos/';
-            return `
-                <div class="memory-video-pair" data-index="${index}">
-                    <div class="memory-video-container">
-                        <div class="memory-video-label memory-gt-label">Ground Truth</div>
-                        <video class="memory-video" muted preload="none" loop>
-                            <source src="${basePath}${index}_GT.mp4" type="video/mp4">
-                            Your browser does not support video playback.
-                        </video>
-                    </div>
                     
-                    <div class="memory-video-container">
-                        <div class="memory-video-label memory-output-label">Model Output</div>
-                        <video class="memory-video" muted preload="none" loop>
-                            <source src="${basePath}${index}_output.mp4" type="video/mp4">
-                            Your browser does not support video playback.
-                        </video>
-                    </div>
-                </div>
-            `;
-        }
-
-        // function generateAllMemoryVideos() {
-        //     if (allVideosGenerated) return;
-
-        //     const videoGrid = document.getElementById('memoryVideoGrid');
-
-        //     for (let i = 1; i <= 52; i++) {
-        //         const pairElement = document.createElement('div');
-        //         pairElement.innerHTML = createVideoPairHTML(i);
-        //         videoGrid.appendChild(pairElement.firstElementChild);
-        //     }
-
-        //     allVideosGenerated = true;
-        //     console.log('All 52 video pairs generated');
-        // }
-        // function hideExtraVideos() {
-        //     const videoPairs = document.querySelectorAll('.memory-video-pair');
-
-        //     videoPairs.forEach((pair, index) => {
-        //         if (index >= 8) {
-        //             pair.style.display = 'none';
-        //         }
-        //     });
-
-        //     console.log(`Hidden ${videoPairs.length - 8} video pairs`);
-        // }
-        async function toggleMoreVideos() {
-            const videoPairs = document.querySelectorAll('.memory-video-pair');
-            const showMoreBtn = document.getElementById('memoryShowMoreBtn');
-            const showMoreText = document.getElementById('showMoreText');
-            const icon = showMoreBtn.querySelector('i');
-
-            if (!isExpanded) {
-                videoPairs.forEach((pair, index) => {
-                    if (index >= 8) {
-                        pair.style.display = 'block';
+                    // 设置特殊视频的倍速 (Long Videos & Dynamic Videos)
+                    if (vid.id.startsWith('long')) {
+                        vid.oncanplay = () => { vid.playbackRate = 4.0; };
+                        vid.playbackRate = 4.0;
+                    } else if (vid.querySelector('source') && vid.querySelector('source').getAttribute('data-src') && vid.querySelector('source').getAttribute('data-src').includes('dynamic')) {
+                        vid.oncanplay = () => { vid.playbackRate = 2.0; };
+                        vid.playbackRate = 2.0;
                     }
-                });
-
-                const newlyVisibleVideos = document.querySelectorAll('.memory-video-pair:nth-child(n+9) .memory-video');
-                videoManager.showLoading('Loading additional videos...');
-
-                try {
-                    await Promise.all(Array.from(newlyVisibleVideos).map(video =>
-                        videoManager.loadVideo(video, 1)
-                    ));
-                    videoManager.hideLoading();
-                } catch (error) {
-                    console.warn('Some videos failed to load');
-                    videoManager.hideLoading();
+                    
+                    observer.unobserve(vid); // 加载过就不再监听了
                 }
+            });
+        }, { rootMargin: "300px 0px" }); // 提前300px触发加载
 
-                showMoreText.textContent = 'Show Less Results';
-                showMoreBtn.classList.add('expanded');
-                icon.classList.remove('fa-chevron-down');
-                icon.classList.add('fa-chevron-up');
-                isExpanded = true;
+        document.addEventListener('DOMContentLoaded', async function () {
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            const heroVid = document.getElementById('hero-vid');
 
-                console.log('Expanded to show all videos');
-
-            } else {
-                videoPairs.forEach((pair, index) => {
-                    if (index >= 8) {
-                        pair.style.display = 'none';
+            // --- 第一步：强制锁定所有资源给 Hero Video ---
+            if (heroVid) {
+                loadingIndicator.style.display = "block";
+                
+                await new Promise(resolve => {
+                    if (heroVid.readyState >= 3) {
+                        resolve();
+                    } else {
+                        heroVid.addEventListener('canplay', resolve, { once: true });
+                        setTimeout(resolve, 3000); // 3秒超时保险
                     }
                 });
-
-                showMoreText.textContent = 'Show More Results';
-                showMoreBtn.classList.remove('expanded');
-                icon.classList.remove('fa-chevron-up');
-                icon.classList.add('fa-chevron-down');
-                isExpanded = false;
-
-                document.querySelector('.memory-section').scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-
-                console.log('Collapsed to show only first 8 videos');
+                
+                heroVid.play().catch(() => console.log("Hero autoplay waiting for interaction"));
+                console.log("Hero video loaded successfully!");
             }
-        }
+            loadingIndicator.style.display = "none";
 
-        function createSyncFunctions(gtVideo, outputVideo) {
-            gtVideo.playbackRate = 0.5;
-            outputVideo.playbackRate = 0.5;
-
-            function syncPlay() {
-                gtVideo.currentTime = 0;
-                outputVideo.currentTime = 0;
-
-                Promise.all([
-                    gtVideo.play().catch(() => { }),
-                    outputVideo.play().catch(() => { })
-                ]);
-            }
-
-            function syncPause() {
-                gtVideo.pause();
-                outputVideo.pause();
-            }
-
-            return { syncPlay, syncPause };
-        }
-        // function addMemoryVideoInteractions() {
-        //     setTimeout(() => {
-        //         const memoryPairs = document.querySelectorAll('.memory-video-pair:not([data-processed])');
-
-        //         console.log('Processing video pairs:', memoryPairs.length);
-
-        //         memoryPairs.forEach(pair => {
-        //             pair.setAttribute('data-processed', 'true');
-
-        //             const videos = pair.querySelectorAll('.memory-video');
-        //             const [gtVideo, outputVideo] = videos;
-
-        //             if (!gtVideo || !outputVideo) {
-        //                 console.log('Videos not found in pair:', pair);
-        //                 return;
-        //             }
-
-        //             const { syncPlay, syncPause } = createSyncFunctions(gtVideo, outputVideo);
-
-        //             pair.addEventListener('click', function (e) {
-        //                 e.preventDefault();
-
-        //                 if (gtVideo.readyState < 2 || outputVideo.readyState < 2) {
-        //                     Promise.all([
-        //                         videoManager.loadVideo(gtVideo, 2),
-        //                         videoManager.loadVideo(outputVideo, 2)
-        //                     ]).then(() => {
-        //                         if (gtVideo.paused) {
-        //                             syncPlay();
-        //                         } else {
-        //                             syncPause();
-        //                         }
-        //                     });
-        //                 } else {
-        //                     if (gtVideo.paused) {
-        //                         syncPlay();
-        //                     } else {
-        //                         syncPause();
-        //                     }
-        //                 }
-        //             });
-
-        //             pair.addEventListener('dblclick', function (e) {
-        //                 e.preventDefault();
-
-        //                 if (gtVideo.readyState >= 2 && outputVideo.readyState >= 2) {
-        //                     syncPlay();
-        //                 }
-        //             });
-
-        //             gtVideo.addEventListener('ended', function () {
-        //                 syncPlay();
-        //             });
-
-        //             outputVideo.addEventListener('ended', function () {
-        //                 syncPlay();
-        //             });
-
-        //             let syncTimeout;
-        //             gtVideo.addEventListener('timeupdate', function () {
-        //                 clearTimeout(syncTimeout);
-        //                 syncTimeout = setTimeout(() => {
-        //                     if (!gtVideo.paused && !outputVideo.paused) {
-        //                         const timeDiff = Math.abs(gtVideo.currentTime - outputVideo.currentTime);
-        //                         if (timeDiff > 0.1) {
-        //                             outputVideo.currentTime = gtVideo.currentTime;
-        //                         }
-        //                     }
-        //                 }, 100);
-        //             });
-
-        //             videos.forEach(video => {
-        //                 video.addEventListener('click', function (e) {
-        //                     e.stopPropagation();
-        //                     e.preventDefault();
-        //                 });
-
-        //                 video.addEventListener('error', function () {
-        //                     console.log('Video load error:', this.src);
-        //                     this.style.background = '#2c1810';
-        //                     this.style.display = 'flex';
-        //                     this.style.alignItems = 'center';
-        //                     this.style.justifyContent = 'center';
-        //                     this.innerHTML = '<div style="color: #ff6b6b; text-align: center; padding: 20px;">Video loading failed</div>';
-        //                 });
-
-        //                 video.addEventListener('loadeddata', function () {
-        //                     const pairIndex = Array.from(document.querySelectorAll('.memory-video-pair')).indexOf(pair);
-        //                     if (pairIndex < 8) {
-        //                         if (video === gtVideo) {
-        //                             if (outputVideo.readyState >= 2) {
-        //                                 syncPlay();
-        //                             }
-        //                         } else if (video === outputVideo) {
-        //                             if (gtVideo.readyState >= 2) {
-        //                                 syncPlay();
-        //                             }
-        //                         }
-        //                     }
-        //                 });
-        //             });
-        //         });
-
-        //         console.log('Video interactions added to', memoryPairs.length, 'pairs');
-        //     }, 100);
-        // }
+            // --- 第二步：激活懒加载侦测 ---
+            // 只有被滚到的非 Hero 视频才会去请求网络
+            document.querySelectorAll('video').forEach(vid => {
+                if (vid.id !== 'hero-vid') {
+                    videoObserver.observe(vid);
+                }
+            });
+        });
     </script>
-    <!-- bootstrap -->
+
+    <script>
+        function setupSwitcher(videoId, sourceId, btnClass) {
+            const video = document.getElementById(videoId);
+            const source = document.getElementById(sourceId);
+            const buttons = document.querySelectorAll(btnClass);
+            if(!video || !source) return;
+
+            buttons.forEach(button => {
+                button.addEventListener("click", function () {
+                    const newSrc = this.getAttribute("data-src");
+                    const wasPaused = video.paused;
+                    
+                    // 无论是初始激活还是切换，直接走标准 src
+                    source.src = newSrc;
+                    source.removeAttribute('data-src'); // 移除 data-src 防止冲突
+                    video.setAttribute('data-loaded', 'true');
+                    video.load();
+                    video.currentTime = 0;
+
+                    if (!wasPaused) {
+                        video.play().catch(() => {});
+                    }
+
+                    buttons.forEach(btn => btn.classList.remove("active"));
+                    this.classList.add("active");
+                });
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            setupSwitcher("single-switch-video", "single-switch-source", ".single-video-btn");
+            setupSwitcher("single-switch-video2", "single-switch-source2", ".single-video-btn2");
+            setupSwitcher("single-switch-video3", "single-switch-source3", ".single-video-btn3");
+            setupSwitcher("single-switch-video4", "single-switch-source4", ".single-video-btn4");
+        });
+    </script>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
-    <script>
-        function setSpeed(button, rate) {
-
-            const container = button.closest(".col-md-4");
-
-            const video = container.querySelector("video");
-
-            video.playbackRate = rate;
-
-            container.querySelectorAll(".speed-btn").forEach(btn => {
-                btn.classList.remove("active");
-            });
-
-            button.classList.add("active");
-        }
-    </script>
-    <!-- <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            document.querySelectorAll("#long1, #long2, #long3").forEach(video => {
-                video.playbackRate = 2;
-            });
-
-        });
-    </script> -->
-    <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const video = document.getElementById("single-switch-video");
-        const source = document.getElementById("single-switch-source");
-        const buttons = document.querySelectorAll(".single-video-btn");
-
-        video.load();
-        video.play().catch(() => {});
-
-        buttons.forEach(button => {
-            button.addEventListener("click", function () {
-                const newSrc = this.getAttribute("data-src");
-                const wasPaused = video.paused;
-                const currentTime = 0;
-
-                if (source.getAttribute("src") === newSrc) {
-                    return;
-                }
-
-                source.setAttribute("src", newSrc);
-                video.load();
-                video.currentTime = currentTime;
-
-                if (!wasPaused) {
-                    video.play().catch(() => {});
-                }
-
-                buttons.forEach(btn => btn.classList.remove("active"));
-                this.classList.add("active");
-            });
-        });
-    });
-</script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const video = document.getElementById("single-switch-video2");
-        const source = document.getElementById("single-switch-source2");
-        const buttons = document.querySelectorAll(".single-video-btn2");
-
-        video.load();
-        video.play().catch(() => {});
-
-        buttons.forEach(button => {
-            button.addEventListener("click", function () {
-                const newSrc = this.getAttribute("data-src");
-                const wasPaused = video.paused;
-                const currentTime = 0;
-
-                if (source.getAttribute("src") === newSrc) {
-                    return;
-                }
-
-                source.setAttribute("src", newSrc);
-                video.load();
-                video.currentTime = currentTime;
-
-                if (!wasPaused) {
-                    video.play().catch(() => {});
-                }
-
-                buttons.forEach(btn => btn.classList.remove("active"));
-                this.classList.add("active");
-            });
-        });
-    });
-</script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const video = document.getElementById("single-switch-video3");
-        const source = document.getElementById("single-switch-source3");
-        const buttons = document.querySelectorAll(".single-video-btn3");
-
-        video.load();
-        video.play().catch(() => {});
-
-        buttons.forEach(button => {
-            button.addEventListener("click", function () {
-                const newSrc = this.getAttribute("data-src");
-                const wasPaused = video.paused;
-                const currentTime = 0;
-
-                if (source.getAttribute("src") === newSrc) {
-                    return;
-                }
-
-                source.setAttribute("src", newSrc);
-                video.load();
-                video.currentTime = currentTime;
-
-                if (!wasPaused) {
-                    video.play().catch(() => {});
-                }
-
-                buttons.forEach(btn => btn.classList.remove("active"));
-                this.classList.add("active");
-            });
-        });
-    });
-</script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const video = document.getElementById("single-switch-video4");
-        const source = document.getElementById("single-switch-source4");
-        const buttons = document.querySelectorAll(".single-video-btn4");
-
-        video.load();
-        video.play().catch(() => {});
-
-        buttons.forEach(button => {
-            button.addEventListener("click", function () {
-                const newSrc = this.getAttribute("data-src");
-                const wasPaused = video.paused;
-                const currentTime = 0;
-
-                if (source.getAttribute("src") === newSrc) {
-                    return;
-                }
-
-                source.setAttribute("src", newSrc);
-                video.load();
-                video.currentTime = currentTime;
-
-                if (!wasPaused) {
-                    video.play().catch(() => {});
-                }
-
-                buttons.forEach(btn => btn.classList.remove("active"));
-                this.classList.add("active");
-            });
-        });
-    });
-</script>
 </body>
-
 </html>
