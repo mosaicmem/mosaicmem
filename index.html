@@ -30,7 +30,7 @@
     <!-- Hero Section with Video Grid Background -->
     <section class="hero-section">
         <!-- Video Grid Background -->
-        <video class="hero-video" autoplay muted loop playsinline preload="metadata">
+        <video id="hero-vid" class="hero-video" autoplay muted loop playsinline preload="auto">
             <source src="static/videos/title.mp4" type="video/mp4">
         </video>
 
@@ -732,149 +732,129 @@
 
         // 分阶段加载视频 - 修正后的版本
         async function loadVideosInStages() {
-            try {
-                // 第1阶段：加载中心16个视频（最高优先级5）
-                videoManager.showLoading('Loading center videos...');
-                const centerVideos = document.querySelectorAll('.center-video video');
-                await Promise.all(Array.from(centerVideos).map(video =>
-                    videoManager.loadVideo(video, 5)
-                ));
-
-                // 开始播放中心视频
-                centerVideos.forEach(video => {
-                    video.play().catch(() => { });
-                });
-
-                // 第2阶段：加载背景视频（优先级4）
-                videoManager.updateLoading('Loading background videos...');
-                const backgroundVideos = document.querySelectorAll('.video-cell:not(.center-video) video');
-                await Promise.all(Array.from(backgroundVideos).map((video, index) =>
-                    videoManager.loadVideo(video, 4)
-                ));
-
-                // 开始播放背景视频
-                backgroundVideos.forEach((video, index) => {
-                    setTimeout(() => {
-                        video.play().catch(() => { });
-                    }, index * 100);
-                });
-
-                // 加载并播放对比小节的视频（优先级3.5）
-                videoManager.updateLoading('Loading comparison videos...');
-                const compareVideos = Array.from(document.querySelectorAll('video')).filter(video => {
-                    const source = video.querySelector('source');
-                    return source && source.src.includes('static/highlight_compare/video');
-                });
-
-                console.log('Found comparison videos:', compareVideos.length); // 调试信息
-
-                await Promise.all(compareVideos.map(video =>
-                    videoManager.loadVideo(video, 3.5)
-                ));
-
-                compareVideos.forEach(video => {
-                    video.playbackRate = 2.0;
-                    video.play().catch(err => {
-                        console.log('Failed to autoplay comparison video:', err);
-                    });
-                });
-
-                // 第3阶段：加载轮播视频（优先级3）
-                videoManager.updateLoading('Loading carousel videos...');
-                const carouselVideos = document.querySelectorAll('.video-slide video');
-                await Promise.all(Array.from(carouselVideos).map(video =>
-                    videoManager.loadVideo(video, 3)
-                ));
-
-                // 第4阶段：预加载前8个记忆视频（优先级2）
-                videoManager.updateLoading('Loading memory videos...');
-                generateAllMemoryVideos();
-                hideExtraVideos();
-
-                const initialMemoryVideos = document.querySelectorAll('.memory-video-pair:nth-child(-n+8) .memory-video');
-                await Promise.all(Array.from(initialMemoryVideos).map(video =>
-                    videoManager.loadVideo(video, 2)
-                ));
-
-                addMemoryVideoInteractions();
-                videoManager.hideLoading();
-                console.log('All priority videos loaded successfully!');
-
-                // 第5阶段：后台加载剩余记忆视频（最低优先级1）
-                setTimeout(() => {
-                    const remainingMemoryVideos = document.querySelectorAll('.memory-video-pair:nth-child(n+9) .memory-video');
-                    Array.from(remainingMemoryVideos).forEach(video => {
-                        videoManager.loadVideo(video, 1);
-                    });
-                }, 2000);
-
-            } catch (error) {
-                console.error('Error loading videos:', error);
-                videoManager.hideLoading();
+        try {
+            // 【第 0 阶段】：强制最优先加载 Hero Video
+            const heroVid = document.getElementById('hero-vid');
+            if (heroVid) {
+                videoManager.showLoading('Initializing experience...');
+                // 设置最高优先级 10
+                await videoManager.loadVideo(heroVid, 10);
+                heroVid.play().catch(() => { });
+                console.log('Hero video loaded and playing.');
             }
-        }
 
-        // 页面加载完成后开始分阶段加载
-        document.addEventListener('DOMContentLoaded', function () {
-            loadVideosInStages();
-        });
+            // 【第 1 阶段】：加载 Mosaic Memory 核心展示视频（原最高优先级）
+            videoManager.updateLoading('Loading Mosaic Memory...');
+            const mosaicVid = document.getElementById('mosaic-video');
+            if (mosaicVid) {
+                await videoManager.loadVideo(mosaicVid, 5);
+                mosaicVid.play().catch(() => { });
+            }
 
-        // Video carousel functionality
-        let currentSlideIndex = 0;
-        const slides = document.querySelectorAll('.video-slide');
-        const indicators = document.querySelectorAll('.indicator');
-        const totalSlides = slides.length;
-        let isAutoPlaying = true;
-
-        function showSlide(index) {
-            // Hide all slides and stop all videos
-            slides.forEach((slide, i) => {
-                slide.classList.remove('active');
-                const video = slide.querySelector('video');
-                video.pause();
-                video.currentTime = 0;
+            // 【第 2 阶段】：加载 Long Video 区域（让主要内容先出来）
+            videoManager.updateLoading('Loading long-term results...');
+            const longVideos = document.querySelectorAll('#long1, #long2, #long3');
+            await Promise.all(Array.from(longVideos).map(video =>
+                videoManager.loadVideo(video, 4)
+            ));
+            longVideos.forEach(v => {
+                v.playbackRate = 4.0; // 自动设置 4x 速
+                v.play().catch(() => { });
             });
 
-            // Remove active class from all indicators
-            indicators.forEach(indicator => indicator.classList.remove('active'));
+            // 【第 3 阶段】：加载其他切换视频和背景视频
+            videoManager.updateLoading('Loading interactive demos...');
+            const switchVideos = document.querySelectorAll('[id^="single-switch-video"]');
+            await Promise.all(Array.from(switchVideos).map(video =>
+                videoManager.loadVideo(video, 3)
+            ));
 
-            // Show current slide and play video
-            slides[index].classList.add('active');
-            indicators[index].classList.add('active');
-            const currentVideo = slides[index].querySelector('video');
+            // 【第 4 阶段】：预加载前 8 个记忆视频对
+            videoManager.updateLoading('Preparing evaluation grid...');
+            generateAllMemoryVideos();
+            hideExtraVideos();
+            const initialMemoryVideos = document.querySelectorAll('.memory-video-pair:nth-child(-n+8) .memory-video');
+            await Promise.all(Array.from(initialMemoryVideos).map(video =>
+                videoManager.loadVideo(video, 2)
+            ));
 
-            // 确保视频已加载再播放
-            if (currentVideo.readyState >= 2) {
-                currentVideo.playbackRate = 3.0;
-                currentVideo.play().catch(() => { });
-            } else {
-                // 如果未加载，先加载再播放（轮播视频优先级3）
-                videoManager.loadVideo(currentVideo, 3).then(() => {
+            addMemoryVideoInteractions();
+            videoManager.hideLoading();
+
+            // 【第 5 阶段】：后台静默加载剩余的所有视频
+            setTimeout(() => {
+                const everythingElse = document.querySelectorAll('video:not([data-loaded])');
+                Array.from(everythingElse).forEach(video => {
+                    videoManager.loadVideo(video, 1);
+                });
+            }, 3000);
+
+        } catch (error) {
+            console.error('Error loading videos:', error);
+            videoManager.hideLoading();
+        }
+    }
+            // 页面加载完成后开始分阶段加载
+            document.addEventListener('DOMContentLoaded', function () {
+                loadVideosInStages();
+            });
+
+            // Video carousel functionality
+            let currentSlideIndex = 0;
+            const slides = document.querySelectorAll('.video-slide');
+            const indicators = document.querySelectorAll('.indicator');
+            const totalSlides = slides.length;
+            let isAutoPlaying = true;
+
+            function showSlide(index) {
+                // Hide all slides and stop all videos
+                slides.forEach((slide, i) => {
+                    slide.classList.remove('active');
+                    const video = slide.querySelector('video');
+                    video.pause();
+                    video.currentTime = 0;
+                });
+
+                // Remove active class from all indicators
+                indicators.forEach(indicator => indicator.classList.remove('active'));
+
+                // Show current slide and play video
+                slides[index].classList.add('active');
+                indicators[index].classList.add('active');
+                const currentVideo = slides[index].querySelector('video');
+
+                // 确保视频已加载再播放
+                if (currentVideo.readyState >= 2) {
                     currentVideo.playbackRate = 3.0;
                     currentVideo.play().catch(() => { });
-                });
+                } else {
+                    // 如果未加载，先加载再播放（轮播视频优先级3）
+                    videoManager.loadVideo(currentVideo, 3).then(() => {
+                        currentVideo.playbackRate = 3.0;
+                        currentVideo.play().catch(() => { });
+                    });
+                }
+
+                currentSlideIndex = index;
             }
 
-            currentSlideIndex = index;
-        }
+            function changeSlide(direction) {
+                isAutoPlaying = false;
 
-        function changeSlide(direction) {
-            isAutoPlaying = false;
+                currentSlideIndex += direction;
 
-            currentSlideIndex += direction;
+                if (currentSlideIndex >= totalSlides) {
+                    currentSlideIndex = 0;
+                } else if (currentSlideIndex < 0) {
+                    currentSlideIndex = totalSlides - 1;
+                }
 
-            if (currentSlideIndex >= totalSlides) {
-                currentSlideIndex = 0;
-            } else if (currentSlideIndex < 0) {
-                currentSlideIndex = totalSlides - 1;
+                showSlide(currentSlideIndex);
+
+                setTimeout(() => {
+                    isAutoPlaying = true;
+                }, 3000);
             }
-
-            showSlide(currentSlideIndex);
-
-            setTimeout(() => {
-                isAutoPlaying = true;
-            }, 3000);
-        }
 
         function currentSlide(index) {
             isAutoPlaying = false;
