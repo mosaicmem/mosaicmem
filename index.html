@@ -17,7 +17,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="static/css/index.css">
-
 </head>
 
 <body>
@@ -76,7 +75,7 @@
                 MosaicMem lifts video patches into 3D space and gathers them in the target viewpoint, stitching them together like a mosaic. Our model simultaneously supports text-driven dynamics and free camera navigation. Navigation is jointly controlled by MosaicMem retrieval and PRoPE conditioning. The retrieved mosaic patches are flattened and concatenated with the token sequence as conditioning inputs, while residual alignment errors are corrected through warping.
             </p>
             <div class="row justify-content-center w-100">
-                <div class="col-md-12" style="max-width: 1200px;"> 
+                <div class="col-md-12" style="max-width: 1200px;">
                     <video id="mosaic-video" autoplay muted loop preload="none" playsinline controls
                         style="width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 1.5rem;">
                         <source data-src="static/videos/mosaic.mp4" type="video/mp4">
@@ -95,30 +94,40 @@
             </p>
 
             <div class="row g-4 justify-content-center mb-4">
-                <div class="col-md-6" >
-                    <div class="video-block p-3" style="background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
+                <div class="col-md-6">
+                    <div class="video-block p-3"
+                        style="background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
                         <video id="single-switch-video" autoplay muted loop controls playsinline preload="none"
                             style="width:100%; border-radius:8px; border:1px solid rgba(255,255,255,0.1); margin-bottom:1rem;">
-                            <source id="single-switch-source" data-src="static/videos/select1/giraffe.mp4" type="video/mp4">
+                            <source id="single-switch-source" data-src="static/videos/select1/giraffe.mp4"
+                                type="video/mp4">
                         </video>
                         <div class="d-flex justify-content-center flex-wrap gap-2">
-                            <button class="btn btn-sm btn-outline-light single-video-btn active" data-src="static/videos/select1/giraffe.mp4">giraffe</button>
-                            <button class="btn btn-sm btn-outline-light single-video-btn" data-src="static/videos/select1/armoured.mp4">armoured car</button>
-                            <button class="btn btn-sm btn-outline-light single-video-btn" data-src="static/videos/select1/camel.mp4">camel</button>
+                            <button class="btn btn-sm btn-outline-light single-video-btn active"
+                                data-src="static/videos/select1/giraffe.mp4">giraffe</button>
+                            <button class="btn btn-sm btn-outline-light single-video-btn"
+                                data-src="static/videos/select1/armoured.mp4">armoured car</button>
+                            <button class="btn btn-sm btn-outline-light single-video-btn"
+                                data-src="static/videos/select1/camel.mp4">camel</button>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-6">
-                    <div class="video-block p-3" style="background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
+                    <div class="video-block p-3"
+                        style="background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
                         <video id="single-switch-video2" autoplay muted loop controls playsinline preload="none"
                             style="width:100%; border-radius:8px; border:1px solid rgba(255,255,255,0.1); margin-bottom:1rem;">
-                            <source id="single-switch-source2" data-src="static/videos/select2/wolf.mp4" type="video/mp4">
+                            <source id="single-switch-source2" data-src="static/videos/select2/wolf.mp4"
+                                type="video/mp4">
                         </video>
                         <div class="d-flex justify-content-center flex-wrap gap-2">
-                            <button class="btn btn-sm btn-outline-light single-video-btn2 active" data-src="static/videos/select2/wolf.mp4">wolf</button>
-                            <button class="btn btn-sm btn-outline-light single-video-btn2" data-src="static/videos/select2/Stormtrooper.mp4">stormtrooper</button>
-                            <button class="btn btn-sm btn-outline-light single-video-btn2" data-src="static/videos/select2/rhino.mp4">rhino</button>
+                            <button class="btn btn-sm btn-outline-light single-video-btn2 active"
+                                data-src="static/videos/select2/wolf.mp4">wolf</button>
+                            <button class="btn btn-sm btn-outline-light single-video-btn2"
+                                data-src="static/videos/select2/Stormtrooper.mp4">stormtrooper</button>
+                            <button class="btn btn-sm btn-outline-light single-video-btn2"
+                                data-src="static/videos/select2/rhino.mp4">rhino</button>
                         </div>
                     </div>
                 </div>
@@ -126,36 +135,46 @@
 
             <div class="row g-4 justify-content-center">
                 <div class="col-md-6">
-                    <div class="video-block p-3" style="background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
+                    <div class="video-block p-3"
+                        style="background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
                         <video id="single-switch-video3" autoplay muted loop controls playsinline preload="none"
                             style="width:100%; border-radius:8px; border:1px solid rgba(255,255,255,0.1); margin-bottom:1rem;">
-                            <source id="single-switch-source3" data-src="static/videos/select3/astcoming.mp4" type="video/mp4">
+                            <source id="single-switch-source3" data-src="static/videos/select3/astcoming.mp4"
+                                type="video/mp4">
                         </video>
                         <div class="d-flex justify-content-center flex-wrap gap-2">
-                            <button class="btn btn-sm btn-outline-light single-video-btn3 active" data-src="static/videos/select3/astcoming.mp4">astronaut coming</button>
-                            <button class="btn btn-sm btn-outline-light single-video-btn3" data-src="static/videos/select3/astleav.mp4">astronaut leaving</button>
-                            <button class="btn btn-sm btn-outline-light single-video-btn3" data-src="static/videos/select3/penguin.mp4">penguin</button>
+                            <button class="btn btn-sm btn-outline-light single-video-btn3 active"
+                                data-src="static/videos/select3/astcoming.mp4">astronaut coming</button>
+                            <button class="btn btn-sm btn-outline-light single-video-btn3"
+                                data-src="static/videos/select3/astleav.mp4">astronaut leaving</button>
+                            <button class="btn btn-sm btn-outline-light single-video-btn3"
+                                data-src="static/videos/select3/penguin.mp4">penguin</button>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-6">
-                    <div class="video-block p-3" style="background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
+                    <div class="video-block p-3"
+                        style="background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
                         <video id="single-switch-video4" autoplay muted loop controls playsinline preload="none"
                             style="width:100%; border-radius:8px; border:1px solid rgba(255,255,255,0.1); margin-bottom:1rem;">
-                            <source id="single-switch-source4" data-src="static/videos/select4/bear.mp4" type="video/mp4">
+                            <source id="single-switch-source4" data-src="static/videos/select4/bear.mp4"
+                                type="video/mp4">
                         </video>
                         <div class="d-flex justify-content-center flex-wrap gap-2">
-                            <button class="btn btn-sm btn-outline-light single-video-btn4 active" data-src="static/videos/select4/bear.mp4">bear</button>
-                            <button class="btn btn-sm btn-outline-light single-video-btn4" data-src="static/videos/select4/zebra.mp4">zebra</button>
-                            <button class="btn btn-sm btn-outline-light single-video-btn4" data-src="static/videos/select4/lion.mp4">lion</button>
+                            <button class="btn btn-sm btn-outline-light single-video-btn4 active"
+                                data-src="static/videos/select4/bear.mp4">bear</button>
+                            <button class="btn btn-sm btn-outline-light single-video-btn4"
+                                data-src="static/videos/select4/zebra.mp4">zebra</button>
+                            <button class="btn btn-sm btn-outline-light single-video-btn4"
+                                data-src="static/videos/select4/lion.mp4">lion</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
+
     <section class="content-section d-flex flex-column align-items-center text-center">
         <div class="container">
             <h2 class="section-title">Long Video</h2>
@@ -309,70 +328,174 @@
     </section>
 
     <script>
-        // 核心：幽灵加载/懒加载机制，彻底解决带宽竞争
-        function activateVideo(vid) {
-            if (vid.hasAttribute('data-loaded')) return;
+        function activateVideo(vid, forcePreloadAuto = false) {
+            if (!vid) return;
             const source = vid.querySelector('source');
-            if (source && source.hasAttribute('data-src')) {
-                source.src = source.getAttribute('data-src');
+            if (!source) return;
+
+            if (forcePreloadAuto) {
+                vid.preload = 'auto';
+            }
+
+            if (!vid.hasAttribute('data-loaded')) {
+                if (source.hasAttribute('data-src')) {
+                    source.src = source.getAttribute('data-src');
+                    source.removeAttribute('data-src');
+                }
                 vid.load();
                 vid.setAttribute('data-loaded', 'true');
+            } else if (forcePreloadAuto) {
+                vid.load();
             }
         }
 
-        // 视口侦测器：只加载用户能看到（或即将看到）的视频
-        const videoObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const vid = entry.target;
-                    activateVideo(vid);
-                    if (vid.hasAttribute('autoplay')) {
-                        vid.play().catch(() => {});
-                    }
-                    
-                    // 设置特殊视频的倍速 (Long Videos & Dynamic Videos)
-                    if (vid.id.startsWith('long')) {
-                        vid.oncanplay = () => { vid.playbackRate = 4.0; };
-                        vid.playbackRate = 4.0;
-                    } else if (vid.querySelector('source') && vid.querySelector('source').getAttribute('data-src') && vid.querySelector('source').getAttribute('data-src').includes('dynamic')) {
-                        vid.oncanplay = () => { vid.playbackRate = 2.0; };
-                        vid.playbackRate = 2.0;
-                    }
-                    
-                    observer.unobserve(vid); // 加载过就不再监听了
+        function applyVideoPlaybackSettings(vid) {
+            if (!vid) return;
+
+            if (vid.id && vid.id.startsWith('long')) {
+                vid.playbackRate = 4.0;
+                vid.oncanplay = () => {
+                    vid.playbackRate = 4.0;
+                };
+                return;
+            }
+
+            const source = vid.querySelector('source');
+            const src = source ? (source.getAttribute('src') || source.getAttribute('data-src') || '') : '';
+            if (src.includes('dynamic')) {
+                vid.playbackRate = 2.0;
+                vid.oncanplay = () => {
+                    vid.playbackRate = 2.0;
+                };
+            }
+        }
+
+        const hiddenVideoPreloaders = new Map();
+
+        function warmVideoUrl(url) {
+            if (!url || hiddenVideoPreloaders.has(url)) return;
+
+            const v = document.createElement('video');
+            v.preload = 'auto';
+            v.muted = true;
+            v.playsInline = true;
+            v.style.position = 'absolute';
+            v.style.width = '1px';
+            v.style.height = '1px';
+            v.style.opacity = '0';
+            v.style.pointerEvents = 'none';
+            v.style.left = '-9999px';
+            v.src = url;
+
+            document.body.appendChild(v);
+            v.load();
+
+            hiddenVideoPreloaders.set(url, v);
+        }
+
+        function preloadAllNonHeroVideos() {
+            const heroVid = document.getElementById('hero-vid');
+            const heroSource = heroVid ? heroVid.querySelector('source') : null;
+            const heroSrc = heroSource ? heroSource.getAttribute('src') : '';
+
+            document.querySelectorAll('video').forEach(vid => {
+                if (vid.id === 'hero-vid') return;
+
+                activateVideo(vid, true);
+                applyVideoPlaybackSettings(vid);
+
+                const source = vid.querySelector('source');
+                if (!source) return;
+
+                const realSrc = source.getAttribute('src') || source.getAttribute('data-src');
+                if (realSrc && realSrc !== heroSrc) {
+                    warmVideoUrl(realSrc);
                 }
             });
-        }, { rootMargin: "300px 0px" }); // 提前300px触发加载
+
+            document.querySelectorAll(
+                '.single-video-btn, .single-video-btn2, .single-video-btn3, .single-video-btn4'
+            ).forEach(btn => {
+                const url = btn.getAttribute('data-src');
+                if (url && url !== heroSrc) {
+                    warmVideoUrl(url);
+                }
+            });
+        }
+
+        const videoObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+
+                const vid = entry.target;
+                activateVideo(vid, true);
+                applyVideoPlaybackSettings(vid);
+
+                if (vid.hasAttribute('autoplay')) {
+                    vid.play().catch(() => {});
+                }
+
+                observer.unobserve(vid);
+            });
+        }, { rootMargin: "300px 0px" });
 
         document.addEventListener('DOMContentLoaded', async function () {
             const loadingIndicator = document.getElementById('loadingIndicator');
             const heroVid = document.getElementById('hero-vid');
 
-            // --- 第一步：强制锁定所有资源给 Hero Video ---
-            if (heroVid) {
-                loadingIndicator.style.display = "block";
-                
-                await new Promise(resolve => {
-                    if (heroVid.readyState >= 3) {
-                        resolve();
-                    } else {
-                        heroVid.addEventListener('canplay', resolve, { once: true });
-                        setTimeout(resolve, 3000); // 3秒超时保险
+            let backgroundPreloadStarted = false;
+            function startBackgroundWork() {
+                if (backgroundPreloadStarted) return;
+                backgroundPreloadStarted = true;
+
+                loadingIndicator.style.display = "none";
+
+                preloadAllNonHeroVideos();
+
+                document.querySelectorAll('video').forEach(vid => {
+                    if (vid.id !== 'hero-vid') {
+                        videoObserver.observe(vid);
                     }
                 });
-                
-                heroVid.play().catch(() => console.log("Hero autoplay waiting for interaction"));
-                console.log("Hero video loaded successfully!");
             }
-            loadingIndicator.style.display = "none";
 
-            // --- 第二步：激活懒加载侦测 ---
-            // 只有被滚到的非 Hero 视频才会去请求网络
-            document.querySelectorAll('video').forEach(vid => {
-                if (vid.id !== 'hero-vid') {
-                    videoObserver.observe(vid);
-                }
-            });
+            if (heroVid) {
+                loadingIndicator.style.display = "block";
+
+                await new Promise(resolve => {
+                    let done = false;
+                    const finish = () => {
+                        if (done) return;
+                        done = true;
+                        startBackgroundWork();
+                        resolve();
+                    };
+
+                    heroVid.addEventListener('playing', finish, { once: true });
+
+                    const playPromise = heroVid.play();
+                    if (playPromise && typeof playPromise.then === 'function') {
+                        playPromise.catch(() => {
+                            console.log("Hero autoplay waiting for interaction");
+                            finish();
+                        });
+                    }
+
+                    if (heroVid.readyState >= 3) {
+                        setTimeout(() => {
+                            if (!heroVid.paused) {
+                                finish();
+                            }
+                        }, 0);
+                    }
+
+                    setTimeout(finish, 3000);
+                });
+
+                console.log("Hero video loaded and playing, background preload started.");
+            } else {
+                startBackgroundWork();
+            }
         });
     </script>
 
@@ -381,26 +504,30 @@
             const video = document.getElementById(videoId);
             const source = document.getElementById(sourceId);
             const buttons = document.querySelectorAll(btnClass);
-            if(!video || !source) return;
+            if (!video || !source) return;
 
             buttons.forEach(button => {
                 button.addEventListener("click", function () {
                     const newSrc = this.getAttribute("data-src");
                     const wasPaused = video.paused;
-                    
-                    // 无论是初始激活还是切换，直接走标准 src
+
+                    video.preload = 'auto';
                     source.src = newSrc;
-                    source.removeAttribute('data-src'); // 移除 data-src 防止冲突
+                    source.removeAttribute('data-src');
                     video.setAttribute('data-loaded', 'true');
                     video.load();
                     video.currentTime = 0;
 
-                    if (!wasPaused) {
+                    applyVideoPlaybackSettings(video);
+
+                    if (!wasPaused || video.hasAttribute('autoplay')) {
                         video.play().catch(() => {});
                     }
 
                     buttons.forEach(btn => btn.classList.remove("active"));
                     this.classList.add("active");
+
+                    warmVideoUrl(newSrc);
                 });
             });
         }
@@ -412,9 +539,10 @@
             setupSwitcher("single-switch-video4", "single-switch-source4", ".single-video-btn4");
         });
     </script>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
 </body>
+
 </html>
