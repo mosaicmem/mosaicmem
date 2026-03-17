@@ -372,55 +372,99 @@
 
         const hiddenVideoPreloaders = new Map();
 
-        function warmVideoUrl(url) {
-            if (!url || hiddenVideoPreloaders.has(url)) return;
+        function warmVideoUrlSequential(url) {
+            if (!url) return Promise.resolve();
+            if (hiddenVideoPreloaders.has(url)) return Promise.resolve();
 
-            const v = document.createElement('video');
-            v.preload = 'auto';
-            v.muted = true;
-            v.playsInline = true;
-            v.style.position = 'absolute';
-            v.style.width = '1px';
-            v.style.height = '1px';
-            v.style.opacity = '0';
-            v.style.pointerEvents = 'none';
-            v.style.left = '-9999px';
-            v.src = url;
+            return new Promise(resolve => {
+                const v = document.createElement('video');
+                let done = false;
 
-            document.body.appendChild(v);
-            v.load();
+                const finish = () => {
+                    if (done) return;
+                    done = true;
+                    hiddenVideoPreloaders.set(url, v);
+                    resolve();
+                };
 
-            hiddenVideoPreloaders.set(url, v);
+                v.preload = 'auto';
+                v.muted = true;
+                v.playsInline = true;
+                v.style.position = 'absolute';
+                v.style.width = '1px';
+                v.style.height = '1px';
+                v.style.opacity = '0';
+                v.style.pointerEvents = 'none';
+                v.style.left = '-9999px';
+
+                v.addEventListener('loadedmetadata', finish, { once: true });
+                v.addEventListener('canplay', finish, { once: true });
+                v.addEventListener('error', finish, { once: true });
+
+                document.body.appendChild(v);
+                v.src = url;
+                v.load();
+
+                setTimeout(finish, 1200);
+            });
         }
 
-        function preloadAllNonHeroVideos() {
-            const heroVid = document.getElementById('hero-vid');
-            const heroSource = heroVid ? heroVid.querySelector('source') : null;
-            const heroSrc = heroSource ? heroSource.getAttribute('src') : '';
+        function buildSequentialPreloadList() {
+            const list = [];
+            const seen = new Set();
+
+            function pushUrl(url) {
+                if (!url || seen.has(url)) return;
+                seen.add(url);
+                list.push(url);
+            }
+
+            const switcherExtraMap = {
+                'single-switch-video': [
+                    'static/videos/select1/giraffe.mp4',
+                    'static/videos/select1/armoured.mp4',
+                    'static/videos/select1/camel.mp4'
+                ],
+                'single-switch-video2': [
+                    'static/videos/select2/wolf.mp4',
+                    'static/videos/select2/Stormtrooper.mp4',
+                    'static/videos/select2/rhino.mp4'
+                ],
+                'single-switch-video3': [
+                    'static/videos/select3/astcoming.mp4',
+                    'static/videos/select3/astleav.mp4',
+                    'static/videos/select3/penguin.mp4'
+                ],
+                'single-switch-video4': [
+                    'static/videos/select4/bear.mp4',
+                    'static/videos/select4/zebra.mp4',
+                    'static/videos/select4/lion.mp4'
+                ]
+            };
 
             document.querySelectorAll('video').forEach(vid => {
                 if (vid.id === 'hero-vid') return;
 
-                activateVideo(vid, true);
-                applyVideoPlaybackSettings(vid);
-
                 const source = vid.querySelector('source');
                 if (!source) return;
 
-                const realSrc = source.getAttribute('src') || source.getAttribute('data-src');
-                if (realSrc && realSrc !== heroSrc) {
-                    warmVideoUrl(realSrc);
+                const mainSrc = source.getAttribute('data-src') || source.getAttribute('src');
+                pushUrl(mainSrc);
+
+                if (switcherExtraMap[vid.id]) {
+                    switcherExtraMap[vid.id].forEach(pushUrl);
                 }
             });
 
-            document.querySelectorAll(
-                '.single-video-btn, .single-video-btn2, .single-video-btn3, .single-video-btn4'
-            ).forEach(btn => {
-                const url = btn.getAttribute('data-src');
-                if (url && url !== heroSrc) {
-                    warmVideoUrl(url);
-                }
-            });
+            return list;
+        }
+
+        async function preloadAllNonHeroVideosSequentially() {
+            const urls = buildSequentialPreloadList();
+
+            for (const url of urls) {
+                await warmVideoUrlSequential(url);
+            }
         }
 
         const videoObserver = new IntersectionObserver((entries, observer) => {
@@ -432,7 +476,7 @@
                 applyVideoPlaybackSettings(vid);
 
                 if (vid.hasAttribute('autoplay')) {
-                    vid.play().catch(() => {});
+                    vid.play().catch(() => { });
                 }
 
                 observer.unobserve(vid);
@@ -444,18 +488,24 @@
             const heroVid = document.getElementById('hero-vid');
 
             let backgroundPreloadStarted = false;
+
+            function startObservers() {
+                document.querySelectorAll('video').forEach(vid => {
+                    if (vid.id !== 'hero-vid') {
+                        videoObserver.observe(vid);
+                    }
+                });
+            }
+
             function startBackgroundWork() {
                 if (backgroundPreloadStarted) return;
                 backgroundPreloadStarted = true;
 
                 loadingIndicator.style.display = "none";
+                startObservers();
 
-                preloadAllNonHeroVideos();
-
-                document.querySelectorAll('video').forEach(vid => {
-                    if (vid.id !== 'hero-vid') {
-                        videoObserver.observe(vid);
-                    }
+                preloadAllNonHeroVideosSequentially().catch(err => {
+                    console.warn('Sequential preload failed:', err);
                 });
             }
 
@@ -492,7 +542,7 @@
                     setTimeout(finish, 3000);
                 });
 
-                console.log("Hero video loaded and playing, background preload started.");
+                console.log("Hero video loaded and sequential preload started.");
             } else {
                 startBackgroundWork();
             }
@@ -521,13 +571,11 @@
                     applyVideoPlaybackSettings(video);
 
                     if (!wasPaused || video.hasAttribute('autoplay')) {
-                        video.play().catch(() => {});
+                        video.play().catch(() => { });
                     }
 
                     buttons.forEach(btn => btn.classList.remove("active"));
                     this.classList.add("active");
-
-                    warmVideoUrl(newSrc);
                 });
             });
         }
