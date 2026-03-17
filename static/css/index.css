@@ -312,6 +312,52 @@ body {
     letter-spacing: 0.01em;
 }
 
+.section-description {
+    font-size: 1.1rem;
+    color: #aaa;
+    margin: 0 auto;
+    line-height: 1.7;
+    text-align: left;
+}
+
+.manipulation-caption {
+    max-width: 1000px;
+    margin-top: 0;
+    font-size: 1rem;
+    color: #aaa;
+    line-height: 1.6;
+    text-align: left;
+}
+
+.tldr-card {
+    margin-bottom: 2.5rem;
+    padding: 1.25rem 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.22);
+}
+
+.tldr-label {
+    background: linear-gradient(90deg, #5aa8ff 0%, #f3a3c8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    font-family: 'Source Sans Pro', 'Inter', sans-serif;
+    font-size: 1.08rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.tldr-text {
+    margin: 0;
+    color: #f2f2f2;
+    font-family: 'Source Sans Pro', 'Inter', sans-serif;
+    font-size: 1.08rem;
+    line-height: 1.7;
+}
+
 .method-image {
     width: 100%;
     border-radius: 12px;
@@ -633,6 +679,44 @@ body {
     padding: 3rem 0;
 }
 
+.citation-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.citation-title {
+    margin-bottom: 0;
+    text-align: left;
+}
+
+.citation-copy-btn {
+    flex-shrink: 0;
+    padding: 0.7rem 1.2rem;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.citation-copy-btn:hover {
+    background: rgba(255, 255, 255, 0.14);
+    border-color: rgba(255, 255, 255, 0.28);
+    transform: translateY(-1px);
+}
+
+.citation-copy-btn:disabled {
+    cursor: default;
+    opacity: 0.75;
+    transform: none;
+}
+
 .citation-code {
     background: rgba(0, 0, 0, 0.5);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -745,6 +829,11 @@ body {
     .memory-additional-videos.show {
         grid-template-columns: repeat(2, 1fr);
         gap: 1.5rem;
+    }
+
+    .citation-header {
+        flex-direction: column;
+        align-items: flex-start;
     }
 }
 

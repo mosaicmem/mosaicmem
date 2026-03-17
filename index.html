@@ -76,6 +76,11 @@
     <!-- Abstract Section -->
     <section class="content-section">
         <div class="container">
+            <div class="tldr-card">
+                <p class="tldr-text">
+                    <span class="tldr-label">TL;DR:</span> MosaicMem bridges explicit 3D memory and implicit latent frames for video world models, retrieving spatially aligned 3D patches to preserve persistent scene structure while improving camera consistency, dynamic scene modeling, long-horizon navigation, and memory-based editing.
+                </p>
+            </div>
             <h2 class="section-title">Abstract</h2>
             <p class="content-text">
                 Video diffusion models are moving beyond short, plausible clips toward world simulators that must remain consistent under camera motion, revisits, and intervention. Yet spatial memory is still a key bottleneck: explicit 3D structures can improve reprojection-based consistency but struggle with depicting moving objects, while implicit memory often produces inaccurate camera motion even with correct poses. We propose Mosaic Memory (MosaicMem), a hybrid spatial memory that lifts patches into 3D for reliable localization and targeted retrieval, while exploiting model’s native conditioning to preserve prompt-following generation. MosaicMem composes spatially aligned patches in the queried view via a patch-and-compose interface, preserving what should persist while letting the model inpaint what should evolve. With PRoPE camera conditioning and two new memory alignment methods, experiments show improved pose adherence versus implicit memory and stronger dynamic modeling than explicit baselines. MosaicMem further enables minute-level navigation, memory-based scene editing and autoregressive rollout.
@@ -87,7 +92,7 @@
     <div class="container d-flex flex-column align-items-center text-center">
          <div class="container text-center">
             <h2 class="section-title">Mosaic Memory</h2>
-            <p style="font-size: 1.1rem; color: #aaa; margin: 0 auto; max-width: 800px;">
+            <p class="section-description">
                 MosaicMem lifts video patches into 3D space and gathers them in the target viewpoint, stitching them together like a mosaic. Our model simultaneously supports text-driven dynamics and free camera navigation. Navigation is jointly controlled by MosaicMem retrieval and PRoPE conditioning. The retrieved mosaic patches are flattened and concatenated with the token sequence as conditioning inputs, while residual alignment errors are corrected through warping.
             </p>
         </div>
@@ -107,7 +112,7 @@
     <div class="container text-center">
         <div class="container text-center">
             <h2 class="section-title">Promptable World Events</h2>
-            <p style="font-size: 1.1rem; color: #aaa; margin: 0 auto; max-width: 800px;">
+            <p class="section-description">
                 Similar to Genie3, our system supports promptable world events.
                 These events allow users to dynamically modify the generated world, thereby enriching the interactive experience beyond simple navigation control.
             </p>
@@ -178,7 +183,7 @@
     <section class="content-section d-flex flex-column align-items-center text-center">
         <div class="container text-center">
             <h2 class="section-title">Long-Horizon Navigation</h2>
-            <p style="font-size: 1.1rem; color: #aaa; margin: 0 auto; max-width: 800px;">
+            <p class="section-description">
         MosaicMem can generate explorable visual experiences up to <strong>2 minutes</strong> long that remain physically consistent over long horizons. While preserving accurate memory, it maintains precise egomotion and enables rich prompt-driven dynamics.
             </p>
         </div>
@@ -211,7 +216,7 @@
         <div class="container text-center">
             <div class="container text-center">
                 <h2 class="section-title">Memory Manipulation</h2>
-                <p style="font-size: 1.1rem; color: #aaa; margin: 0 auto; max-width: 800px;">
+                <p class="section-description">
             We can extract spatial memory from different scenes, perform stitching and spatial transformations such
                 as translations, and synthesize scenes that would be impossible to exist in the real world.
                 </p>
@@ -240,7 +245,7 @@
                         <source src="static\videos\token_manip_3.mp4" type="video/mp4">
                     </video>
                 </div>
-                <p style="font-size: 1rem; color: #aaa; margin-top: 0; max-width: 1000px; line-height: 1.6;">
+                <p class="manipulation-caption">
                     The scenes on the left and right come from different spatial memories—some are virtual, some are
                     real. The agent can freely explore within the synthesized imaginary environment.
                 </p>
@@ -272,7 +277,7 @@
                         <source src="static\videos\token_manip_6.mp4" type="video/mp4">
                     </video>
                 </div>
-                <p style="font-size: 1rem; color: #aaa; margin-top: 0; max-width: 1000px; line-height: 1.6;">
+                <p class="manipulation-caption">
                     The scenes on the top and bottom come from different spatial memories. This allows us to generate
                     impossible, Inception-like environments that could not exist in reality.
                 </p>
@@ -284,7 +289,7 @@
             <div class="container">
                 <div class="container text-center">
                 <h2 class="section-title">Dynamic Scene Generation</h2>
-                <p style="font-size: 1.1rem; color: #aaa; margin: 0 auto; max-width: 800px;">
+                <p class="section-description">
             Compared with explicit-memory baselines (represented here by GEN3C), MosaicMem can depict rich prompt-driven dynamics. In the examples below, the first half of each clip is generated by GEN3C, and the second half is continued by MosaicMem.
                 </p>
             </div>
@@ -336,7 +341,7 @@
             <div class="container">
                 <div class="container text-center">
                 <h2 class="section-title">Precise Camera Controll</h2>
-                <p style="font-size: 1.1rem; color: #aaa; margin: 0 auto; max-width: 800px;">
+                <p class="section-description">
             Compared with implicit-memory baselines (represented here by Context-as-Memory), MosaicMem can follow user-specified camera motion instructions almost perfectly.
                 </p>
             </div>
@@ -659,12 +664,62 @@
         </div>
     </section>
 
-    <!-- Citation Section -->
-
-
     </template>
 
+    <!-- Citation Section -->
+    <section class="content-section citation-section">
+        <div class="container">
+            <div class="citation-header">
+                <h2 class="section-title citation-title">Citation</h2>
+                <button class="citation-copy-btn" id="citationCopyBtn" type="button">Copy</button>
+            </div>
+            <pre class="citation-code" id="citationCode">@article{mosaicmem2026,
+  title   = {MosaicMem: Hybrid Spatial Memory for Controllable Video World Models},
+  author  = {Anonymous Authors},
+  journal = {arXiv},
+  year    = {2026},
+}</pre>
+        </div>
+    </section>
+
     <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const copyBtn = document.getElementById("citationCopyBtn");
+            const citationCode = document.getElementById("citationCode");
+
+            if (!copyBtn || !citationCode) {
+                return;
+            }
+
+            const defaultLabel = copyBtn.textContent;
+
+            copyBtn.addEventListener("click", async function () {
+                const text = citationCode.textContent;
+
+                try {
+                    await navigator.clipboard.writeText(text);
+                } catch (error) {
+                    const textArea = document.createElement("textarea");
+                    textArea.value = text;
+                    textArea.setAttribute("readonly", "");
+                    textArea.style.position = "absolute";
+                    textArea.style.left = "-9999px";
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    document.execCommand("copy");
+                    document.body.removeChild(textArea);
+                }
+
+                copyBtn.textContent = "Copied";
+                copyBtn.disabled = true;
+
+                window.setTimeout(() => {
+                    copyBtn.textContent = defaultLabel;
+                    copyBtn.disabled = false;
+                }, 1600);
+            });
+        });
+
         // 全局变量
         let isExpanded = false;
         let allVideosGenerated = false;
