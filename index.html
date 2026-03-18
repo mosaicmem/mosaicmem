@@ -40,6 +40,13 @@
         </div>
     </nav>
 
+    <div class="back-to-top-wrap">
+        <button class="back-to-top" id="backToTopBtn" type="button" aria-label="Back to top" title="Back to top">
+            <i class="fas fa-arrow-up"></i>
+            <span class="back-to-top-label">Back to top</span>
+        </button>
+    </div>
+
     <!-- Hero Section with Video Grid Background -->
     <section class="hero-section">
         <!-- Video Grid Background -->
@@ -738,6 +745,7 @@
             const navTargets = navLinks
                 .map((link) => document.querySelector(link.getAttribute("href")))
                 .filter(Boolean);
+            const backToTopBtn = document.getElementById("backToTopBtn");
 
             if (!navLinks.length || !navTargets.length) {
                 return;
@@ -775,11 +783,19 @@
             });
 
             const toggleNavVisibility = () => {
-                document.body.classList.toggle("nav-visible", window.scrollY > 32);
+                const showFloatingUi = window.scrollY > 32;
+                document.body.classList.toggle("nav-visible", showFloatingUi);
+                document.body.classList.toggle("back-to-top-visible", window.scrollY > 480);
             };
 
             toggleNavVisibility();
             window.addEventListener("scroll", toggleNavVisibility, { passive: true });
+
+            if (backToTopBtn) {
+                backToTopBtn.addEventListener("click", function () {
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                });
+            }
 
             setActiveLink(navTargets[0].id);
         });
