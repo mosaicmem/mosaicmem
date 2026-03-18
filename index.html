@@ -27,6 +27,19 @@
     <!-- Loading indicator -->
     <div class="loading-indicator" id="loadingIndicator">Loading videos...</div>
 
+    <nav class="section-nav" aria-label="Section navigation">
+        <div class="section-nav-inner">
+            <a class="section-nav-link" href="#abstract">Abstract</a>
+            <a class="section-nav-link" href="#mosaic-memory">Mosaic Memory</a>
+            <a class="section-nav-link" href="#promptable-world-events">World Events</a>
+            <a class="section-nav-link" href="#long-horizon-navigation">Long Navigation</a>
+            <a class="section-nav-link" href="#memory-manipulation">Memory Manipulation</a>
+            <a class="section-nav-link" href="#dynamic-scene-generation">Dynamic Scenes</a>
+            <a class="section-nav-link" href="#precise-camera-control">Camera Control</a>
+            <a class="section-nav-link" href="#citation">Citation</a>
+        </div>
+    </nav>
+
     <!-- Hero Section with Video Grid Background -->
     <section class="hero-section">
         <!-- Video Grid Background -->
@@ -74,7 +87,7 @@
     </section>
 
     <!-- Abstract Section -->
-    <section class="content-section">
+    <section class="content-section" id="abstract" data-nav-title="Abstract">
         <div class="container">
             <div class="tldr-card">
                 <p class="tldr-text">
@@ -88,7 +101,7 @@
         </div>
     </section>
 
-    <section class="content-section">
+    <section class="content-section" id="mosaic-memory" data-nav-title="Mosaic Memory">
     <div class="container d-flex flex-column align-items-center text-center">
          <div class="container text-center">
             <h2 class="section-title">Mosaic Memory</h2>
@@ -108,7 +121,7 @@
     </div>
 </section>
 
-<section class="content-section">
+<section class="content-section" id="promptable-world-events" data-nav-title="World Events">
     <div class="container text-center">
         <div class="container text-center">
             <h2 class="section-title">Promptable World Events</h2>
@@ -180,7 +193,7 @@
     </div>
 </section>
     
-    <section class="content-section d-flex flex-column align-items-center text-center">
+    <section class="content-section d-flex flex-column align-items-center text-center" id="long-horizon-navigation" data-nav-title="Long Navigation">
         <div class="container text-center">
             <h2 class="section-title">Long-Horizon Navigation</h2>
             <p class="section-description">
@@ -212,7 +225,7 @@
         </div>
     </section>
 
-    <section class="content-section d-flex flex-column align-items-center text-center">
+    <section class="content-section d-flex flex-column align-items-center text-center" id="memory-manipulation" data-nav-title="Memory Manipulation">
         <div class="container text-center">
             <div class="container text-center">
                 <h2 class="section-title">Memory Manipulation</h2>
@@ -285,7 +298,7 @@
             </section>
 
 
-        <section class="content-section d-flex flex-column align-items-center text-center">
+        <section class="content-section d-flex flex-column align-items-center text-center" id="dynamic-scene-generation" data-nav-title="Dynamic Scenes">
             <div class="container">
                 <div class="container text-center">
                 <h2 class="section-title">Dynamic Scene Generation</h2>
@@ -337,7 +350,7 @@
             </div>
         </section>
 
-        <section class="content-section d-flex flex-column align-items-center text-center">
+        <section class="content-section d-flex flex-column align-items-center text-center" id="precise-camera-control" data-nav-title="Camera Control">
             <div class="container">
                 <div class="container text-center">
                 <h2 class="section-title">Precise Camera Controll</h2>
@@ -667,7 +680,7 @@
     </template>
 
     <!-- Citation Section -->
-    <section class="content-section citation-section">
+    <section class="content-section citation-section" id="citation" data-nav-title="Citation">
         <div class="container">
             <div class="citation-header">
                 <h2 class="section-title citation-title">Citation</h2>
@@ -718,6 +731,50 @@
                     copyBtn.disabled = false;
                 }, 1600);
             });
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const navLinks = Array.from(document.querySelectorAll(".section-nav-link"));
+            const navTargets = navLinks
+                .map((link) => document.querySelector(link.getAttribute("href")))
+                .filter(Boolean);
+
+            if (!navLinks.length || !navTargets.length) {
+                return;
+            }
+
+            const setActiveLink = (id) => {
+                navLinks.forEach((link) => {
+                    const isActive = link.getAttribute("href") === "#" + id;
+                    link.classList.toggle("active", isActive);
+                });
+            };
+
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    const visibleEntries = entries
+                        .filter((entry) => entry.isIntersecting)
+                        .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+                    if (visibleEntries.length > 0) {
+                        setActiveLink(visibleEntries[0].target.id);
+                    }
+                },
+                {
+                    rootMargin: "-20% 0px -55% 0px",
+                    threshold: [0.15, 0.3, 0.5]
+                }
+            );
+
+            navTargets.forEach((section) => observer.observe(section));
+
+            navLinks.forEach((link) => {
+                link.addEventListener("click", function () {
+                    setActiveLink(this.getAttribute("href").slice(1));
+                });
+            });
+
+            setActiveLink(navTargets[0].id);
         });
 
         // 全局变量
