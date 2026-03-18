@@ -774,6 +774,13 @@
                 });
             });
 
+            const toggleNavVisibility = () => {
+                document.body.classList.toggle("nav-visible", window.scrollY > 32);
+            };
+
+            toggleNavVisibility();
+            window.addEventListener("scroll", toggleNavVisibility, { passive: true });
+
             setActiveLink(navTargets[0].id);
         });
 
