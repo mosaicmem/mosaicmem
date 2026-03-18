@@ -516,6 +516,25 @@ body.back-to-top-visible .back-to-top-wrap {
     font-weight: 500;
 }
 
+.tldr-emphasis {
+    display: inline;
+    color: #ffffff;
+    font-weight: 700;
+    background-image: linear-gradient(
+        to top,
+        rgba(90, 168, 255, 0.78) 0%,
+        rgba(90, 168, 255, 0.78) 0.16em,
+        rgba(90, 168, 255, 0.18) 0.22em,
+        transparent 0.32em
+    );
+    background-repeat: no-repeat;
+    background-size: 100% 0.5em;
+    background-position: 0 100%;
+    padding: 0 0.04em 0.06em;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+}
+
 .method-image {
     width: 100%;
     border-radius: 12px;
