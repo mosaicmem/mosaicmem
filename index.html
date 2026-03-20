@@ -7,7 +7,63 @@
     <meta property="og:title" content="MosaicMem" />
     <meta property="og:description" content="MosaicMem" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .tldr-video-row {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    gap: 28px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+}
 
+.tldr-col {
+    flex: 1 1 560px;
+    min-width: 320px;
+}
+
+.video-col {
+    flex: 0 1 420px;
+    width: 100%;
+    max-width: 420px;
+}
+
+.abstract-side-video {
+    width: 100%;
+    height: 100%;
+    min-height: 220px;
+    max-height: 320px;
+    object-fit: cover;
+    display: block;
+    border-radius: 16px;
+}
+
+.abstract-centered-text {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+@media (max-width: 900px) {
+    .tldr-video-row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .tldr-col,
+    .video-col {
+        max-width: 900px;
+        width: 100%;
+    }
+
+    .abstract-side-video {
+        height: auto;
+        min-height: unset;
+        max-height: unset;
+    }
+}
+    </style>
     <title>MosaicMem</title>
     <!-- <link rel="icon" type="image/x-icon" href="static/images/favicon.ico"> -->
 
@@ -70,7 +126,7 @@
             <div class="authors">
             <div class="author-row">
                 <a href="https://gnosisyuw.github.io/" class="author-link">Wei Yu<sup>*,†</sup></a>,
-                <a href="https://www.linkedin.com/in/runjia-qian-a02799191/" class="author-link">Runjia Qian<sup>*</sup></a>,
+                <a href="https://www.linkedin.com/in/runjia-071777385" class="author-link">Runjia Qian<sup>*</sup></a>,
                 <a href="https://yumengli007.github.io/" class="author-link">Yumeng Li<sup>*</sup></a>,
                 <a href="https://lichothu.github.io/" class="author-link">Liquan Wang<sup></sup></a>,
                 <a href="https://www.linkedin.com/in/songheng-yin/" class="author-link">Songheng Yin<sup></sup></a>,
@@ -107,19 +163,38 @@
 
     <!-- Abstract Section -->
     <section class="content-section" id="abstract" data-nav-title="Abstract">
-        <div class="container">
-            <div class="tldr-card">
-                <p class="tldr-text">
-                    <span class="tldr-label">TL;DR</span> MosaicMem is a <span class="tldr-emphasis">hybrid spatial memory</span> for video world models that bridges explicit 3D memory and implicit latent frames. It retrieves spatially aligned 3D patches to preserve persistent scene structure, improving camera consistency while supporting dynamic scene modeling, long-horizon navigation, and memory-based editing.
-                </p>
+    <div class="container">
+        <div class="tldr-video-row">
+            <div class="tldr-col">
+                <div class="tldr-card">
+                    <p class="tldr-text">
+                        <span class="tldr-label">TL;DR</span> MosaicMem is a <span class="tldr-emphasis">hybrid spatial memory</span> for video world models that bridges explicit 3D memory and implicit latent frames. It retrieves spatially aligned 3D patches to preserve persistent scene structure, improving camera consistency while supporting dynamic scene modeling, long-horizon navigation, and memory-based editing.
+                    </p>
+                </div>
             </div>
-            <h2 class="section-title">Abstract</h2>
-            <p class="content-text">
-                Video diffusion models are moving beyond short, plausible clips toward world simulators that must remain consistent under camera motion, revisits, and intervention. Yet spatial memory is still a key bottleneck: explicit 3D structures can improve reprojection-based consistency but struggle with depicting moving objects, while implicit memory often produces inaccurate camera motion even with correct poses. We propose Mosaic Memory (MosaicMem), a hybrid spatial memory that lifts patches into 3D for reliable localization and targeted retrieval, while exploiting model’s native conditioning to preserve prompt-following generation. MosaicMem composes spatially aligned patches in the queried view via a patch-and-compose interface, preserving what should persist while letting the model inpaint what should evolve. With PRoPE camera conditioning and two new memory alignment methods, experiments show improved pose adherence versus implicit memory and stronger dynamic modeling than explicit baselines. MosaicMem further enables minute-level navigation, memory-based scene editing and autoregressive rollout.
-            </p>
-        </div>
-    </section>
 
+            <div class="video-col">
+                <video
+                    class="abstract-side-video"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    controls
+                    preload="metadata"
+                >
+                    <source src="static/videos/aris.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+
+        <h2 class="section-title">Abstract</h2>
+        <p class="content-text abstract-centered-text">
+            Video diffusion models are moving beyond short, plausible clips toward world simulators that must remain consistent under camera motion, revisits, and intervention. Yet spatial memory is still a key bottleneck: explicit 3D structures can improve reprojection-based consistency but struggle with depicting moving objects, while implicit memory often produces inaccurate camera motion even with correct poses. We propose Mosaic Memory (MosaicMem), a hybrid spatial memory that lifts patches into 3D for reliable localization and targeted retrieval, while exploiting model’s native conditioning to preserve prompt-following generation. MosaicMem composes spatially aligned patches in the queried view via a patch-and-compose interface, preserving what should persist while letting the model inpaint what should evolve. With PRoPE camera conditioning and two new memory alignment methods, experiments show improved pose adherence versus implicit memory and stronger dynamic modeling than explicit baselines. MosaicMem further enables minute-level navigation, memory-based scene editing and autoregressive rollout.
+        </p>
+    </div>
+</section>
     <section class="content-section" id="mosaic-memory" data-nav-title="Mosaic Memory">
     <div class="container d-flex flex-column align-items-center text-center">
          <div class="container text-center">
