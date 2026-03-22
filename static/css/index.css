@@ -474,6 +474,13 @@ body.back-to-top-visible .back-to-top-wrap {
     margin-bottom: 2rem;
     font-weight: 400;
     letter-spacing: 0.01em;
+    text-align: left;
+}
+
+.abstract-centered-text {
+    max-width: 1088px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .section-description {
